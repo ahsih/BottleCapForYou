@@ -1,0 +1,30 @@
+:root {
+  color-scheme: light;
+  --page-bg: #f3f5f8;
+  --text-color: #213244;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: var(--page-bg);
+  color: var(--text-color);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}

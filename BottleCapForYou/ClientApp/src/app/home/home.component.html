@@ -1,0 +1,191 @@
+<div class="site-page">
+  <div class="top-strip">
+    <div class="container top-strip__inner">
+      <div class="top-strip__contacts">
+        <span *ngFor="let phone of contact.phones">{{ phone }}</span>
+        <span>{{ contact.email }}</span>
+      </div>
+      <div class="lang-switch" [attr.aria-label]="t('switchLabel')">
+        <button type="button" [class.active]="language === 'zh'" (click)="setLanguage('zh')">中文</button>
+        <button type="button" [class.active]="language === 'en'" (click)="setLanguage('en')">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="main-header">
+    <div class="container main-header__inner">
+      <a class="brand" href="#home" aria-label="Deyi Plastic Chemical homepage">
+        <div class="brand__logo">DY</div>
+        <div class="brand__copy">
+          <strong>{{ localized('YUYAO DEYI PLASTIC CHEMICAL CO., LTD.', '余姚德益塑化有限公司') }}</strong>
+          <span>PETG PCTG PET PP PE POM PC</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <a href="#home">{{ t('home') }}</a>
+        <a href="#about">{{ t('about') }}</a>
+        <a href="#products">{{ t('products') }}</a>
+        <a href="#application">{{ t('application') }}</a>
+        <a href="#news">{{ t('news') }}</a>
+        <a href="#contact">{{ t('contact') }}</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero__backdrop"></div>
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <p class="hero__tag">{{ localized('HIGH-QUALITY SUPPLIER OF PLASTIC RAW MATERIALS', '高品质塑料原料供应商') }}</p>
+        <h1>
+          <span>{{ hero[language].line1 }}</span>
+          <span>{{ hero[language].line2 }}</span>
+        </h1>
+        <p class="hero__summary">{{ hero[language].subtitle }}</p>
+        <div class="hero__actions">
+          <a class="hero__button hero__button--primary" href="#products">{{ hero[language].primary }}</a>
+          <a class="hero__button hero__button--secondary" href="#contact">{{ hero[language].secondary }}</a>
+        </div>
+      </div>
+
+      <aside class="hero__panel">
+        <div class="hero__panel-header">{{ localized('Main Supply Scope', '主要供应范围') }}</div>
+        <ul>
+          <li>PETG / PCTG</li>
+          <li>PEEK / PPSU</li>
+          <li>PP / PE / ABS / PVC</li>
+          <li>{{ localized('Plastic products and packaging', '塑料制品与包装') }}</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="container hero-stats">
+      <div class="hero-stat" *ngFor="let item of highlights">
+        <strong>{{ item.value }}</strong>
+        <span>{{ localized(item.en, item.zh) }}</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="section section--products">
+    <div class="container">
+      <div class="section-titlebar">
+        <div>
+          <p class="section-titlebar__eyebrow">{{ t('products') }}</p>
+          <h2>{{ localized('Products', '产品展示') }}</h2>
+        </div>
+        <a class="section-link" href="#contact">{{ t('allProducts') }}</a>
+      </div>
+
+      <div class="products-grid">
+        <article class="product-card" *ngFor="let item of productCards">
+          <div class="product-card__line"></div>
+          <h3>{{ localized(item.enTitle, item.zhTitle) }}</h3>
+          <p>{{ localized(item.enText, item.zhText) }}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section section--about">
+    <div class="container about-grid">
+      <div class="about-copy">
+        <p class="section-titlebar__eyebrow">{{ t('about') }}</p>
+        <h2>{{ about[language].title }}</h2>
+        <p *ngFor="let paragraph of about[language].paragraphs">{{ paragraph }}</p>
+        <ul>
+          <li *ngFor="let group of about[language].groups">{{ group }}</li>
+        </ul>
+      </div>
+
+      <div class="about-aside">
+        <div class="about-aside__card">
+          <span>{{ localized('One-stop solution', '一站式服务') }}</span>
+          <strong>{{ localized('Engineering plastics, standard plastics, biodegradable polymers and packaging support.', '工程塑料、通用塑料、可降解材料及包装支持。') }}</strong>
+        </div>
+        <div class="about-aside__video">
+          <div class="about-aside__play"></div>
+          <p>{{ localized('Video area placeholder inspired by the original homepage.', '参考原网站视频区域的展示占位。') }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="news" class="section section--news">
+    <div class="container news-layout">
+      <div class="news-column">
+        <div class="section-titlebar">
+          <div>
+            <p class="section-titlebar__eyebrow">{{ t('standards') }}</p>
+            <h2>{{ localized('News', '新闻资讯') }}</h2>
+          </div>
+        </div>
+
+        <div class="news-list">
+          <article class="news-item" *ngFor="let item of standards">
+            <time>{{ item.date }}</time>
+            <h3>{{ localized(item.en, item.zh) }}</h3>
+          </article>
+        </div>
+      </div>
+
+      <div id="application" class="application-column">
+        <div class="section-titlebar">
+          <div>
+            <p class="section-titlebar__eyebrow">{{ t('application') }}</p>
+            <h2>{{ localized('Application', '应用领域') }}</h2>
+          </div>
+        </div>
+
+        <div class="application-list">
+          <article class="application-card" *ngFor="let item of applications">
+            <h3>{{ localized(item.enTitle, item.zhTitle) }}</h3>
+            <p>{{ localized(item.enText, item.zhText) }}</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--partners">
+    <div class="container">
+      <div class="section-titlebar">
+        <div>
+          <p class="section-titlebar__eyebrow">{{ t('partners') }}</p>
+          <h2>{{ localized('Cooperator', '合作伙伴') }}</h2>
+        </div>
+      </div>
+
+      <div class="partner-grid">
+        <div class="partner-item" *ngFor="let partner of partners">{{ partner }}</div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-column footer-column--contact">
+        <p class="section-titlebar__eyebrow">{{ t('contact') }}</p>
+        <h2>{{ localized('Contact information', '联系方式') }}</h2>
+        <p><strong>{{ t('addressLabel') }}:</strong> {{ localized(contact.addressEn, contact.addressZh) }}</p>
+        <p><strong>{{ t('telLabel') }}:</strong> {{ contact.phones.join(' / ') }}</p>
+        <p><strong>{{ t('faxLabel') }}:</strong> {{ contact.fax }}</p>
+        <p><strong>{{ t('emailLabel') }}:</strong> {{ contact.email }}</p>
+      </div>
+
+      <div class="footer-column footer-column--form">
+        <p class="section-titlebar__eyebrow">{{ t('links') }}</p>
+        <div class="footer-links">
+          <span *ngFor="let link of links">{{ link }}</span>
+        </div>
+        <div class="footer-form">
+          <input type="text" [placeholder]="localized('Your name', '您的姓名')" />
+          <input type="email" [placeholder]="localized('Email address', '邮箱地址')" />
+          <textarea rows="4" [placeholder]="localized('Message', '留言内容')"></textarea>
+          <button type="button">{{ t('send') }}</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
