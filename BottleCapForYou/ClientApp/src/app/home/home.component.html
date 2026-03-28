@@ -3,6 +3,23 @@
     <div class="top-strip">
       <div class="container top-strip__inner">
         <div class="top-strip__contacts">
+          <div class="social-links" aria-label="Social media links">
+            <a class="social-link" href="https://www.facebook.com/share/1DpevTN1FE/" target="_blank" rel="noreferrer" aria-label="Visit Facebook page">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M13.5 21v-8.03h2.7l.4-3.13H13.5V7.84c0-.9.25-1.52 1.55-1.52h1.66V3.52c-.81-.09-1.62-.13-2.44-.12-2.42 0-4.07 1.48-4.07 4.2v2.24H8v3.13h2.2V21h3.3Z" />
+              </svg>
+            </a>
+            <a class="social-link" href="https://www.tiktok.com/@dingyuangaiye?_r=1&_t=ZN-954OvEs3L8A" target="_blank" rel="noreferrer" aria-label="Visit TikTok profile">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14.71 3c.31 2.43 1.67 3.88 4.08 4.04v2.71a6.82 6.82 0 0 1-4.02-1.26v5.06c0 3.79-2.25 6.26-5.98 6.26-3.26 0-5.79-2.38-5.79-5.59 0-3.48 2.76-5.86 6.61-5.86.38 0 .78.04 1.2.12v2.82a4.1 4.1 0 0 0-1.13-.16c-1.97 0-3.33 1.16-3.33 2.94 0 1.67 1.23 2.83 2.86 2.83 1.83 0 2.92-1.12 2.92-3.29V3h2.58Z" />
+              </svg>
+            </a>
+            <a class="social-link" href="https://youtube.com/channel/UCIp2OXI9VbGaRNFmoiV6t_A?si=TfrkMJXu4LWZQozh" target="_blank" rel="noreferrer" aria-label="Visit YouTube channel">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21.58 7.19a2.95 2.95 0 0 0-2.08-2.09C17.66 4.6 12 4.6 12 4.6s-5.66 0-7.5.5A2.95 2.95 0 0 0 2.42 7.2 30.52 30.52 0 0 0 2 12a30.52 30.52 0 0 0 .42 4.81 2.95 2.95 0 0 0 2.08 2.09c1.84.5 7.5.5 7.5.5s5.66 0 7.5-.5a2.95 2.95 0 0 0 2.08-2.09A30.52 30.52 0 0 0 22 12a30.52 30.52 0 0 0-.42-4.81ZM9.95 15.01V8.99L15.18 12l-5.23 3.01Z" />
+              </svg>
+            </a>
+          </div>
           <div class="contact-item" *ngFor="let phone of visiblePhones">
             <a class="contact-link" [href]="phoneHref(phone)">{{ phone }}</a>
             <a class="whatsapp-link" [href]="whatsappHref(phone)" target="_blank" rel="noreferrer" aria-label="Contact on WhatsApp">
@@ -184,4 +201,5 @@
     </div>
   </footer>
 </div>
+
 
