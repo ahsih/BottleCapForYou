@@ -5,13 +5,11 @@ export interface SiteTranslations {
     home: string;
     about: string;
     products: string;
-    application: string;
-    news: string;
+    certifications: string;
     contact: string;
   };
   ui: {
     allProducts: string;
-    standards: string;
     partners: string;
     links: string;
     send: string;
@@ -32,19 +30,15 @@ export interface SiteTranslations {
   };
   brand: {
     company: string;
+    strapline: string;
   };
   hero: {
     tag: string;
-    line1: string;
-    line2: string;
     subtitle: string;
+    body: string;
     primary: string;
     secondary: string;
   };
-  highlights: Array<{
-    value: string;
-    label: string;
-  }>;
   heroPanel: string[];
   products: Array<{
     title: string;
@@ -57,14 +51,11 @@ export interface SiteTranslations {
     asideLabel: string;
     asideText: string;
   };
-  standards: Array<{
-    date: string;
+  certifications: {
     title: string;
-  }>;
-  applications: Array<{
-    title: string;
-    text: string;
-  }>;
+    eyebrow: string;
+    description: string;
+  };
   footer: {
     address: string;
   };
@@ -76,124 +67,88 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       home: 'Home',
       about: 'About',
       products: 'Products',
-      application: 'Application',
-      news: 'News',
+      certifications: 'Certifications',
       contact: 'Contact'
     },
     ui: {
       allProducts: 'All Products',
-      standards: 'Standards & News',
       partners: 'Partners',
       links: 'Hyperlinks',
       send: 'Submit',
       switchLabel: 'Language',
       languageChinese: 'Switch to Chinese',
       languageEnglish: 'Switch to English',
-      homepageLabel: 'Deyi Plastic Chemical homepage',
+      homepageLabel: 'DingYuan bottle cap homepage',
       addressLabel: 'Address',
       telLabel: 'Tel',
       faxLabel: 'Fax',
       emailLabel: 'Email',
       supplyScope: 'Main Supply Scope',
-      videoPlaceholder: 'Video area placeholder inspired by the original homepage.',
+      videoPlaceholder: 'End-to-end bottle cap production overview.',
       contactInformation: 'Contact information',
       yourName: 'Your name',
       emailAddress: 'Email address',
       message: 'Message'
     },
     brand: {
-      company: 'YUYAO DEYI PLASTIC CHEMICAL CO., LTD.'
+      company: 'HuiZhou DingYuan Gaiye Plastic Co., Ltd.',
+      strapline: 'Your Trusted Bottle Cap Manufacturer'
     },
     hero: {
-      tag: 'HIGH-QUALITY SUPPLIER OF PLASTIC RAW MATERIALS',
-      line1: 'YUYAO DEYI PLASTIC',
-      line2: 'CHEMICAL CO., LTD.',
-      subtitle: 'PETG, PCTG, PET, PP, PE, POM, PC and specialty polymers for packaging, household, cosmetic, infant and medical applications.',
+      tag: 'High Quality Plastic Bottle Cap Manufacturer',
+      subtitle: 'Pursuing excellent quality and building high-quality brands.',
+      body: 'Customer first: we always prioritize our customers needs, respond quickly, and deliver dependable bottle cap solutions for water factories and bulk buyers.',
       primary: 'Explore Products',
       secondary: 'Contact Us'
     },
-    highlights: [
-      { value: '20+', label: 'Material categories' },
-      { value: '1-stop', label: 'Supply solutions' },
-      { value: 'EN/CN', label: 'Bilingual homepage' }
-    ],
     heroPanel: [
-      'PETG / PCTG',
-      'PEEK / PPSU',
-      'PP / PE / ABS / PVC',
-      'Plastic products and packaging'
+      'Food grade material',
+      'Leak-proof and non-spill',
+      'Fits standard 5 gallon bottles',
+      'Suitable for water factories',
+      'Durable and safe',
+      'Wholesale and bulk supply'
     ],
     products: [
       {
-        title: 'Eastman Tritan TX1001 / TX2001 / TX1501HF',
-        text: 'Excellent clarity, toughness, hydrolytic stability and BPA-free performance for durable transparent products.'
+        title: 'Food-Grade Bottle Caps',
+        text: 'Manufactured with reliable materials for drinking water packaging and daily high-volume use.'
       },
       {
-        title: 'SKYGREEN PETG / PCTG',
-        text: 'Injection and sheet grades widely used in cosmetic packaging, bottles, household items and transparent components.'
+        title: 'Leak-Proof Cap Design',
+        text: 'Designed for secure sealing performance and dependable handling during transport and storage.'
       },
       {
-        title: 'PEEK / PPSU / POM / PC',
-        text: 'Engineering plastics chosen for heat resistance, chemical stability, mechanical strength and demanding industrial use.'
+        title: 'Factory Supply Support',
+        text: 'Stable production capacity for water plants, distributors and OEM wholesale requirements.'
       },
       {
-        title: 'PP / PE / PVC / ABS / PLA',
-        text: 'General-purpose and biodegradable resin options to support cost-sensitive, high-volume production lines.'
+        title: 'Custom Packaging Solutions',
+        text: 'Flexible support for product specifications, packing methods and commercial supply needs.'
       }
     ],
     about: {
       title: 'About us',
       paragraphs: [
-        'Yuyao Deyi Plastic Chemical Co., Ltd. is a high-quality supplier specializing in plastic raw materials, plastic products and chemicals.',
-        'Based on the principle of integrity, we provide customers with one-stop solutions for plastic raw materials, plastic products and chemical related products.'
+        'HuiZhou DingYuan Gaiye Plastic Co., Ltd. focuses on bottle cap manufacturing, product quality and dependable supply support for our customers.',
+        'We are committed to stable production, practical service and long-term cooperation, helping clients source bottle cap products with confidence.'
       ],
       groups: [
-        'Engineering plastics: PCTG, PETG, PEEK, PPSU, POM, PC, PET, Nylon PA.',
-        'Standard plastics: PVC, ABS, PS, PP, PE.',
-        'Biodegradable polymers: PBAT, PBS, PBSA, PBST, PLA.',
-        'Plastic products: tube, film, packaging products and related processing support.'
+        'Bottle caps for water packaging and related applications.',
+        'Reliable manufacturing process and stable bulk supply.',
+        'Support for factories, distributors and wholesale orders.',
+        'Practical service focused on quality, speed and consistency.'
       ],
-      asideLabel: 'One-stop solution',
-      asideText: 'Engineering plastics, standard plastics, biodegradable polymers and packaging support.'
+      asideLabel: 'One-stop support',
+      asideText: 'From production to delivery, we support customers with reliable bottle cap manufacturing and wholesale supply.'
     },
-    standards: [
-      {
-        date: '2023-10-11',
-        title: 'GB 4806.13-2023 National food safety standard for composite materials and products in contact with food'
-      },
-      {
-        date: '2023-10-11',
-        title: 'GB 4806.12-2022 National food safety standard for bamboo and wood materials in contact with food'
-      },
-      {
-        date: '2023-10-11',
-        title: 'GB 4806.11-2023 National food safety standard for rubber materials and products in contact with food'
-      },
-      {
-        date: '2023-10-11',
-        title: 'GB 4806.10-2016 National food safety standard for coatings used in food contact'
-      }
-    ],
-    applications: [
-      {
-        title: 'Building materials',
-        text: 'Used in pipelines, roofing, doors, windows, waterproofing, insulation and reinforcement systems.'
-      },
-      {
-        title: 'Household goods',
-        text: 'Suitable for tableware, kitchenware, bathroom products, cleaning tools and decorative goods.'
-      },
-      {
-        title: 'Skin care cosmetics',
-        text: 'Crystal-clear, glossy and chemically resistant packaging materials for beauty and personal care brands.'
-      },
-      {
-        title: 'Infant and medical products',
-        text: 'Stable-performance resin options for applications that require dependable material behavior and clean appearance.'
-      }
-    ],
+    certifications: {
+      title: 'ISO certifications',
+      eyebrow: 'Certified Quality',
+      description: 'Our company operates with a strong focus on quality control and compliance. We are ISO certified, reflecting our commitment to consistent manufacturing standards, food-safety awareness and professional operating procedures.'
+    },
     footer: {
-      address: 'Room 705, Building 3, Business Center, China Plastic City, Yuyao, Ningbo, Zhejiang, 315400'
+      address: 'Please update with your latest company address.'
     }
   },
   'zh-CN': {
@@ -201,124 +156,88 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       home: '首页',
       about: '关于我们',
       products: '产品',
-      application: '应用领域',
-      news: '新闻',
+      certifications: '资质证书',
       contact: '联系我们'
     },
     ui: {
-      allProducts: '全部产品',
-      standards: '标准与资讯',
+      allProducts: '查看全部产品',
       partners: '合作伙伴',
-      links: '友情链接',
+      links: '相关链接',
       send: '提交',
-      switchLabel: '语言',
+      switchLabel: '语言切换',
       languageChinese: '切换到中文',
       languageEnglish: '切换到英文',
-      homepageLabel: '德益塑化首页',
+      homepageLabel: '鼎源盖业首页',
       addressLabel: '地址',
       telLabel: '电话',
       faxLabel: '传真',
       emailLabel: '邮箱',
       supplyScope: '主要供应范围',
-      videoPlaceholder: '参考原网站视频区域的展示占位。',
-      contactInformation: '联系方式',
+      videoPlaceholder: '瓶盖生产流程展示视频。',
+      contactInformation: '联系信息',
       yourName: '您的姓名',
       emailAddress: '邮箱地址',
       message: '留言内容'
     },
     brand: {
-      company: '余姚德益塑化有限公司'
+      company: '惠州鼎源盖业塑胶有限公司',
+      strapline: '值得信赖的瓶盖制造商'
     },
     hero: {
-      tag: '高品质塑料原料供应商',
-      line1: '余姚德益塑化',
-      line2: '有限公司',
-      subtitle: '主营 PETG、PCTG、PET、PP、PE、POM、PC 及各类特种聚合物，服务包装、家居、化妆品、母婴与医疗应用。',
+      tag: '高品质塑料瓶盖制造商',
+      subtitle: '追求卓越品质，打造高质量品牌。',
+      body: '客户至上：我们始终把客户需求放在首位，快速响应客户要求，为水厂和批量采购客户提供可靠的瓶盖解决方案。',
       primary: '查看产品',
       secondary: '联系我们'
     },
-    highlights: [
-      { value: '20+', label: '材料类别' },
-      { value: '1-stop', label: '一站式方案' },
-      { value: 'EN/CN', label: '双语首页' }
-    ],
     heroPanel: [
-      'PETG / PCTG',
-      'PEEK / PPSU',
-      'PP / PE / ABS / PVC',
-      '塑料制品与包装'
+      '食品级材料',
+      '防漏防溢设计',
+      '适配标准 5 加仑水桶',
+      '适用于各类水厂',
+      '耐用安全',
+      '支持批发与大货供应'
     ],
     products: [
       {
-        title: 'Eastman Tritan TX1001 / TX2001 / TX1501HF',
-        text: '透明度高、韧性好、耐水解且不含 BPA，适用于耐用透明制品。'
+        title: '食品级瓶盖产品',
+        text: '采用可靠材料制造，适用于饮用水包装及日常大批量使用场景。'
       },
       {
-        title: 'SKYGREEN PETG / PCTG',
-        text: '适用于化妆品包装、瓶材、家居用品及透明部件的注塑与片材等级材料。'
+        title: '防漏密封结构',
+        text: '注重密封表现，在运输、储存和使用过程中更稳定可靠。'
       },
       {
-        title: 'PEEK / PPSU / POM / PC',
-        text: '面向高耐热、耐化学、机械强度及严苛工业场景的工程塑料。'
+        title: '工厂供货支持',
+        text: '为水厂、经销商及 OEM 批发客户提供稳定产能和供应支持。'
       },
       {
-        title: 'PP / PE / PVC / ABS / PLA',
-        text: '覆盖通用与可降解树脂，满足成本敏感型及大批量生产需求。'
+        title: '定制包装方案',
+        text: '可根据产品规格、包装方式及商业需求提供灵活配套服务。'
       }
     ],
     about: {
       title: '关于我们',
       paragraphs: [
-        '余姚德益塑化有限公司是一家专注于塑料原料、塑料制品及化工产品的优质供应商。',
-        '公司秉承诚信原则，为客户提供塑料原料、塑料制品及相关化工产品的一站式解决方案。'
+        '惠州鼎源盖业塑胶有限公司专注于瓶盖制造、产品质量控制以及为客户提供稳定可靠的供应服务。',
+        '我们坚持稳定生产、务实服务和长期合作，帮助客户更安心地采购瓶盖产品。'
       ],
       groups: [
-        '工程塑料：PCTG、PETG、PEEK、PPSU、POM、PC、PET、尼龙 PA。',
-        '通用塑料：PVC、ABS、PS、PP、PE。',
-        '可降解材料：PBAT、PBS、PBSA、PBST、PLA。',
-        '塑料制品：管材、薄膜、包装制品及相关加工支持。'
+        '适用于饮用水包装及相关场景的瓶盖产品。',
+        '稳定的生产流程与批量供货能力。',
+        '支持工厂、经销商及批发订单需求。',
+        '以品质、效率与稳定性为核心的服务理念。'
       ],
-      asideLabel: '一站式服务',
-      asideText: '工程塑料、通用塑料、可降解材料及包装支持。'
+      asideLabel: '一站式支持',
+      asideText: '从生产到交付，我们为客户提供可靠的瓶盖制造与批发供应支持。'
     },
-    standards: [
-      {
-        date: '2023-10-11',
-        title: 'GB 4806.13-2023 食品安全国家标准 食品接触用复合材料及制品'
-      },
-      {
-        date: '2023-10-11',
-        title: 'GB 4806.12-2022 食品安全国家标准 食品接触用竹木材料及制品'
-      },
-      {
-        date: '2023-10-11',
-        title: 'GB 4806.11-2023 食品安全国家标准 食品接触用橡胶材料及制品'
-      },
-      {
-        date: '2023-10-11',
-        title: 'GB 4806.10-2016 食品安全国家标准 食品接触用涂料及涂层'
-      }
-    ],
-    applications: [
-      {
-        title: '建筑材料',
-        text: '广泛用于管道、屋面、门窗、防水、保温及增强系统。'
-      },
-      {
-        title: '家居用品',
-        text: '适用于餐具、厨具、卫浴用品、清洁工具及装饰用品。'
-      },
-      {
-        title: '护肤化妆品',
-        text: '适用于美妆个护品牌的高透明、高光泽、耐化学包装材料。'
-      },
-      {
-        title: '母婴与医疗产品',
-        text: '面向对材料稳定性与外观洁净度要求较高的母婴及医疗类应用。'
-      }
-    ],
+    certifications: {
+      title: 'ISO 资质认证',
+      eyebrow: '认证与品质',
+      description: '公司高度重视质量管理与规范化运营，已获得 ISO 相关认证，体现了我们在制造标准、食品安全意识以及专业管理流程方面的持续承诺。'
+    },
     footer: {
-      address: '浙江省宁波市余姚中国塑料城商务中心 3 号楼 705 室，315400'
+      address: '请更新为贵司最新地址。'
     }
   }
 };
