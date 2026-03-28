@@ -1,5 +1,8 @@
 ﻿<div class="site-page">
-  <div class="site-header-shell" [class.site-header-shell--hidden]="isMobileHeaderHidden">
+  <div
+    class="site-header-shell"
+    [class.site-header-shell--hidden]="isMobileHeaderHidden"
+  >
     <div class="top-strip">
       <div class="container top-strip__inner">
         <div class="top-strip__contacts">
@@ -44,7 +47,11 @@
               </svg>
             </a>
           </div>
-          <div class="contact-item" *ngFor="let phone of visiblePhones; let i = index" [class.contact-item--phone-secondary]="i > 0">
+          <div
+            class="contact-item"
+            *ngFor="let phone of visiblePhones; let i = index"
+            [class.contact-item--phone-secondary]="i > 0"
+          >
             <a class="contact-link" [href]="phoneHref(phone)">{{ phone }}</a>
             <a
               class="whatsapp-link"
@@ -94,7 +101,9 @@
           href="#home"
           [attr.aria-label]="content().ui.homepageLabel"
         >
-          <div class="brand__logo"><img src="logo.png" [alt]="content().brand.company" /></div>
+          <div class="brand__logo">
+            <img src="logo.png" [alt]="content().brand.company" />
+          </div>
           <div class="brand__copy">
             <strong>{{ content().brand.company }}</strong>
             <span>{{ content().brand.strapline }}</span>
@@ -153,6 +162,7 @@
         <div class="section-titlebar__copy">
           <p class="section-titlebar__eyebrow">{{ content().nav.products }}</p>
           <h2>{{ content().nav.products }}</h2>
+          <h3>{{ content().ui.productHint }}</h3>
           <p class="section-intro section-intro--products">
             {{ content().ui.productSubtitle }}
           </p>
@@ -238,13 +248,19 @@
     <div class="container">
       <div class="section-titlebar section-titlebar--stacked">
         <div>
-          <p class="section-titlebar__eyebrow">{{ language() === 'zh-CN' ? '包装' : 'Packaging' }}</p>
-          <h2>{{ language() === 'zh-CN' ? '包装方案' : 'Packaging Solutions' }}</h2>
+          <p class="section-titlebar__eyebrow">
+            {{ language() === "zh-CN" ? "包装" : "Packaging" }}
+          </p>
+          <h2>
+            {{ language() === "zh-CN" ? "包装方案" : "Packaging Solutions" }}
+          </h2>
         </div>
         <p class="section-intro">
-          {{ language() === 'zh-CN'
-            ? '适用于出口发货、批量包装和集装箱装柜展示的包装与装运资料。'
-            : 'Packaging and loading information for export shipments, bulk packing, and container presentation.' }}
+          {{
+            language() === "zh-CN"
+              ? "适用于出口发货、批量包装和集装箱装柜展示的包装与装运资料。"
+              : "Packaging and loading information for export shipments, bulk packing, and container presentation."
+          }}
         </p>
       </div>
 
@@ -257,9 +273,16 @@
             <h3>{{ packagingTitle(item) }}</h3>
             <p>{{ packagingDescription(item) }}</p>
             <div class="packaging-specs">
-              <div class="packaging-specs__row" *ngFor="let row of packagingSpecs(item)">
-                <div class="packaging-specs__label">{{ packagingLabel(row) }}</div>
-                <div class="packaging-specs__value">{{ packagingValue(row) }}</div>
+              <div
+                class="packaging-specs__row"
+                *ngFor="let row of packagingSpecs(item)"
+              >
+                <div class="packaging-specs__label">
+                  {{ packagingLabel(row) }}
+                </div>
+                <div class="packaging-specs__value">
+                  {{ packagingValue(row) }}
+                </div>
               </div>
             </div>
             <p class="packaging-card__note" *ngIf="packagingNote(item)">
@@ -376,18 +399,43 @@
         <p>
           <strong>{{ content().ui.mapsLabel }}:</strong>
           <span class="footer-map-links">
-            <a class="footer-contact-link" href="https://surl.amap.com/ww6svsycM0" target="_blank" rel="noreferrer">{{ content().ui.amapLabel }}</a>
+            <a
+              class="footer-contact-link"
+              href="https://surl.amap.com/ww6svsycM0"
+              target="_blank"
+              rel="noreferrer"
+              >{{ content().ui.amapLabel }}</a
+            >
             <span>/</span>
-            <a class="footer-contact-link" href="https://maps.app.goo.gl/95ZbevcehBbfiByL6" target="_blank" rel="noreferrer">{{ content().ui.googleMapsLabel }}</a>
+            <a
+              class="footer-contact-link"
+              href="https://maps.app.goo.gl/95ZbevcehBbfiByL6"
+              target="_blank"
+              rel="noreferrer"
+              >{{ content().ui.googleMapsLabel }}</a
+            >
           </span>
         </p>
         <div class="footer-map-previews">
-          <a class="footer-map-card" href="https://surl.amap.com/ww6svsycM0" target="_blank" rel="noreferrer">
+          <a
+            class="footer-map-card"
+            href="https://surl.amap.com/ww6svsycM0"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src="maps/a_maps.png" [alt]="content().ui.amapLabel" />
             <span>{{ content().ui.amapLabel }}</span>
           </a>
-          <a class="footer-map-card" href="https://maps.app.goo.gl/95ZbevcehBbfiByL6" target="_blank" rel="noreferrer">
-            <img src="maps/google_maps.png" [alt]="content().ui.googleMapsLabel" />
+          <a
+            class="footer-map-card"
+            href="https://maps.app.goo.gl/95ZbevcehBbfiByL6"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="maps/google_maps.png"
+              [alt]="content().ui.googleMapsLabel"
+            />
             <span>{{ content().ui.googleMapsLabel }}</span>
           </a>
         </div>
@@ -437,7 +485,3 @@
     </div>
   </div>
 </div>
-
-
-
-
