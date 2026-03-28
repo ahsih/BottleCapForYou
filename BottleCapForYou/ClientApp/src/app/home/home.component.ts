@@ -1,5 +1,5 @@
 ﻿import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { I18nService } from '../core/i18n.service';
 import { AppLanguage } from '../i18n/translations';
@@ -57,8 +57,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private readonly productsPerPage = 4;
   private companyPhotoIntervalId: ReturnType<typeof setInterval> | null = null;
+  private lastScrollY = 0;
   productPageIndex = 0;
   companyPhotoIndex = 0;
+  isMobileHeaderHidden = false;
   productImageIndexes: Record<number, number> = this.products.reduce<Record<number, number>>((accumulator, product) => {
     accumulator[product.id] = 0;
     return accumulator;
@@ -75,6 +77,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   protected readonly content = this.i18n.content;
 
   ngOnInit(): void {
+    this.lastScrollY = this.getScrollY();
+    this.updateMobileHeaderVisibility();
     this.companyPhotoIntervalId = setInterval(() => {
       this.companyPhotoIndex = (this.companyPhotoIndex + 1) % this.companyPhotos.length;
     }, 4000);
@@ -84,6 +88,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.companyPhotoIntervalId) {
       clearInterval(this.companyPhotoIntervalId);
     }
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    this.updateMobileHeaderVisibility();
+  }
+
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    this.updateMobileHeaderVisibility(true);
   }
 
   get visibleCompanyPhotos(): CompanyPhoto[] {
@@ -187,5 +201,35 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   productAlt(item: ProductItem): string {
     return this.productTitle(item);
+  }
+
+  private updateMobileHeaderVisibility(resetLastScroll = false): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const currentScrollY = this.getScrollY();
+    const isMobile = window.innerWidth <= 760;
+
+    if (!isMobile) {
+      this.isMobileHeaderHidden = false;
+      this.lastScrollY = currentScrollY;
+      return;
+    }
+
+    if (resetLastScroll) {
+      this.lastScrollY = currentScrollY;
+      this.isMobileHeaderHidden = false;
+      return;
+    }
+
+    const scrollingDown = currentScrollY > this.lastScrollY;
+    const shouldHide = currentScrollY > 120 && scrollingDown;
+    this.isMobileHeaderHidden = shouldHide;
+    this.lastScrollY = currentScrollY;
+  }
+
+  private getScrollY(): number {
+    return typeof window !== 'undefined' ? window.scrollY || window.pageYOffset || 0 : 0;
   }
 }

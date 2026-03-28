@@ -1,5 +1,5 @@
 ﻿<div class="site-page">
-  <div class="site-header-shell">
+  <div class="site-header-shell" [class.site-header-shell--hidden]="isMobileHeaderHidden">
     <div class="top-strip">
       <div class="container top-strip__inner">
         <div class="top-strip__contacts">
@@ -44,7 +44,7 @@
               </svg>
             </a>
           </div>
-          <div class="contact-item" *ngFor="let phone of visiblePhones">
+          <div class="contact-item" *ngFor="let phone of visiblePhones; let i = index" [class.contact-item--phone-secondary]="i > 0">
             <a class="contact-link" [href]="phoneHref(phone)">{{ phone }}</a>
             <a
               class="whatsapp-link"
@@ -400,7 +400,3 @@
     </div>
   </div>
 </div>
-
-
-
-
