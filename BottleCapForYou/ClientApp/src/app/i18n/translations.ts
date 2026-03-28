@@ -116,7 +116,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
     hero: {
       tag: 'High Quality Plastic Bottle Cap Manufacturer',
       subtitle: 'Pursuing excellent quality and building high-quality brands.',
-      body: 'Customer first: we always prioritize our customers needs, respond quickly, and deliver dependable bottle cap solutions for water factories and bulk buyers.',
+      body: 'Dingyuan Gaiye Plastic Co., Ltd. was founded in April 2015, initially focusing on the rubber and plastic products industry. Through years of experience accumulation, the company gradually identified the market demand for bottle caps and plastic products. During this period, the company continuously tried new technologies to improve production efficiency and gradually developed into a comprehensive enterprise integrating plastic product factories and mold production workshops. Customer first: we always prioritize our customers needs, respond quickly, and deliver dependable bottle cap solutions for water factories and bulk buyers.',
       primary: 'Explore Products',
       secondary: 'Contact Us',
     },
@@ -218,7 +218,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
     hero: {
       tag: '高品质塑料瓶盖制造商',
       subtitle: '追求卓越品质，打造高质量品牌。',
-      body: '客户至上：我们始终把客户需求放在首位，快速响应客户要求，为水厂和批量采购客户提供可靠的瓶盖解决方案。',
+      body: '惠州鼎源盖业塑胶有限公司成立于2015年4月，初期专注于橡胶和塑料产品行业。通过多年的经验积累，公司逐渐识别出瓶盖和塑料产品市场的潜在需求。在此期间，公司不断尝试新技术以提高生产效率，并逐步发展成为一家集塑料产品工厂和模具生产车间于一体的综合性企业。客户至上：我们始终把客户需求放在首位，快速响应客户要求，为水厂和批量采购客户提供可靠的瓶盖解决方案。',
       primary: '查看产品',
       secondary: '联系我们',
     },
