@@ -140,7 +140,7 @@
     <div class="container hero-stats">
       <figure
         class="hero-stat hero-stat--photo"
-        *ngFor="let photo of companyPhotos"
+        *ngFor="let photo of visibleCompanyPhotos"
       >
         <img [src]="photo.src" [alt]="photo.alt" />
       </figure>
@@ -305,7 +305,6 @@
     <div class="container footer-grid">
       <div class="footer-column footer-column--contact">
         <p class="section-titlebar__eyebrow">{{ content().nav.contact }}</p>
-        <h2>{{ content().ui.contactInformation }}</h2>
         <p>
           <strong>{{ content().ui.addressLabel }}:</strong>
           {{ content().footer.address }}
@@ -337,14 +336,55 @@
             contact.email
           }}</a>
         </p>
+        <p>
+          <strong>{{ content().ui.mapsLabel }}:</strong>
+          <span class="footer-map-links">
+            <a class="footer-contact-link" href="https://surl.amap.com/ww6svsycM0" target="_blank" rel="noreferrer">{{ content().ui.amapLabel }}</a>
+            <span>/</span>
+            <a class="footer-contact-link" href="https://maps.app.goo.gl/95ZbevcehBbfiByL6" target="_blank" rel="noreferrer">{{ content().ui.googleMapsLabel }}</a>
+          </span>
+        </p>
+        <div class="footer-map-previews">
+          <a class="footer-map-card" href="https://surl.amap.com/ww6svsycM0" target="_blank" rel="noreferrer">
+            <img src="maps/a_maps.png" [alt]="content().ui.amapLabel" />
+            <span>{{ content().ui.amapLabel }}</span>
+          </a>
+          <a class="footer-map-card" href="https://maps.app.goo.gl/95ZbevcehBbfiByL6" target="_blank" rel="noreferrer">
+            <img src="maps/google_maps.png" [alt]="content().ui.googleMapsLabel" />
+            <span>{{ content().ui.googleMapsLabel }}</span>
+          </a>
+        </div>
       </div>
 
       <div class="footer-column footer-column--form">
         <div class="footer-form">
-          <input type="text" [placeholder]="content().ui.yourName" />
-          <input type="email" [placeholder]="content().ui.emailAddress" />
-          <textarea rows="4" [placeholder]="content().ui.message"></textarea>
-          <button type="button">{{ content().ui.send }}</button>
+          <input
+            type="text"
+            [placeholder]="content().ui.yourName"
+            [(ngModel)]="enquiryName"
+            name="enquiryName"
+          />
+          <input
+            type="tel"
+            [placeholder]="content().ui.phoneNumber"
+            [(ngModel)]="enquiryPhone"
+            name="enquiryPhone"
+          />
+          <input
+            type="email"
+            [placeholder]="content().ui.emailAddress"
+            [(ngModel)]="enquiryEmail"
+            name="enquiryEmail"
+          />
+          <textarea
+            rows="4"
+            [placeholder]="content().ui.message"
+            [(ngModel)]="enquiryMessage"
+            name="enquiryMessage"
+          ></textarea>
+          <button type="button" (click)="submitEnquiry()">
+            {{ content().ui.send }}
+          </button>
         </div>
       </div>
     </div>
@@ -360,3 +400,6 @@
     </div>
   </div>
 </div>
+
+
+

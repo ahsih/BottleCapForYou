@@ -1,5 +1,6 @@
 ﻿import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { I18nService } from '../core/i18n.service';
 import { AppLanguage } from '../i18n/translations';
 
@@ -11,22 +12,31 @@ type ProductItem = {
   titleZh: string;
 };
 
+type CompanyPhoto = {
+  src: string;
+  alt: string;
+};
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy {
   readonly contact = {
     phones: ['+44 7597702688', '+86 18818995568'],
     email: 'jack.zhang@bottlecapforyou.com',
   };
-  readonly companyPhotos = [
+  readonly companyPhotos: CompanyPhoto[] = [
     { src: 'company_photos/main_entrance.jpg', alt: 'Company main entrance' },
     { src: 'company_photos/office.jpg', alt: 'Company office' },
     { src: 'company_photos/Outside.jpg', alt: 'Company exterior' },
+    { src: 'company_photos/factory_equipment_1.jpg', alt: 'Factory equipment photo 1' },
+    { src: 'company_photos/factory_equipment_2.jpg', alt: 'Factory equipment photo 2' },
+    { src: 'company_photos/factory_equipment_3.jpg', alt: 'Factory equipment photo 3' },
+    { src: 'company_photos/factory_equipment_4.jpg', alt: 'Factory equipment photo 4' },
   ];
   readonly certificates = [
     { src: 'Certificates/ISO_19001.jpg', alt: 'ISO 19001 certificate' },
@@ -34,85 +44,51 @@ export class HomeComponent {
     { src: 'Certificates/Work_License.jpg', alt: 'Work license certificate' },
   ];
   readonly products: ProductItem[] = [
-    {
-      id: 1,
-      folder: '1',
-      imageCount: 8,
-      titleEn: '7.3g bucket water two-color bottle cap long lid',
-      titleZh: '7.3克桶装水双色瓶盖',
-    },
-    {
-      id: 2,
-      folder: '2',
-      imageCount: 10,
-      titleEn: '7.5g barreled water with dual color short lid',
-      titleZh: '7.5克桶装水双色瓶盖',
-    },
-    {
-      id: 3,
-      folder: '3',
-      imageCount: 8,
-      titleEn: '7.5g single color bottle cap for bottled water',
-      titleZh: '7.5克桶装水单色短盖',
-    },
-    {
-      id: 4,
-      folder: '4',
-      imageCount: 10,
-      titleEn: '7.6g barrel water two-color bottle cap (blue circle)',
-      titleZh: '7.6克桶装水双色瓶盖（蓝圈）',
-    },
-    {
-      id: 5,
-      folder: '5',
-      imageCount: 10,
-      titleEn: '8.2 gram easy to tear edge two-color bottle cap',
-      titleZh: '8.2克易撕边双色瓶盖',
-    },
-    {
-      id: 6,
-      folder: '6',
-      imageCount: 9,
-      titleEn: '8.5g barrel water two-color bottle cap',
-      titleZh: '8.5克桶装水双色瓶盖',
-    },
-    {
-      id: 7,
-      folder: '7',
-      imageCount: 7,
-      titleEn: 'Blue two-color combination inner cover',
-      titleZh: '蓝色双色组合盖',
-    },
-    {
-      id: 8,
-      folder: '8',
-      imageCount: 8,
-      titleEn: 'Blue two-piece set with monochrome pad',
-      titleZh: '蓝色两件套，配单色垫片',
-    },
-    {
-      id: 9,
-      folder: '9',
-      imageCount: 6,
-      titleEn: 'Orange two-color combination cover',
-      titleZh: '橙色双色组合瓶盖',
-    },
+    { id: 1, folder: '1', imageCount: 8, titleEn: '7.3g bucket water two-color bottle cap long lid', titleZh: '7.3克桶装水双色瓶盖' },
+    { id: 2, folder: '2', imageCount: 10, titleEn: '7.5g barreled water with dual color short lid', titleZh: '7.5克桶装水双色瓶盖' },
+    { id: 3, folder: '3', imageCount: 8, titleEn: '7.5g single color bottle cap for bottled water', titleZh: '7.5克桶装水单色短盖' },
+    { id: 4, folder: '4', imageCount: 10, titleEn: '7.6g barrel water two-color bottle cap (blue circle)', titleZh: '7.6克桶装水双色瓶盖（蓝圈）' },
+    { id: 5, folder: '5', imageCount: 10, titleEn: '8.2 gram easy to tear edge two-color bottle cap', titleZh: '8.2克易撕边双色瓶盖' },
+    { id: 6, folder: '6', imageCount: 9, titleEn: '8.5g barrel water two-color bottle cap', titleZh: '8.5克桶装水双色瓶盖' },
+    { id: 7, folder: '7', imageCount: 7, titleEn: 'Blue two-color combination inner cover', titleZh: '蓝色双色组合盖' },
+    { id: 8, folder: '8', imageCount: 8, titleEn: 'Blue two-piece set with monochrome pad', titleZh: '蓝色两件套，配单色垫片' },
+    { id: 9, folder: '9', imageCount: 6, titleEn: 'Orange two-color combination cover', titleZh: '橙色双色组合瓶盖' },
   ];
 
   private readonly productsPerPage = 4;
+  private companyPhotoIntervalId: ReturnType<typeof setInterval> | null = null;
   productPageIndex = 0;
-  productImageIndexes: Record<number, number> = this.products.reduce<
-    Record<number, number>
-  >((accumulator, product) => {
+  companyPhotoIndex = 0;
+  productImageIndexes: Record<number, number> = this.products.reduce<Record<number, number>>((accumulator, product) => {
     accumulator[product.id] = 0;
     return accumulator;
   }, {});
   activeLightboxImage: string | null = null;
   activeLightboxAlt = '';
+  enquiryName = '';
+  enquiryPhone = '';
+  enquiryEmail = '';
+  enquiryMessage = '';
 
   protected readonly i18n = inject(I18nService);
   protected readonly language = this.i18n.language;
   protected readonly content = this.i18n.content;
+
+  ngOnInit(): void {
+    this.companyPhotoIntervalId = setInterval(() => {
+      this.companyPhotoIndex = (this.companyPhotoIndex + 1) % this.companyPhotos.length;
+    }, 4000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.companyPhotoIntervalId) {
+      clearInterval(this.companyPhotoIntervalId);
+    }
+  }
+
+  get visibleCompanyPhotos(): CompanyPhoto[] {
+    return [0, 1, 2].map((offset) => this.companyPhotos[(this.companyPhotoIndex + offset) % this.companyPhotos.length]);
+  }
 
   get visiblePhones(): string[] {
     return this.language() === 'zh-CN'
@@ -134,6 +110,21 @@ export class HomeComponent {
 
   emailHref(email: string): string {
     return `mailto:${email}`;
+  }
+
+  submitEnquiry(): void {
+    const content = this.content();
+    const body = [
+      `${content.ui.senderNameLabel}: ${this.enquiryName || '-'}`,
+      `${content.ui.senderPhoneLabel}: ${this.enquiryPhone || '-'}`,
+      `${content.ui.senderEmailLabel}: ${this.enquiryEmail || '-'}`,
+      '',
+      `${content.ui.senderMessageLabel}:`,
+      this.enquiryMessage || '-',
+    ].join('\n');
+
+    const mailto = `mailto:${this.contact.email}?subject=${encodeURIComponent(content.ui.emailSubject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
   }
 
   previousProducts(): void {
