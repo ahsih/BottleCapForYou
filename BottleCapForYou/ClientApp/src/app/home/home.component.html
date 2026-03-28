@@ -234,6 +234,43 @@
     </div>
   </section>
 
+  <section id="packaging" class="section section--packaging">
+    <div class="container">
+      <div class="section-titlebar section-titlebar--stacked">
+        <div>
+          <p class="section-titlebar__eyebrow">{{ language() === 'zh-CN' ? '包装' : 'Packaging' }}</p>
+          <h2>{{ language() === 'zh-CN' ? '包装方案' : 'Packaging Solutions' }}</h2>
+        </div>
+        <p class="section-intro">
+          {{ language() === 'zh-CN'
+            ? '适用于出口发货、批量包装和集装箱装柜展示的包装与装运资料。'
+            : 'Packaging and loading information for export shipments, bulk packing, and container presentation.' }}
+        </p>
+      </div>
+
+      <div class="packaging-grid">
+        <article class="packaging-card" *ngFor="let item of packagingSections">
+          <div class="packaging-card__media">
+            <img [src]="item.imageSrc" [alt]="packagingAlt(item)" />
+          </div>
+          <div class="packaging-card__body">
+            <h3>{{ packagingTitle(item) }}</h3>
+            <p>{{ packagingDescription(item) }}</p>
+            <div class="packaging-specs">
+              <div class="packaging-specs__row" *ngFor="let row of packagingSpecs(item)">
+                <div class="packaging-specs__label">{{ packagingLabel(row) }}</div>
+                <div class="packaging-specs__value">{{ packagingValue(row) }}</div>
+              </div>
+            </div>
+            <p class="packaging-card__note" *ngIf="packagingNote(item)">
+              {{ packagingNote(item) }}
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section id="about" class="section section--about">
     <div class="container about-grid">
       <div class="about-media">
@@ -400,3 +437,7 @@
     </div>
   </div>
 </div>
+
+
+
+
