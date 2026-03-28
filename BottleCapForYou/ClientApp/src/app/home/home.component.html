@@ -4,44 +4,96 @@
       <div class="container top-strip__inner">
         <div class="top-strip__contacts">
           <div class="social-links" aria-label="Social media links">
-            <a class="social-link" href="https://www.facebook.com/share/1DpevTN1FE/" target="_blank" rel="noreferrer" aria-label="Visit Facebook page">
+            <a
+              class="social-link"
+              href="https://www.facebook.com/share/1DpevTN1FE/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Visit Facebook page"
+            >
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M13.5 21v-8.03h2.7l.4-3.13H13.5V7.84c0-.9.25-1.52 1.55-1.52h1.66V3.52c-.81-.09-1.62-.13-2.44-.12-2.42 0-4.07 1.48-4.07 4.2v2.24H8v3.13h2.2V21h3.3Z" />
+                <path
+                  d="M13.5 21v-8.03h2.7l.4-3.13H13.5V7.84c0-.9.25-1.52 1.55-1.52h1.66V3.52c-.81-.09-1.62-.13-2.44-.12-2.42 0-4.07 1.48-4.07 4.2v2.24H8v3.13h2.2V21h3.3Z"
+                />
               </svg>
             </a>
-            <a class="social-link" href="https://www.tiktok.com/@dingyuangaiye?_r=1&_t=ZN-954OvEs3L8A" target="_blank" rel="noreferrer" aria-label="Visit TikTok profile">
+            <a
+              class="social-link"
+              href="https://www.tiktok.com/@dingyuangaiye?_r=1&_t=ZN-954OvEs3L8A"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Visit TikTok profile"
+            >
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M14.71 3c.31 2.43 1.67 3.88 4.08 4.04v2.71a6.82 6.82 0 0 1-4.02-1.26v5.06c0 3.79-2.25 6.26-5.98 6.26-3.26 0-5.79-2.38-5.79-5.59 0-3.48 2.76-5.86 6.61-5.86.38 0 .78.04 1.2.12v2.82a4.1 4.1 0 0 0-1.13-.16c-1.97 0-3.33 1.16-3.33 2.94 0 1.67 1.23 2.83 2.86 2.83 1.83 0 2.92-1.12 2.92-3.29V3h2.58Z" />
+                <path
+                  d="M14.71 3c.31 2.43 1.67 3.88 4.08 4.04v2.71a6.82 6.82 0 0 1-4.02-1.26v5.06c0 3.79-2.25 6.26-5.98 6.26-3.26 0-5.79-2.38-5.79-5.59 0-3.48 2.76-5.86 6.61-5.86.38 0 .78.04 1.2.12v2.82a4.1 4.1 0 0 0-1.13-.16c-1.97 0-3.33 1.16-3.33 2.94 0 1.67 1.23 2.83 2.86 2.83 1.83 0 2.92-1.12 2.92-3.29V3h2.58Z"
+                />
               </svg>
             </a>
-            <a class="social-link" href="https://youtube.com/channel/UCIp2OXI9VbGaRNFmoiV6t_A?si=TfrkMJXu4LWZQozh" target="_blank" rel="noreferrer" aria-label="Visit YouTube channel">
+            <a
+              class="social-link"
+              href="https://youtube.com/channel/UCIp2OXI9VbGaRNFmoiV6t_A?si=TfrkMJXu4LWZQozh"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Visit YouTube channel"
+            >
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M21.58 7.19a2.95 2.95 0 0 0-2.08-2.09C17.66 4.6 12 4.6 12 4.6s-5.66 0-7.5.5A2.95 2.95 0 0 0 2.42 7.2 30.52 30.52 0 0 0 2 12a30.52 30.52 0 0 0 .42 4.81 2.95 2.95 0 0 0 2.08 2.09c1.84.5 7.5.5 7.5.5s5.66 0 7.5-.5a2.95 2.95 0 0 0 2.08-2.09A30.52 30.52 0 0 0 22 12a30.52 30.52 0 0 0-.42-4.81ZM9.95 15.01V8.99L15.18 12l-5.23 3.01Z" />
+                <path
+                  d="M21.58 7.19a2.95 2.95 0 0 0-2.08-2.09C17.66 4.6 12 4.6 12 4.6s-5.66 0-7.5.5A2.95 2.95 0 0 0 2.42 7.2 30.52 30.52 0 0 0 2 12a30.52 30.52 0 0 0 .42 4.81 2.95 2.95 0 0 0 2.08 2.09c1.84.5 7.5.5 7.5.5s5.66 0 7.5-.5a2.95 2.95 0 0 0 2.08-2.09A30.52 30.52 0 0 0 22 12a30.52 30.52 0 0 0-.42-4.81ZM9.95 15.01V8.99L15.18 12l-5.23 3.01Z"
+                />
               </svg>
             </a>
           </div>
           <div class="contact-item" *ngFor="let phone of visiblePhones">
             <a class="contact-link" [href]="phoneHref(phone)">{{ phone }}</a>
-            <a class="whatsapp-link" [href]="whatsappHref(phone)" target="_blank" rel="noreferrer" aria-label="Contact on WhatsApp">
+            <a
+              class="whatsapp-link"
+              [href]="whatsappHref(phone)"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Contact on WhatsApp"
+            >
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.55 0 .24 5.3.24 11.82c0 2.08.54 4.11 1.57 5.9L0 24l6.46-1.69a11.8 11.8 0 0 0 5.61 1.43h.01c6.52 0 11.83-5.3 11.83-11.82 0-3.16-1.23-6.13-3.39-8.44ZM12.08 21.7h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.83 1 1.02-3.73-.24-.38a9.78 9.78 0 0 1-1.51-5.19c0-5.42 4.42-9.83 9.85-9.83 2.63 0 5.1 1.02 6.95 2.88a9.77 9.77 0 0 1 2.88 6.95c0 5.42-4.42 9.84-9.84 9.84Zm5.39-7.34c-.29-.15-1.72-.85-1.99-.94-.27-.1-.46-.15-.66.15-.19.29-.76.94-.93 1.14-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.58-.49-.5-.66-.51h-.56c-.19 0-.5.07-.75.36-.25.29-.96.94-.96 2.29s.98 2.64 1.12 2.83c.15.19 1.92 2.93 4.66 4.11.65.28 1.16.44 1.56.56.65.21 1.24.18 1.71.11.52-.08 1.72-.7 1.96-1.38.24-.68.24-1.27.17-1.38-.07-.12-.27-.19-.56-.34Z"/>
+                <path
+                  d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.55 0 .24 5.3.24 11.82c0 2.08.54 4.11 1.57 5.9L0 24l6.46-1.69a11.8 11.8 0 0 0 5.61 1.43h.01c6.52 0 11.83-5.3 11.83-11.82 0-3.16-1.23-6.13-3.39-8.44ZM12.08 21.7h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.83 1 1.02-3.73-.24-.38a9.78 9.78 0 0 1-1.51-5.19c0-5.42 4.42-9.83 9.85-9.83 2.63 0 5.1 1.02 6.95 2.88a9.77 9.77 0 0 1 2.88 6.95c0 5.42-4.42 9.84-9.84 9.84Zm5.39-7.34c-.29-.15-1.72-.85-1.99-.94-.27-.1-.46-.15-.66.15-.19.29-.76.94-.93 1.14-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.58-.49-.5-.66-.51h-.56c-.19 0-.5.07-.75.36-.25.29-.96.94-.96 2.29s.98 2.64 1.12 2.83c.15.19 1.92 2.93 4.66 4.11.65.28 1.16.44 1.56.56.65.21 1.24.18 1.71.11.52-.08 1.72-.7 1.96-1.38.24-.68.24-1.27.17-1.38-.07-.12-.27-.19-.56-.34Z"
+                />
               </svg>
             </a>
           </div>
           <div class="contact-item contact-item--email">
-            <a class="contact-link" [href]="emailHref(contact.email)">{{ contact.email }}</a>
+            <a class="contact-link" [href]="emailHref(contact.email)">{{
+              contact.email
+            }}</a>
           </div>
         </div>
         <div class="lang-switch" [attr.aria-label]="content().ui.switchLabel">
-          <button type="button" [class.active]="language() === 'zh-CN'" [attr.aria-label]="content().ui.languageChinese" (click)="setLanguage('zh-CN')">中文</button>
-          <button type="button" [class.active]="language() === 'en'" [attr.aria-label]="content().ui.languageEnglish" (click)="setLanguage('en')">EN</button>
+          <button
+            type="button"
+            [class.active]="language() === 'zh-CN'"
+            [attr.aria-label]="content().ui.languageChinese"
+            (click)="setLanguage('zh-CN')"
+          >
+            中文
+          </button>
+          <button
+            type="button"
+            [class.active]="language() === 'en'"
+            [attr.aria-label]="content().ui.languageEnglish"
+            (click)="setLanguage('en')"
+          >
+            EN
+          </button>
         </div>
       </div>
     </div>
 
     <header class="main-header">
       <div class="container main-header__inner">
-        <a class="brand" href="#home" [attr.aria-label]="content().ui.homepageLabel">
+        <a
+          class="brand"
+          href="#home"
+          [attr.aria-label]="content().ui.homepageLabel"
+        >
           <div class="brand__logo">DY</div>
           <div class="brand__copy">
             <strong>{{ content().brand.company }}</strong>
@@ -68,8 +120,12 @@
         <p class="hero__summary">{{ content().hero.subtitle }}</p>
         <p class="hero__body">{{ content().hero.body }}</p>
         <div class="hero__actions">
-          <a class="hero__button hero__button--primary" href="#products">{{ content().hero.primary }}</a>
-          <a class="hero__button hero__button--secondary" href="#contact">{{ content().hero.secondary }}</a>
+          <a class="hero__button hero__button--primary" href="#products">{{
+            content().hero.primary
+          }}</a>
+          <a class="hero__button hero__button--secondary" href="#contact">{{
+            content().hero.secondary
+          }}</a>
         </div>
       </div>
 
@@ -82,7 +138,10 @@
     </div>
 
     <div class="container hero-stats">
-      <figure class="hero-stat hero-stat--photo" *ngFor="let photo of companyPhotos">
+      <figure
+        class="hero-stat hero-stat--photo"
+        *ngFor="let photo of companyPhotos"
+      >
         <img [src]="photo.src" [alt]="photo.alt" />
       </figure>
     </div>
@@ -91,25 +150,84 @@
   <section id="products" class="section section--products">
     <div class="container">
       <div class="section-titlebar section-titlebar--products">
-        <div>
+        <div class="section-titlebar__copy">
           <p class="section-titlebar__eyebrow">{{ content().nav.products }}</p>
           <h2>{{ content().nav.products }}</h2>
+          <p class="section-intro section-intro--products">
+            {{ content().ui.productSubtitle }}
+          </p>
         </div>
         <div class="product-carousel__controls">
-          <button type="button" class="product-carousel__button" (click)="previousProducts()">{{ language() === 'zh-CN' ? '上一页' : 'Prev' }}</button>
-          <span class="product-carousel__status">{{ productPageIndex + 1 }} / {{ productPageCount }}</span>
-          <button type="button" class="product-carousel__button" (click)="nextProducts()">{{ language() === 'zh-CN' ? '下一页' : 'Next' }}</button>
+          <button
+            type="button"
+            class="product-carousel__button"
+            (click)="previousProducts()"
+          >
+            {{ language() === "zh-CN" ? "上一页" : "Prev" }}
+          </button>
+          <span class="product-carousel__status"
+            >{{ productPageIndex + 1 }} / {{ productPageCount }}</span
+          >
+          <button
+            type="button"
+            class="product-carousel__button"
+            (click)="nextProducts()"
+          >
+            {{ language() === "zh-CN" ? "下一页" : "Next" }}
+          </button>
         </div>
       </div>
 
       <div class="products-grid products-grid--carousel">
-        <article class="product-card product-card--image" *ngFor="let item of visibleProducts">
-          <div class="product-card__media">
-            <img [src]="item.image" [alt]="item.alt" />
+        <article
+          class="product-card product-card--gallery"
+          *ngFor="let item of visibleProducts"
+        >
+          <div class="product-card__media product-card__media--gallery">
+            <button
+              type="button"
+              class="product-card__image-button"
+              (click)="openProductLightbox(item)"
+              [attr.aria-label]="
+                language() === 'zh-CN'
+                  ? '放大产品图片'
+                  : 'Enlarge product image'
+              "
+            >
+              <img [src]="productImagePath(item)" [alt]="productAlt(item)" />
+            </button>
+            <div class="product-card__switcher">
+              <button
+                type="button"
+                class="product-card__arrow"
+                (click)="previousProductImage(item)"
+                [attr.aria-label]="
+                  language() === 'zh-CN'
+                    ? '上一张产品图片'
+                    : 'Previous product image'
+                "
+              >
+                <span aria-hidden="true">&#9650;</span>
+              </button>
+              <span class="product-card__count">{{
+                productImagePosition(item)
+              }}</span>
+              <button
+                type="button"
+                class="product-card__arrow"
+                (click)="nextProductImage(item)"
+                [attr.aria-label]="
+                  language() === 'zh-CN'
+                    ? '下一张产品图片'
+                    : 'Next product image'
+                "
+              >
+                <span aria-hidden="true">&#9660;</span>
+              </button>
+            </div>
           </div>
-          <div class="product-card__body">
+          <div class="product-card__body product-card__body--title-only">
             <h3>{{ productTitle(item) }}</h3>
-            <p>{{ productDescription(item) }}</p>
           </div>
         </article>
       </div>
@@ -120,14 +238,24 @@
     <div class="container about-grid">
       <div class="about-media">
         <div class="about-media__frame">
-          <video class="about-media__video" controls preload="metadata" playsinline>
+          <video
+            class="about-media__video"
+            controls
+            preload="metadata"
+            playsinline
+          >
             <source src="Bottle_Cap_End_To_End.mp4" type="video/mp4" />
           </video>
         </div>
         <p class="about-media__caption">{{ content().ui.videoPlaceholder }}</p>
 
         <div class="about-media__frame">
-          <video class="about-media__video" controls preload="metadata" playsinline>
+          <video
+            class="about-media__video"
+            controls
+            preload="metadata"
+            playsinline
+          >
             <source src="introduction.mp4" type="video/mp4" />
           </video>
         </div>
@@ -136,7 +264,9 @@
       <div class="about-copy">
         <p class="section-titlebar__eyebrow">{{ content().nav.about }}</p>
         <h2>{{ content().about.title }}</h2>
-        <p *ngFor="let paragraph of content().about.paragraphs">{{ paragraph }}</p>
+        <p *ngFor="let paragraph of content().about.paragraphs">
+          {{ paragraph }}
+        </p>
         <ul>
           <li *ngFor="let group of content().about.groups">{{ group }}</li>
         </ul>
@@ -152,14 +282,19 @@
     <div class="container">
       <div class="section-titlebar section-titlebar--stacked">
         <div>
-          <p class="section-titlebar__eyebrow">{{ content().certifications.eyebrow }}</p>
+          <p class="section-titlebar__eyebrow">
+            {{ content().certifications.eyebrow }}
+          </p>
           <h2>{{ content().certifications.title }}</h2>
         </div>
         <p class="section-intro">{{ content().certifications.description }}</p>
       </div>
 
       <div class="certification-grid">
-        <figure class="certification-card" *ngFor="let certificate of certificates">
+        <figure
+          class="certification-card"
+          *ngFor="let certificate of certificates"
+        >
           <img [src]="certificate.src" [alt]="certificate.alt" />
         </figure>
       </div>
@@ -171,26 +306,40 @@
       <div class="footer-column footer-column--contact">
         <p class="section-titlebar__eyebrow">{{ content().nav.contact }}</p>
         <h2>{{ content().ui.contactInformation }}</h2>
-        <p><strong>{{ content().ui.addressLabel }}:</strong> {{ content().footer.address }}</p>
+        <p>
+          <strong>{{ content().ui.addressLabel }}:</strong>
+          {{ content().footer.address }}
+        </p>
         <p>
           <strong>{{ content().ui.telLabel }}:</strong>
           <ng-container *ngFor="let phone of visiblePhones; let last = last">
-            <a class="footer-contact-link" [href]="phoneHref(phone)">{{ phone }}</a>
-            <a class="whatsapp-link whatsapp-link--footer" [href]="whatsappHref(phone)" target="_blank" rel="noreferrer" aria-label="Contact on WhatsApp">
+            <a class="footer-contact-link" [href]="phoneHref(phone)">{{
+              phone
+            }}</a>
+            <a
+              class="whatsapp-link whatsapp-link--footer"
+              [href]="whatsappHref(phone)"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Contact on WhatsApp"
+            >
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.55 0 .24 5.3.24 11.82c0 2.08.54 4.11 1.57 5.9L0 24l6.46-1.69a11.8 11.8 0 0 0 5.61 1.43h.01c6.52 0 11.83-5.3 11.83-11.82 0-3.16-1.23-6.13-3.39-8.44ZM12.08 21.7h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.83 1 1.02-3.73-.24-.38a9.78 9.78 0 0 1-1.51-5.19c0-5.42 4.42-9.83 9.85-9.83 2.63 0 5.1 1.02 6.95 2.88a9.77 9.77 0 0 1 2.88 6.95c0 5.42-4.42 9.84-9.84 9.84Zm5.39-7.34c-.29-.15-1.72-.85-1.99-.94-.27-.1-.46-.15-.66.15-.19.29-.76.94-.93 1.14-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.58-.49-.5-.66-.51h-.56c-.19 0-.5.07-.75.36-.25.29-.96.94-.96 2.29s.98 2.64 1.12 2.83c.15.19 1.92 2.93 4.66 4.11.65.28 1.16.44 1.56.56.65.21 1.24.18 1.71.11.52-.08 1.72-.7 1.96-1.38.24-.68.24-1.27.17-1.38-.07-.12-.27-.19-.56-.34Z"/>
-              </svg>
-            </a><span *ngIf="!last"> / </span>
+                <path
+                  d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.55 0 .24 5.3.24 11.82c0 2.08.54 4.11 1.57 5.9L0 24l6.46-1.69a11.8 11.8 0 0 0 5.61 1.43h.01c6.52 0 11.83-5.3 11.83-11.82 0-3.16-1.23-6.13-3.39-8.44ZM12.08 21.7h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.83 1 1.02-3.73-.24-.38a9.78 9.78 0 0 1-1.51-5.19c0-5.42 4.42-9.83 9.85-9.83 2.63 0 5.1 1.02 6.95 2.88a9.77 9.77 0 0 1 2.88 6.95c0 5.42-4.42 9.84-9.84 9.84Zm5.39-7.34c-.29-.15-1.72-.85-1.99-.94-.27-.1-.46-.15-.66.15-.19.29-.76.94-.93 1.14-.17.19-.34.22-.63.07-.29-.15-1.23-.45-2.34-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.58-.49-.5-.66-.51h-.56c-.19 0-.5.07-.75.36-.25.29-.96.94-.96 2.29s.98 2.64 1.12 2.83c.15.19 1.92 2.93 4.66 4.11.65.28 1.16.44 1.56.56.65.21 1.24.18 1.71.11.52-.08 1.72-.7 1.96-1.38.24-.68.24-1.27.17-1.38-.07-.12-.27-.19-.56-.34Z"
+                />
+              </svg> </a
+            ><span *ngIf="!last"> / </span>
           </ng-container>
         </p>
-        <p><strong>{{ content().ui.emailLabel }}:</strong> <a class="footer-contact-link" [href]="emailHref(contact.email)">{{ contact.email }}</a></p>
+        <p>
+          <strong>{{ content().ui.emailLabel }}:</strong>
+          <a class="footer-contact-link" [href]="emailHref(contact.email)">{{
+            contact.email
+          }}</a>
+        </p>
       </div>
 
       <div class="footer-column footer-column--form">
-        <p class="section-titlebar__eyebrow">{{ content().ui.links }}</p>
-        <div class="footer-links">
-          <span *ngFor="let link of links">{{ link }}</span>
-        </div>
         <div class="footer-form">
           <input type="text" [placeholder]="content().ui.yourName" />
           <input type="email" [placeholder]="content().ui.emailAddress" />
@@ -200,6 +349,14 @@
       </div>
     </div>
   </footer>
+
+  <div
+    class="lightbox"
+    *ngIf="activeLightboxImage"
+    (click)="closeProductLightbox()"
+  >
+    <div class="lightbox__dialog" (click)="$event.stopPropagation()">
+      <img [src]="activeLightboxImage" [alt]="activeLightboxAlt" />
+    </div>
+  </div>
 </div>
-
-

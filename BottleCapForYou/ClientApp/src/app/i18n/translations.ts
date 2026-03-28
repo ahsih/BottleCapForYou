@@ -27,6 +27,7 @@ export interface SiteTranslations {
     yourName: string;
     emailAddress: string;
     message: string;
+    productSubtitle: string;
   };
   brand: {
     company: string;
@@ -88,7 +89,8 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       contactInformation: 'Contact information',
       yourName: 'Your name',
       emailAddress: 'Email address',
-      message: 'Message'
+      message: 'Message',
+      productSubtitle: 'This 5 gallon water bottle cap is designed for drinking water factories and water production lines. Made of food grade material, safe and non-toxic for drinking water use. Features good sealing, leak-proof and non-spill performance. Fits standard 5 gallon PC water bottles. Suitable for bottled water plants, water production lines and wholesale distributors.'
     },
     brand: {
       company: 'HuiZhou DingYuan Gaiye Plastic Co., Ltd.',
@@ -177,7 +179,8 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       contactInformation: '联系信息',
       yourName: '您的姓名',
       emailAddress: '邮箱地址',
-      message: '留言内容'
+      message: '留言内容',
+      productSubtitle: '这款 5 加仑水瓶盖专为饮用水工厂和桶装水生产线设计。采用食品级材料制成，安全无毒，适用于饮用水使用。具有良好的密封性，防漏防溢。适配标准 5 加仑 PC 水桶。适用于桶装水工厂、饮用水生产线及批发经销商。'
     },
     brand: {
       company: '惠州鼎源盖业塑胶有限公司',
