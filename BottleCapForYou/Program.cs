@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.HttpOverrides;
+﻿using BottleCapForYou.Models;
+using BottleCapForYou.Services;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<ContactFormOptions>(builder.Configuration.GetSection("ContactForm"));
+builder.Services.AddScoped<ContactFormEmailSender>();
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
@@ -26,6 +30,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.MapControllers();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");

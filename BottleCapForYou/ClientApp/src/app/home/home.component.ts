@@ -173,6 +173,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   enquiryPhone = '';
   enquiryEmail = '';
   enquiryMessage = '';
+  isSubmitting = false;
+  submitStatus: 'idle' | 'success' | 'error' = 'idle';
 
   protected readonly i18n = inject(I18nService);
   protected readonly language = this.i18n.language;
@@ -228,19 +230,56 @@ export class HomeComponent implements OnInit, OnDestroy {
     return `mailto:${email}`;
   }
 
-  submitEnquiry(): void {
-    const content = this.content();
-    const body = [
-      `${content.ui.senderNameLabel}: ${this.enquiryName || '-'}`,
-      `${content.ui.senderPhoneLabel}: ${this.enquiryPhone || '-'}`,
-      `${content.ui.senderEmailLabel}: ${this.enquiryEmail || '-'}`,
-      '',
-      `${content.ui.senderMessageLabel}:`,
-      this.enquiryMessage || '-',
-    ].join('\n');
+  async submitEnquiry(): Promise<void> {
+    if (this.isSubmitting) {
+      return;
+    }
 
-    const mailto = `mailto:${this.contact.email}?subject=${encodeURIComponent(content.ui.emailSubject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+    this.isSubmitting = true;
+    this.submitStatus = 'idle';
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: this.enquiryName,
+          phone: this.enquiryPhone,
+          email: this.enquiryEmail,
+          message: this.enquiryMessage,
+          language: this.language(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send enquiry.');
+      }
+
+      this.enquiryName = '';
+      this.enquiryPhone = '';
+      this.enquiryEmail = '';
+      this.enquiryMessage = '';
+      this.submitStatus = 'success';
+    } catch {
+      this.submitStatus = 'error';
+    } finally {
+      this.isSubmitting = false;
+    }
+  }
+
+  contactFormStatusMessage(): string {
+    const content = this.content();
+
+    switch (this.submitStatus) {
+      case 'success':
+        return content.ui.submitSuccess;
+      case 'error':
+        return content.ui.submitError;
+      default:
+        return '';
+    }
   }
 
   previousProducts(): void {
@@ -367,3 +406,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     return typeof window !== 'undefined' ? window.scrollY || window.pageYOffset || 0 : 0;
   }
 }
+
+
+
+
+
+

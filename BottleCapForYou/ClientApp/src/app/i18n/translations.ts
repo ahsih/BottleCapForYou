@@ -34,6 +34,9 @@ export interface SiteTranslations {
     senderPhoneLabel: string;
     senderEmailLabel: string;
     senderMessageLabel: string;
+    sending: string;
+    submitSuccess: string;
+    submitError: string;
     mapsLabel: string;
     amapLabel: string;
     googleMapsLabel: string;
@@ -108,6 +111,9 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       senderPhoneLabel: 'Phone',
       senderEmailLabel: 'Email',
       senderMessageLabel: 'Message',
+      sending: 'Sending...',
+      submitSuccess: 'Thanks, your message has been sent successfully.',
+      submitError: 'Sorry, we could not send your message right now. Please try again shortly.',
       mapsLabel: 'Maps',
       amapLabel: 'AMap',
       googleMapsLabel: 'Google Maps',
@@ -212,6 +218,9 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       senderPhoneLabel: '电话',
       senderEmailLabel: '邮箱',
       senderMessageLabel: '留言',
+      sending: '发送中...',
+      submitSuccess: '感谢您的留言，消息已成功发送。',
+      submitError: '抱歉，暂时无法发送您的留言，请稍后再试。',
       mapsLabel: '地图导航',
       amapLabel: '高德地图',
       googleMapsLabel: '谷歌地图',

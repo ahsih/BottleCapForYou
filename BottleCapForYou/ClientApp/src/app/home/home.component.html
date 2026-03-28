@@ -467,9 +467,18 @@
             [(ngModel)]="enquiryMessage"
             name="enquiryMessage"
           ></textarea>
-          <button type="button" (click)="submitEnquiry()">
-            {{ content().ui.send }}
+          <button type="button" [disabled]="isSubmitting" (click)="submitEnquiry()">
+            {{ isSubmitting ? content().ui.sending : content().ui.send }}
           </button>
+          <p
+            *ngIf="submitStatus !== 'idle'"
+            class="footer-form__status"
+            [class.footer-form__status--success]="submitStatus === 'success'"
+            [class.footer-form__status--error]="submitStatus === 'error'"
+            aria-live="polite"
+          >
+            {{ contactFormStatusMessage() }}
+          </p>
         </div>
       </div>
     </div>
@@ -485,3 +494,4 @@
     </div>
   </div>
 </div>
+
