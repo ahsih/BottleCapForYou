@@ -1,54 +1,38 @@
-<div class="site-page">
-  <div class="top-strip">
-    <div class="container top-strip__inner">
-      <div class="top-strip__contacts">
-        <span *ngFor="let phone of contact.phones">{{ phone }}</span>
-        <span>{{ contact.email }}</span>
-      </div>
-      <div class="lang-switch" [attr.aria-label]="content().ui.switchLabel">
-        <button
-          type="button"
-          [class.active]="language() === 'zh-CN'"
-          [attr.aria-label]="content().ui.languageChinese"
-          (click)="setLanguage('zh-CN')"
-        >
-          中文
-        </button>
-        <button
-          type="button"
-          [class.active]="language() === 'en'"
-          [attr.aria-label]="content().ui.languageEnglish"
-          (click)="setLanguage('en')"
-        >
-          EN
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <header class="main-header">
-    <div class="container main-header__inner">
-      <a
-        class="brand"
-        href="#home"
-        [attr.aria-label]="content().ui.homepageLabel"
-      >
-        <div class="brand__logo">DY</div>
-        <div class="brand__copy">
-          <strong>{{ content().brand.company }}</strong>
-          <span>{{ content().brand.strapline }}</span>
+﻿<div class="site-page">
+  <div class="site-header-shell">
+    <div class="top-strip">
+      <div class="container top-strip__inner">
+        <div class="top-strip__contacts">
+          <a class="contact-link" *ngFor="let phone of contact.phones" [href]="phoneHref(phone)">{{ phone }}</a>
+          <a class="contact-link" [href]="emailHref(contact.email)">{{ contact.email }}</a>
         </div>
-      </a>
-
-      <nav class="main-nav">
-        <a href="#home">{{ content().nav.home }}</a>
-        <a href="#about">{{ content().nav.about }}</a>
-        <a href="#products">{{ content().nav.products }}</a>
-        <a href="#certifications">{{ content().nav.certifications }}</a>
-        <a href="#contact">{{ content().nav.contact }}</a>
-      </nav>
+        <div class="lang-switch" [attr.aria-label]="content().ui.switchLabel">
+          <button type="button" [class.active]="language() === 'zh-CN'" [attr.aria-label]="content().ui.languageChinese" (click)="setLanguage('zh-CN')">中文</button>
+          <button type="button" [class.active]="language() === 'en'" [attr.aria-label]="content().ui.languageEnglish" (click)="setLanguage('en')">EN</button>
+        </div>
+      </div>
     </div>
-  </header>
+
+    <header class="main-header">
+      <div class="container main-header__inner">
+        <a class="brand" href="#home" [attr.aria-label]="content().ui.homepageLabel">
+          <div class="brand__logo">DY</div>
+          <div class="brand__copy">
+            <strong>{{ content().brand.company }}</strong>
+            <span>{{ content().brand.strapline }}</span>
+          </div>
+        </a>
+
+        <nav class="main-nav">
+          <a href="#home">{{ content().nav.home }}</a>
+          <a href="#about">{{ content().nav.about }}</a>
+          <a href="#products">{{ content().nav.products }}</a>
+          <a href="#certifications">{{ content().nav.certifications }}</a>
+          <a href="#contact">{{ content().nav.contact }}</a>
+        </nav>
+      </div>
+    </header>
+  </div>
 
   <section id="home" class="hero">
     <div class="hero__backdrop"></div>
@@ -58,12 +42,8 @@
         <p class="hero__summary">{{ content().hero.subtitle }}</p>
         <p class="hero__body">{{ content().hero.body }}</p>
         <div class="hero__actions">
-          <a class="hero__button hero__button--primary" href="#products">{{
-            content().hero.primary
-          }}</a>
-          <a class="hero__button hero__button--secondary" href="#contact">{{
-            content().hero.secondary
-          }}</a>
+          <a class="hero__button hero__button--primary" href="#products">{{ content().hero.primary }}</a>
+          <a class="hero__button hero__button--secondary" href="#contact">{{ content().hero.secondary }}</a>
         </div>
       </div>
 
@@ -76,10 +56,7 @@
     </div>
 
     <div class="container hero-stats">
-      <figure
-        class="hero-stat hero-stat--photo"
-        *ngFor="let photo of companyPhotos"
-      >
+      <figure class="hero-stat hero-stat--photo" *ngFor="let photo of companyPhotos">
         <img [src]="photo.src" [alt]="photo.alt" />
       </figure>
     </div>
@@ -92,9 +69,7 @@
           <p class="section-titlebar__eyebrow">{{ content().nav.products }}</p>
           <h2>{{ content().nav.products }}</h2>
         </div>
-        <a class="section-link" href="#contact">{{
-          content().ui.allProducts
-        }}</a>
+        <a class="section-link" href="#contact">{{ content().ui.allProducts }}</a>
       </div>
 
       <div class="products-grid">
@@ -111,12 +86,7 @@
     <div class="container about-grid">
       <div class="about-media">
         <div class="about-media__frame">
-          <video
-            class="about-media__video"
-            controls
-            preload="metadata"
-            playsinline
-          >
+          <video class="about-media__video" controls preload="metadata" playsinline>
             <source src="Bottle_Cap_End_To_End.mp4" type="video/mp4" />
           </video>
         </div>
@@ -126,9 +96,7 @@
       <div class="about-copy">
         <p class="section-titlebar__eyebrow">{{ content().nav.about }}</p>
         <h2>{{ content().about.title }}</h2>
-        <p *ngFor="let paragraph of content().about.paragraphs">
-          {{ paragraph }}
-        </p>
+        <p *ngFor="let paragraph of content().about.paragraphs">{{ paragraph }}</p>
         <ul>
           <li *ngFor="let group of content().about.groups">{{ group }}</li>
         </ul>
@@ -144,19 +112,14 @@
     <div class="container">
       <div class="section-titlebar section-titlebar--stacked">
         <div>
-          <p class="section-titlebar__eyebrow">
-            {{ content().certifications.eyebrow }}
-          </p>
+          <p class="section-titlebar__eyebrow">{{ content().certifications.eyebrow }}</p>
           <h2>{{ content().certifications.title }}</h2>
         </div>
         <p class="section-intro">{{ content().certifications.description }}</p>
       </div>
 
       <div class="certification-grid">
-        <figure
-          class="certification-card"
-          *ngFor="let certificate of certificates"
-        >
+        <figure class="certification-card" *ngFor="let certificate of certificates">
           <img [src]="certificate.src" [alt]="certificate.alt" />
         </figure>
       </div>
@@ -173,9 +136,7 @@
       </div>
 
       <div class="partner-grid">
-        <div class="partner-item" *ngFor="let partner of partners">
-          {{ partner }}
-        </div>
+        <div class="partner-item" *ngFor="let partner of partners">{{ partner }}</div>
       </div>
     </div>
   </section>
@@ -185,20 +146,14 @@
       <div class="footer-column footer-column--contact">
         <p class="section-titlebar__eyebrow">{{ content().nav.contact }}</p>
         <h2>{{ content().ui.contactInformation }}</h2>
-        <p>
-          <strong>{{ content().ui.addressLabel }}:</strong>
-          {{ content().footer.address }}
-        </p>
+        <p><strong>{{ content().ui.addressLabel }}:</strong> {{ content().footer.address }}</p>
         <p>
           <strong>{{ content().ui.telLabel }}:</strong>
-          {{ contact.phones.join(" / ") }}
+          <ng-container *ngFor="let phone of contact.phones; let last = last">
+            <a class="footer-contact-link" [href]="phoneHref(phone)">{{ phone }}</a><span *ngIf="!last"> / </span>
+          </ng-container>
         </p>
-        <p>
-          <strong>{{ content().ui.faxLabel }}:</strong> {{ contact.fax }}
-        </p>
-        <p>
-          <strong>{{ content().ui.emailLabel }}:</strong> {{ contact.email }}
-        </p>
+        <p><strong>{{ content().ui.emailLabel }}:</strong> <a class="footer-contact-link" [href]="emailHref(contact.email)">{{ contact.email }}</a></p>
       </div>
 
       <div class="footer-column footer-column--form">

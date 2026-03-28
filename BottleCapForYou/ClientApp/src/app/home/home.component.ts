@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+﻿import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { I18nService } from '../core/i18n.service';
 import { AppLanguage } from '../i18n/translations';
@@ -14,9 +14,8 @@ export class HomeComponent {
   readonly partners = ['SK chemicals', 'EASTMAN', 'CHINA RESOURCES', 'LOTTE', 'SABIC', 'BASF'];
   readonly links = ['PETG', 'PCTG', 'PEEK', 'PPSU'];
   readonly contact = {
-    phones: ['+86 188 9267 2536', '+86 0574 6253 2768'],
-    fax: '0574-62532768',
-    email: 'admin@dyplas.com'
+    phones: ['+44 7597702688', '+86 18818995568'],
+    email: 'jack.zhang@bottlecapforyou.com'
   };
   readonly companyPhotos = [
     { src: 'company_photos/main_entrance.jpg', alt: 'Company main entrance' },
@@ -35,5 +34,13 @@ export class HomeComponent {
 
   setLanguage(language: AppLanguage): void {
     this.i18n.setLanguage(language);
+  }
+
+  phoneHref(phone: string): string {
+    return `tel:${phone.replace(/[^+\d]/g, '')}`;
+  }
+
+  emailHref(email: string): string {
+    return `mailto:${email}`;
   }
 }
