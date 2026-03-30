@@ -199,9 +199,7 @@
               class="product-card__image-button"
               (click)="openProductLightbox(item)"
               [attr.aria-label]="
-                language() === 'zh-CN'
-                  ? '放大产品图片'
-                  : 'Enlarge product image'
+                language() === 'zh-CN' ? '放大产品图片' : 'Enlarge product image'
               "
             >
               <img [src]="productImagePath(item)" [alt]="productAlt(item)" />
@@ -227,9 +225,7 @@
                 class="product-card__arrow"
                 (click)="nextProductImage(item)"
                 [attr.aria-label]="
-                  language() === 'zh-CN'
-                    ? '下一张产品图片'
-                    : 'Next product image'
+                  language() === 'zh-CN' ? '下一张产品图片' : 'Next product image'
                 "
               >
                 <span aria-hidden="true">&#9660;</span>
@@ -258,7 +254,7 @@
         <p class="section-intro">
           {{
             language() === "zh-CN"
-              ? "适用于出口发货、批量包装和集装箱装柜展示的包装与装运资料。"
+              ? "展示出口发货、散装包装以及集装箱装柜效果的包装方案信息。"
               : "Packaging and loading information for export shipments, bulk packing, and container presentation."
           }}
         </p>
@@ -307,11 +303,9 @@
             <source src="Bottle_Cap_End_To_End.mp4" type="video/mp4" />
           </video>
         </div>
-        <p class="about-media__caption">{{ content().ui.videoPlaceholder }}</p>
-
-        <div class="about-media__frame">
+        <div class="about-media__frame about-media__frame--portrait">
           <video
-            class="about-media__video"
+            class="about-media__video about-media__video--portrait"
             controls
             preload="metadata"
             playsinline
@@ -467,7 +461,11 @@
             [(ngModel)]="enquiryMessage"
             name="enquiryMessage"
           ></textarea>
-          <button type="button" [disabled]="isSubmitting" (click)="submitEnquiry()">
+          <button
+            type="button"
+            [disabled]="isSubmitting"
+            (click)="submitEnquiry()"
+          >
             {{ isSubmitting ? content().ui.sending : content().ui.send }}
           </button>
           <p

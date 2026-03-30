@@ -22,7 +22,6 @@ export interface SiteTranslations {
     faxLabel: string;
     emailLabel: string;
     supplyScope: string;
-    videoPlaceholder: string;
     yourName: string;
     phoneNumber: string;
     emailAddress: string;
@@ -97,7 +96,6 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       faxLabel: 'Fax',
       emailLabel: 'Email',
       supplyScope: 'Main Supply Scope',
-      videoPlaceholder: 'End-to-end bottle cap production overview.',
       yourName: 'Your name',
       phoneNumber: 'Phone number',
       emailAddress: 'Email address',
@@ -113,7 +111,8 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       senderMessageLabel: 'Message',
       sending: 'Sending...',
       submitSuccess: 'Thanks, your message has been sent successfully.',
-      submitError: 'Sorry, we could not send your message right now. Please try again shortly.',
+      submitError:
+        'Sorry, we could not send your message right now. Please try again shortly.',
       mapsLabel: 'Maps',
       amapLabel: 'AMap',
       googleMapsLabel: 'Google Maps',
@@ -204,7 +203,6 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       faxLabel: '传真',
       emailLabel: '邮箱',
       supplyScope: '主要供应范围',
-      videoPlaceholder: '瓶盖生产流程展示视频。',
       yourName: '您的姓名',
       phoneNumber: '电话号码',
       emailAddress: '邮箱地址',
