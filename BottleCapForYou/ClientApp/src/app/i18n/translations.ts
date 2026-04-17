@@ -119,12 +119,12 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
     },
     brand: {
       company: 'HuiZhou DingYuan Gaiye Plastic Co., Ltd.',
-      strapline: 'Your Trusted Bottle Cap Manufacturer',
+      strapline: 'Large 5 Gallon Bottle Cap Manufacturer in China',
     },
     hero: {
-      tag: 'High Quality Plastic Bottle Cap Manufacturer',
-      subtitle: 'Pursuing excellent quality and building high-quality brands.',
-      body: 'Dingyuan Gaiye Plastic Co., Ltd. was founded in April 2015, initially focusing on the rubber and plastic products industry. Through years of experience accumulation, the company gradually identified the market demand for bottle caps and plastic products. During this period, the company continuously tried new technologies to improve production efficiency and gradually developed into a comprehensive enterprise integrating plastic product factories and mold production workshops. Customer first: we always prioritize our customers needs, respond quickly, and deliver dependable bottle cap solutions for water factories and bulk buyers.',
+      tag: 'China Bottle Cap Factory for 5 Gallon Water Bottles',
+      subtitle: 'Large plastic bottle cap manufacturer in China for water plants, distributors and OEM buyers.',
+      body: 'HuiZhou DingYuan Gaiye Plastic Co., Ltd. is a bottle cap manufacturer in Guangdong, China specializing in large 5 gallon water bottle caps, sealing liners and related plastic closures. Since 2015, we have combined in-house manufacturing experience with mold workshop support to deliver food-grade, leak-resistant bottle cap solutions for bottled water factories, wholesale buyers and export customers.',
       primary: 'Explore Products',
       secondary: 'Contact Us',
     },
@@ -157,14 +157,14 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
     about: {
       title: 'About us',
       paragraphs: [
-        'HuiZhou DingYuan Gaiye Plastic Co., Ltd. focuses on bottle cap manufacturing, product quality and dependable supply support for our customers.',
-        'We are committed to stable production, practical service and long-term cooperation, helping clients source bottle cap products with confidence.',
+        'HuiZhou DingYuan Gaiye Plastic Co., Ltd. is a plastic bottle cap manufacturer in China focused on production quality, stable lead times and dependable export supply.',
+        'We support bottled water factories, distributors and private-label buyers looking for a reliable supplier of large bottle caps, 5 gallon water bottle caps and matching sealing components.',
       ],
       groups: [
-        'Bottle caps for water packaging and related applications.',
-        'Reliable manufacturing process and stable bulk supply.',
-        'Support for factories, distributors and wholesale orders.',
-        'Practical service focused on quality, speed and consistency.',
+        'Large bottle caps for 5 gallon water bottles and related water packaging applications.',
+        'Reliable manufacturing process, food-grade materials and stable bulk supply.',
+        'Support for factories, distributors, importers and wholesale OEM orders.',
+        'Practical service focused on quality, response speed and consistency.',
       ],
       asideLabel: 'One-stop support',
       asideText:
@@ -225,12 +225,12 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
     },
     brand: {
       company: '惠州鼎元盖业塑胶有限公司',
-      strapline: '值得信赖的瓶盖制造商',
+      strapline: '中国大型5加仑瓶盖制造商',
     },
     hero: {
-      tag: '高品质塑料瓶盖制造商',
-      subtitle: '追求卓越品质，打造高质量品牌。',
-      body: '惠州鼎元盖业塑胶有限公司成立于2015年4月，初期专注于橡胶和塑料产品行业。通过多年的经验积累，公司逐渐识别出瓶盖和塑料产品市场的潜在需求。在此期间，公司不断尝试新技术以提高生产效率，并逐步发展成为一家集塑料产品工厂和模具生产车间于一体的综合性企业。客户至上：我们始终把客户需求放在首位，快速响应客户要求，为水厂和批量采购客户提供可靠的瓶盖解决方案。',
+      tag: '中国5加仑桶装水瓶盖工厂',
+      subtitle: '面向水厂、经销商和 OEM 客户的大型塑料瓶盖制造商。',
+      body: '惠州鼎元盖业塑胶有限公司位于中国广东，专注于大型 5 加仑桶装水瓶盖、密封垫片及相关塑胶配件的生产。公司自 2015 年成立以来，持续结合自有生产经验与模具车间能力，为桶装水工厂、批发采购商和出口客户提供食品级、防漏型的瓶盖解决方案。',
       primary: '查看产品',
       secondary: '联系我们',
     },
@@ -263,14 +263,14 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
     about: {
       title: '关于我们',
       paragraphs: [
-        '惠州鼎源盖业塑胶有限公司专注于瓶盖制造、产品质量控制以及为客户提供稳定可靠的供应服务。',
-        '我们坚持稳定生产、务实服务和长期合作，帮助客户更安心地采购瓶盖产品。',
+        '惠州鼎元盖业塑胶有限公司是一家专注于塑料瓶盖生产的中国制造商，重视产品质量、交期稳定和出口供货能力。',
+        '我们服务于桶装水工厂、经销商和贴牌采购客户，提供大型瓶盖、5加仑桶装水瓶盖以及配套密封组件的稳定供应。',
       ],
       groups: [
-        '适用于饮用水包装及相关场景的瓶盖产品。',
-        '稳定的生产流程与批量供货能力。',
-        '支持工厂、经销商及批发订单需求。',
-        '以品质、效率与稳定性为核心的服务理念。',
+        '适用于 5 加仑桶装水及相关饮用水包装场景的大型瓶盖产品。',
+        '食品级材料、稳定生产流程与批量供货能力。',
+        '支持工厂、经销商、进口商及 OEM 批发订单需求。',
+        '以品质、响应速度与稳定交付为核心的服务理念。',
       ],
       asideLabel: '一站式支持',
       asideText: '从生产到交付，我们为客户提供可靠的瓶盖制造与批发供应支持。',

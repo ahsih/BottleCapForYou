@@ -126,8 +126,10 @@
     <div class="container hero__inner">
       <div class="hero__copy">
         <p class="hero__tag">{{ content().hero.tag }}</p>
+        <h1>{{ manufacturerHeading() }}</h1>
         <p class="hero__summary">{{ content().hero.subtitle }}</p>
         <p class="hero__body">{{ content().hero.body }}</p>
+        <p class="hero__body">{{ manufacturerSummary() }}</p>
         <div class="hero__actions">
           <a class="hero__button hero__button--primary" href="#products">{{
             content().hero.primary
@@ -318,6 +320,13 @@
       <div class="about-copy">
         <p class="section-titlebar__eyebrow">{{ content().nav.about }}</p>
         <h2>{{ content().about.title }}</h2>
+        <p class="section-intro">
+          {{
+            language() === "zh-CN"
+              ? "专注大型 5 加仑桶装水瓶盖生产，面向中国及海外市场提供稳定的工厂供货。"
+              : "Focused on large 5 gallon water bottle cap manufacturing with stable factory supply for China and export markets."
+          }}
+        </p>
         <p *ngFor="let paragraph of content().about.paragraphs">
           {{ paragraph }}
         </p>

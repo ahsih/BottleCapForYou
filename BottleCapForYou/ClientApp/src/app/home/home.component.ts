@@ -1,6 +1,7 @@
-﻿import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component, HostListener, OnDestroy, OnInit, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
 import { I18nService } from '../core/i18n.service';
 import { AppLanguage } from '../i18n/translations';
 
@@ -46,18 +47,21 @@ type PackagingItem = {
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  private readonly siteUrl = 'https://www.bottlecapforyou.com';
+  private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
+
   readonly contact = {
     phones: ['+44 7597702688', '+86 18818995568'],
     email: 'jack.zhang@bottlecapforyou.com',
   };
   readonly companyPhotos: CompanyPhoto[] = [
-    { src: 'company_photos/main_entrance.jpg', alt: 'Company main entrance' },
-    { src: 'company_photos/office.jpg', alt: 'Company office' },
-    { src: 'company_photos/Outside.jpg', alt: 'Company exterior' },
-    { src: 'company_photos/factory_equipment_1.jpg', alt: 'Factory equipment photo 1' },
-    { src: 'company_photos/factory_equipment_2.jpg', alt: 'Factory equipment photo 2' },
-    { src: 'company_photos/factory_equipment_3.jpg', alt: 'Factory equipment photo 3' },
-    { src: 'company_photos/factory_equipment_4.jpg', alt: 'Factory equipment photo 4' },
+    { src: 'company_photos/main_entrance.jpg', alt: 'Bottle cap factory entrance in Huizhou, China' },
+    { src: 'company_photos/office.jpg', alt: 'Bottle cap manufacturer office' },
+    { src: 'company_photos/Outside.jpg', alt: 'Bottle cap factory exterior' },
+    { src: 'company_photos/factory_equipment_1.jpg', alt: 'Plastic bottle cap production equipment' },
+    { src: 'company_photos/factory_equipment_2.jpg', alt: 'Bottle cap manufacturing line' },
+    { src: 'company_photos/factory_equipment_3.jpg', alt: 'Bottle cap mold and production workshop' },
+    { src: 'company_photos/factory_equipment_4.jpg', alt: 'Large bottle cap factory equipment' },
   ];
   readonly certificates = [
     { src: 'Certificates/ISO_19001.jpg', alt: 'ISO 19001 certificate' },
@@ -65,15 +69,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     { src: 'Certificates/Work_License.jpg', alt: 'Work license certificate' },
   ];
   readonly products: ProductItem[] = [
-    { id: 1, folder: '1', imageCount: 8, titleEn: '7.3g bucket water two-color bottle cap long lid', titleZh: '7.3克桶装水双色瓶盖' },
-    { id: 2, folder: '2', imageCount: 10, titleEn: '7.5g barreled water with dual color short lid', titleZh: '7.5克桶装水双色瓶盖' },
-    { id: 3, folder: '3', imageCount: 8, titleEn: '7.5g single color bottle cap for bottled water', titleZh: '7.5克桶装水单色短盖' },
-    { id: 4, folder: '4', imageCount: 10, titleEn: '7.6g barrel water two-color bottle cap (blue circle)', titleZh: '7.6克桶装水双色瓶盖（蓝圈）' },
-    { id: 5, folder: '5', imageCount: 10, titleEn: '8.2 gram easy to tear edge two-color bottle cap', titleZh: '8.2克易撕边双色瓶盖' },
-    { id: 6, folder: '6', imageCount: 9, titleEn: '8.5g barrel water two-color bottle cap', titleZh: '8.5克桶装水双色瓶盖' },
-    { id: 7, folder: '7', imageCount: 7, titleEn: 'Blue two-color combination inner cover', titleZh: '蓝色双色组合盖' },
-    { id: 8, folder: '8', imageCount: 8, titleEn: 'Blue two-piece set with monochrome pad', titleZh: '蓝色两件套，配单色垫片' },
-    { id: 9, folder: '9', imageCount: 6, titleEn: 'Orange two-color combination cover', titleZh: '橙色双色组合瓶盖' },
+    { id: 1, folder: '1', imageCount: 8, titleEn: '7.3g large two-color 5 gallon water bottle cap with long lid', titleZh: '7.3克桶装水双色长盖瓶盖' },
+    { id: 2, folder: '2', imageCount: 10, titleEn: '7.5g large 5 gallon water bottle cap with dual-color short lid', titleZh: '7.5克桶装水双色短盖瓶盖' },
+    { id: 3, folder: '3', imageCount: 8, titleEn: '7.5g single-color bottle cap for 5 gallon bottled water', titleZh: '7.5克桶装水单色短盖' },
+    { id: 4, folder: '4', imageCount: 10, titleEn: '7.6g large 5 gallon bottle cap with blue ring', titleZh: '7.6克桶装水双色瓶盖（蓝圈）' },
+    { id: 5, folder: '5', imageCount: 10, titleEn: '8.2g easy-tear large water bottle cap', titleZh: '8.2克易撕边双色瓶盖' },
+    { id: 6, folder: '6', imageCount: 9, titleEn: '8.5g large two-color bottle cap for barreled water', titleZh: '8.5克桶装水双色瓶盖' },
+    { id: 7, folder: '7', imageCount: 7, titleEn: 'Blue two-color inner cover for water bottle caps', titleZh: '蓝色双色组合盖' },
+    { id: 8, folder: '8', imageCount: 8, titleEn: 'Blue two-piece bottle cap set with sealing pad', titleZh: '蓝色两件套，配单色垫片' },
+    { id: 9, folder: '9', imageCount: 6, titleEn: 'Orange two-color combination water bottle cap', titleZh: '橙色双色组合瓶盖' },
   ];
   readonly packagingSections: PackagingItem[] = [
     {
@@ -101,20 +105,20 @@ export class HomeComponent implements OnInit, OnDestroy {
         {
           labelEn: 'Bulk packing (500 units)',
           labelZh: '散装包装（500个）',
-          valueEn: '45 × 35 × 41 cm',
-          valueZh: '45 × 35 × 41 厘米',
+          valueEn: '45 x 35 x 41 cm',
+          valueZh: '45 x 35 x 41 厘米',
         },
         {
           labelEn: 'Bulk packing (900 units)',
           labelZh: '散装包装（900个）',
-          valueEn: '57.5 × 45.5 × 44 cm',
-          valueZh: '57.5 × 45.5 × 44 厘米',
+          valueEn: '57.5 x 45.5 x 44 cm',
+          valueZh: '57.5 x 45.5 x 44 厘米',
         },
         {
           labelEn: 'Stacked packing',
           labelZh: '叠盖包装',
-          valueEn: '46.5 × 29.5 × 46.8 cm',
-          valueZh: '46.5 × 29.5 × 46.8 厘米',
+          valueEn: '46.5 x 29.5 x 46.8 cm',
+          valueZh: '46.5 x 29.5 x 46.8 厘米',
         },
       ],
       noteEn: 'Carton dimensions for bulk and stacked packing.',
@@ -179,6 +183,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   protected readonly i18n = inject(I18nService);
   protected readonly language = this.i18n.language;
   protected readonly content = this.i18n.content;
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+  private readonly document = inject(DOCUMENT);
+
+  constructor() {
+    effect(() => {
+      this.updateSeo(this.language());
+    });
+  }
 
   ngOnInit(): void {
     this.lastScrollY = this.getScrollY();
@@ -376,6 +389,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     return this.language() === 'zh-CN' ? item.imageAltZh ?? '' : item.imageAltEn ?? '';
   }
 
+  manufacturerHeading(): string {
+    return this.language() === 'zh-CN'
+      ? '中国大型5加仑桶装水瓶盖制造商'
+      : 'Large Bottle Cap Manufacturer in China for 5 Gallon Water Bottles';
+  }
+
+  manufacturerSummary(): string {
+    return this.language() === 'zh-CN'
+      ? '位于广东惠州，服务于桶装水工厂、经销商、进口商和 OEM 批发客户。'
+      : 'Based in Huizhou, Guangdong, supplying water factories, distributors, importers and OEM wholesale buyers.';
+  }
+
   private updateMobileHeaderVisibility(resetLastScroll = false): void {
     if (typeof window === 'undefined') {
       return;
@@ -405,10 +430,100 @@ export class HomeComponent implements OnInit, OnDestroy {
   private getScrollY(): number {
     return typeof window !== 'undefined' ? window.scrollY || window.pageYOffset || 0 : 0;
   }
+
+  private updateSeo(language: AppLanguage): void {
+    const isChinese = language === 'zh-CN';
+    const title = isChinese
+      ? '中国大型5加仑瓶盖制造商 | 惠州鼎元盖业塑胶有限公司'
+      : 'Large Bottle Cap Manufacturer in China | 5 Gallon Water Bottle Caps';
+    const description = isChinese
+      ? '惠州鼎元盖业塑胶有限公司位于中国广东，专业生产大型5加仑桶装水瓶盖、密封垫片及相关塑胶配件，支持出口、批发和 OEM 订单。'
+      : 'HuiZhou DingYuan Gaiye Plastic Co., Ltd. is a large bottle cap manufacturer in China producing 5 gallon water bottle caps, sealing liners and OEM plastic closures for export and wholesale supply.';
+    const keywords = isChinese
+      ? '中国瓶盖制造商,大型瓶盖厂家,5加仑桶装水瓶盖,桶装水瓶盖工厂,广东塑料瓶盖厂家'
+      : 'large bottle cap manufacturer in china, 5 gallon water bottle cap manufacturer, plastic bottle cap factory china, bottle cap supplier china, water bottle cap manufacturer';
+    const canonicalUrl = `${this.siteUrl}/`;
+
+    this.title.setTitle(title);
+    this.meta.updateTag({ name: 'description', content: description });
+    this.meta.updateTag({ name: 'keywords', content: keywords });
+    this.meta.updateTag({ name: 'robots', content: 'index,follow,max-image-preview:large' });
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:title', content: title });
+    this.meta.updateTag({ property: 'og:description', content: description });
+    this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
+    this.meta.updateTag({ property: 'og:image', content: this.defaultShareImage });
+    this.meta.updateTag({ property: 'og:site_name', content: 'Bottle Cap For You' });
+    this.meta.updateTag({ property: 'og:locale', content: isChinese ? 'zh_CN' : 'en_GB' });
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.meta.updateTag({ name: 'twitter:title', content: title });
+    this.meta.updateTag({ name: 'twitter:description', content: description });
+    this.meta.updateTag({ name: 'twitter:image', content: this.defaultShareImage });
+
+    let canonicalLink = this.document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!canonicalLink) {
+      canonicalLink = this.document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      this.document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = canonicalUrl;
+
+    let schemaScript = this.document.getElementById('manufacturer-schema');
+    if (!schemaScript) {
+      schemaScript = this.document.createElement('script');
+      schemaScript.setAttribute('id', 'manufacturer-schema');
+      schemaScript.setAttribute('type', 'application/ld+json');
+      this.document.head.appendChild(schemaScript);
+    }
+
+    schemaScript.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Manufacturer',
+          '@id': `${canonicalUrl}#manufacturer`,
+          name: isChinese ? '惠州鼎元盖业塑胶有限公司' : 'HuiZhou DingYuan Gaiye Plastic Co., Ltd.',
+          url: canonicalUrl,
+          logo: `${this.siteUrl}/logo.png`,
+          image: [
+            `${this.siteUrl}/company_photos/main_entrance.jpg`,
+            `${this.siteUrl}/company_photos/factory_equipment_1.jpg`,
+            `${this.siteUrl}/Bottle_And_Cap.jpg`,
+          ],
+          description,
+          email: this.contact.email,
+          telephone: this.contact.phones[1],
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Building 6, Lvquan Intelligent Garden, Huangdong Village, Zhenlong Town, Huiyang District',
+            addressLocality: 'Huizhou',
+            addressRegion: 'Guangdong',
+            addressCountry: 'CN',
+          },
+          areaServed: ['China', 'Europe', 'Middle East', 'Africa', 'Southeast Asia'],
+          sameAs: [
+            'https://www.facebook.com/share/1DpevTN1FE/',
+            'https://www.tiktok.com/@dingyuangaiye?_r=1&_t=ZN-954OvEs3L8A',
+            'https://youtube.com/channel/UCIp2OXI9VbGaRNFmoiV6t_A?si=TfrkMJXu4LWZQozh',
+          ],
+          keywords,
+          makesOffer: this.products.slice(0, 4).map((product) => ({
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Product',
+              name: isChinese ? product.titleZh : product.titleEn,
+              category: isChinese ? '桶装水瓶盖' : '5 gallon water bottle cap',
+            },
+          })),
+        },
+        {
+          '@type': 'WebSite',
+          '@id': `${canonicalUrl}#website`,
+          url: canonicalUrl,
+          name: 'Bottle Cap For You',
+          inLanguage: isChinese ? 'zh-CN' : 'en',
+        },
+      ],
+    });
+  }
 }
-
-
-
-
-
-
