@@ -235,7 +235,15 @@
             </div>
           </div>
           <div class="product-card__body product-card__body--title-only">
-            <h3>{{ productTitle(item) }}</h3>
+            <h3>
+              <span>{{ productTitleBase(item) }}</span>
+              <span
+                class="product-title__highlight"
+                *ngIf="productTitleHighlight(item) as highlight"
+              >
+                {{ highlight }}
+              </span>
+            </h3>
           </div>
         </article>
       </div>
@@ -263,8 +271,11 @@
       </div>
 
       <div class="packaging-grid">
-        <article class="packaging-card" *ngFor="let item of packagingSections">
-          <div class="packaging-card__media">
+        <article
+          class="packaging-card"
+          *ngFor="let item of packagingDisplaySections"
+        >
+          <div class="packaging-card__media" *ngIf="packagingHasImage(item)">
             <img [src]="item.imageSrc" [alt]="packagingAlt(item)" />
           </div>
           <div class="packaging-card__body">

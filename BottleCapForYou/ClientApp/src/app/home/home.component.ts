@@ -1,5 +1,12 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, HostListener, OnDestroy, OnInit, effect, inject } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  effect,
+  inject,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { I18nService } from '../core/i18n.service';
@@ -55,13 +62,28 @@ export class HomeComponent implements OnInit, OnDestroy {
     email: 'jack.zhang@bottlecapforyou.com',
   };
   readonly companyPhotos: CompanyPhoto[] = [
-    { src: 'company_photos/main_entrance.jpg', alt: 'Bottle cap factory entrance in Huizhou, China' },
+    {
+      src: 'company_photos/main_entrance.jpg',
+      alt: 'Bottle cap factory entrance in Huizhou, China',
+    },
     { src: 'company_photos/office.jpg', alt: 'Bottle cap manufacturer office' },
     { src: 'company_photos/Outside.jpg', alt: 'Bottle cap factory exterior' },
-    { src: 'company_photos/factory_equipment_1.jpg', alt: 'Plastic bottle cap production equipment' },
-    { src: 'company_photos/factory_equipment_2.jpg', alt: 'Bottle cap manufacturing line' },
-    { src: 'company_photos/factory_equipment_3.jpg', alt: 'Bottle cap mold and production workshop' },
-    { src: 'company_photos/factory_equipment_4.jpg', alt: 'Large bottle cap factory equipment' },
+    {
+      src: 'company_photos/factory_equipment_1.jpg',
+      alt: 'Plastic bottle cap production equipment',
+    },
+    {
+      src: 'company_photos/factory_equipment_2.jpg',
+      alt: 'Bottle cap manufacturing line',
+    },
+    {
+      src: 'company_photos/factory_equipment_3.jpg',
+      alt: 'Bottle cap mold and production workshop',
+    },
+    {
+      src: 'company_photos/factory_equipment_4.jpg',
+      alt: 'Large bottle cap factory equipment',
+    },
   ];
   readonly certificates = [
     { src: 'Certificates/ISO_19001.jpg', alt: 'ISO 19001 certificate' },
@@ -69,22 +91,84 @@ export class HomeComponent implements OnInit, OnDestroy {
     { src: 'Certificates/Work_License.jpg', alt: 'Work license certificate' },
   ];
   readonly products: ProductItem[] = [
-    { id: 1, folder: '1', imageCount: 8, titleEn: '7.3g large two-color 5 gallon water bottle cap with long lid', titleZh: '7.3克桶装水双色长盖瓶盖' },
-    { id: 2, folder: '2', imageCount: 10, titleEn: '7.5g large 5 gallon water bottle cap with dual-color short lid', titleZh: '7.5克桶装水双色短盖瓶盖' },
-    { id: 3, folder: '3', imageCount: 8, titleEn: '7.5g single-color bottle cap for 5 gallon bottled water', titleZh: '7.5克桶装水单色短盖' },
-    { id: 4, folder: '4', imageCount: 10, titleEn: '7.6g large 5 gallon bottle cap with blue ring', titleZh: '7.6克桶装水双色瓶盖（蓝圈）' },
-    { id: 5, folder: '5', imageCount: 10, titleEn: '8.2g easy-tear large water bottle cap', titleZh: '8.2克易撕边双色瓶盖' },
-    { id: 6, folder: '6', imageCount: 9, titleEn: '8.5g large two-color bottle cap for barreled water', titleZh: '8.5克桶装水双色瓶盖' },
-    { id: 7, folder: '7', imageCount: 7, titleEn: 'Blue two-color inner cover for water bottle caps', titleZh: '蓝色双色组合盖' },
-    { id: 8, folder: '8', imageCount: 8, titleEn: 'Blue two-piece bottle cap set with sealing pad', titleZh: '蓝色两件套，配单色垫片' },
-    { id: 9, folder: '9', imageCount: 6, titleEn: 'Orange two-color combination water bottle cap', titleZh: '橙色双色组合瓶盖' },
+    {
+      id: 1,
+      folder: '1',
+      imageCount: 8,
+      titleEn: '8.2g large two-color 5 gallon water bottle cap (one time use)',
+      titleZh: '8.2克桶装水一次性双色盖',
+    },
+    /*
+    {
+      id: 2,
+      folder: '2',
+      imageCount: 10,
+      titleEn: '7.5g large 5 gallon water bottle cap with dual-color short lid',
+      titleZh: '7.5克桶装水双色短盖瓶盖',
+    },
+    {
+      id: 3,
+      folder: '3',
+      imageCount: 8,
+      titleEn: '7.5g single-color bottle cap for 5 gallon bottled water',
+      titleZh: '7.5克桶装水单色短盖',
+    },*/
+    {
+      id: 4,
+      folder: '4',
+      imageCount: 10,
+      titleEn:
+        '10.2g large 5 gallon bottle cap with 2 colors and (one time use)',
+      titleZh: '10.2克桶装水双色双套（蓝圈）',
+    },
+    /*
+    {
+      id: 5,
+      folder: '5',
+      imageCount: 10,
+      titleEn: '8.2g easy-tear large water bottle cap',
+      titleZh: '8.2克易撕边双色瓶盖',
+    },
+    {
+      id: 6,
+      folder: '6',
+      imageCount: 9,
+      titleEn: '8.5g large two-color bottle cap for barreled water',
+      titleZh: '8.5克桶装水双色瓶盖',
+    },
+    */
+    {
+      id: 7,
+      folder: '7',
+      imageCount: 7,
+      titleEn:
+        '10.2g Blue two-color inner cover for water bottle caps (reusable)',
+      titleZh: '10.2g 蓝色双色组合盖 (可重复使用)',
+    },
+    {
+      id: 8,
+      folder: '8',
+      imageCount: 8,
+      titleEn: '8g Blue two-piece bottle cap set with sealing pad (reusable)',
+      titleZh: '8g 蓝色两件套，配单色垫片 (可重复使用)',
+    },
+    /*
+    {
+      id: 9,
+      folder: '9',
+      imageCount: 6,
+      titleEn: 'Orange two-color combination water bottle cap',
+      titleZh: '橙色双色组合瓶盖',
+    },
+    */
   ];
   readonly packagingSections: PackagingItem[] = [
     {
       id: 'cap-set',
       titleEn: 'Bottle Cap + Sealing Liner',
       titleZh: '瓶盖与密封垫片',
-      descriptionEn: 'Single-color 2-piece set with inner plug and sealing liner.',
+      descriptionEn:
+        'Single-color 2-piece set with inner plug and sealing liner.',
       descriptionZh: '单色两件套，配内塞和密封垫片。',
       imageSrc: 'Bottle_And_Cap.jpg',
       imageAltEn: 'Bottle cap and sealing liner packaging product photo',
@@ -126,38 +210,94 @@ export class HomeComponent implements OnInit, OnDestroy {
     },
     {
       id: 'container',
-      titleEn: 'Packing Details',
+      titleEn: 'Bottle Cap Packing Details',
       titleZh: '装柜明细',
-      descriptionEn: 'Reference loading capacity for bulk packing and stacked cap packing in standard export containers.',
+      descriptionEn:
+        'Reference loading capacity for bulk packing and stacked cap packing in standard export containers.',
       descriptionZh: '标准出口集装箱中散装包装和叠盖包装的参考装柜数量。',
       specs: [
         {
           labelEn: '20FT container (bulk packing)',
           labelZh: '20尺集装箱（散装包装）',
-          valueEn: '230,000 units total; 500 units per carton; 460 cartons',
-          valueZh: '总数230,000个；每箱500个；共460箱',
+          valueEn: '276,000 units total; 600 units per carton; 460 cartons',
+          valueZh: '总数276,000个；每箱600个；共460箱',
         },
         {
           labelEn: '40HQ container (bulk packing)',
           labelZh: '40尺高柜（散装包装）',
-          valueEn: '540,000 units total; 900 units per carton; 600 cartons',
-          valueZh: '总数540,000个；每箱900个；共600箱',
+          valueEn: '600,000 units total; 1000 units per carton; 600 cartons',
+          valueZh: '总数600,000个；每箱1000个；共600箱',
         },
         {
           labelEn: '20FT container (stacked caps)',
           labelZh: '20尺集装箱（叠盖包装）',
-          valueEn: '460,000 units total; 1,000 units per carton; 460 cartons',
+          valueEn: '540,000 units total; 1,000 units per carton; 460 cartons',
           valueZh: '总数460,000个；每箱1,000个；共460箱',
         },
         {
           labelEn: '40HQ container (stacked caps)',
           labelZh: '40尺高柜（叠盖包装）',
-          valueEn: '1,102,000 units total; 1,000 units per carton; 1,102 cartons',
+          valueEn:
+            '1,102,000 units total; 1,000 units per carton; 1,102 cartons',
           valueZh: '总数1,102,000个；每箱1,000个；共1,102箱',
         },
       ],
       noteEn: 'Container loading quantities for export planning.',
       noteZh: '用于出口装柜规划的装箱数量参考。',
+    },
+  ];
+
+  readonly packagingDetailSections: PackagingItem[] = [
+    {
+      id: 'one-time-use-cap',
+      titleEn: 'One-Time Use Cap',
+      titleZh: '一次性瓶盖',
+      descriptionEn:
+        'Container loading reference for one-time use bottle caps.',
+      descriptionZh: '一次性瓶盖装柜参考信息。',
+      specs: [
+        {
+          labelEn: '20ft container',
+          labelZh: '20尺柜',
+          valueEn:
+            'Bulk carton packing: 276,000\n600 caps/carton\nStacked packing: 479,000\n1000 caps/carton',
+          valueZh: '纸箱散装：27.6万\n600个/箱\n叠装：47.9万\n1000个/箱',
+        },
+        {
+          labelEn: '40ft container',
+          labelZh: '40尺柜',
+          valueEn:
+            'Bulk carton packing: 600,000\n1000 caps/carton\nStacked packing: 1,250,000\n1000 caps/carton',
+          valueZh: '纸箱散装：60万\n1000个/箱\n叠装：125万\n1000个/箱',
+        },
+      ],
+      noteEn: 'Container loading quantities for export planning.',
+      noteZh: '用于出口装柜规划的参考数量。',
+    },
+    {
+      id: 'reuse-cap',
+      titleEn: 'Reuse Cap',
+      titleZh: '可重复使用瓶盖',
+      descriptionEn: 'Container loading reference for reusable bottle caps.',
+      descriptionZh: '可重复使用瓶盖装柜参考信息。',
+      specs: [
+        {
+          labelEn: '20ft container',
+          labelZh: '20尺柜',
+          valueEn:
+            'Container quantity: 230,000\n500 caps/carton\nStacked packing: 479,000\n1000 caps/carton',
+          valueZh: '装柜数量：23万\n每箱装500个\n叠装：47.9万\n1000个/箱',
+        },
+        {
+          labelEn: '40ft container',
+          labelZh: '40尺柜',
+          valueEn:
+            'Bulk carton packing: 540,000\n900 caps/carton\nStacked packing: 11,040,000\n1000 caps/carton',
+          valueZh: '纸箱散装：54万\n900个/箱\n叠装：1104万\n1000个/箱',
+        },
+      ],
+      noteEn: 'Container loading quantities for export planning.',
+      noteZh: '用于出口装柜规划的参考数量。',
     },
   ];
 
@@ -167,7 +307,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   productPageIndex = 0;
   companyPhotoIndex = 0;
   isMobileHeaderHidden = false;
-  productImageIndexes: Record<number, number> = this.products.reduce<Record<number, number>>((accumulator, product) => {
+  productImageIndexes: Record<number, number> = this.products.reduce<
+    Record<number, number>
+  >((accumulator, product) => {
     accumulator[product.id] = 0;
     return accumulator;
   }, {});
@@ -197,7 +339,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.lastScrollY = this.getScrollY();
     this.updateMobileHeaderVisibility();
     this.companyPhotoIntervalId = setInterval(() => {
-      this.companyPhotoIndex = (this.companyPhotoIndex + 1) % this.companyPhotos.length;
+      this.companyPhotoIndex =
+        (this.companyPhotoIndex + 1) % this.companyPhotos.length;
     }, 4000);
   }
 
@@ -218,7 +361,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   get visibleCompanyPhotos(): CompanyPhoto[] {
-    return [0, 1, 2].map((offset) => this.companyPhotos[(this.companyPhotoIndex + offset) % this.companyPhotos.length]);
+    return [0, 1, 2].map(
+      (offset) =>
+        this.companyPhotos[
+          (this.companyPhotoIndex + offset) % this.companyPhotos.length
+        ],
+    );
   }
 
   get visiblePhones(): string[] {
@@ -349,8 +497,35 @@ export class HomeComponent implements OnInit, OnDestroy {
     return Math.ceil(this.products.length / this.productsPerPage);
   }
 
+  get packagingDisplaySections(): PackagingItem[] {
+    const [packagingOverview] = this.packagingSections;
+    return packagingOverview
+      ? [packagingOverview, ...this.packagingDetailSections]
+      : this.packagingDetailSections;
+  }
+
   productTitle(item: ProductItem): string {
     return this.language() === 'zh-CN' ? item.titleZh : item.titleEn;
+  }
+
+  productTitleBase(item: ProductItem): string {
+    const title = this.productTitle(item);
+    const highlight = this.productTitleHighlight(item);
+    return highlight ? title.slice(0, -highlight.length).trimEnd() : title;
+  }
+
+  productTitleHighlight(item: ProductItem): string {
+    const title = this.productTitle(item);
+    const suffixes = [
+      '(one time use)',
+      '(reusable)',
+      '（一次性）',
+      '（可重复使用）',
+      '(一次性)',
+      '(可重复使用)',
+    ];
+
+    return suffixes.find((suffix) => title.endsWith(suffix)) ?? '';
   }
 
   productAlt(item: ProductItem): string {
@@ -362,7 +537,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   packagingDescription(item: PackagingItem): string {
-    return this.language() === 'zh-CN' ? item.descriptionZh : item.descriptionEn;
+    return this.language() === 'zh-CN'
+      ? item.descriptionZh
+      : item.descriptionEn;
   }
 
   packagingHasImage(item: PackagingItem): boolean {
@@ -386,7 +563,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   packagingAlt(item: PackagingItem): string {
-    return this.language() === 'zh-CN' ? item.imageAltZh ?? '' : item.imageAltEn ?? '';
+    return this.language() === 'zh-CN'
+      ? (item.imageAltZh ?? '')
+      : (item.imageAltEn ?? '');
   }
 
   manufacturerHeading(): string {
@@ -428,7 +607,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private getScrollY(): number {
-    return typeof window !== 'undefined' ? window.scrollY || window.pageYOffset || 0 : 0;
+    return typeof window !== 'undefined'
+      ? window.scrollY || window.pageYOffset || 0
+      : 0;
   }
 
   private updateSeo(language: AppLanguage): void {
@@ -447,20 +628,40 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.title.setTitle(title);
     this.meta.updateTag({ name: 'description', content: description });
     this.meta.updateTag({ name: 'keywords', content: keywords });
-    this.meta.updateTag({ name: 'robots', content: 'index,follow,max-image-preview:large' });
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'index,follow,max-image-preview:large',
+    });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({ property: 'og:title', content: title });
     this.meta.updateTag({ property: 'og:description', content: description });
     this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
-    this.meta.updateTag({ property: 'og:image', content: this.defaultShareImage });
-    this.meta.updateTag({ property: 'og:site_name', content: 'Bottle Cap For You' });
-    this.meta.updateTag({ property: 'og:locale', content: isChinese ? 'zh_CN' : 'en_GB' });
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.meta.updateTag({
+      property: 'og:image',
+      content: this.defaultShareImage,
+    });
+    this.meta.updateTag({
+      property: 'og:site_name',
+      content: 'Bottle Cap For You',
+    });
+    this.meta.updateTag({
+      property: 'og:locale',
+      content: isChinese ? 'zh_CN' : 'en_GB',
+    });
+    this.meta.updateTag({
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    });
     this.meta.updateTag({ name: 'twitter:title', content: title });
     this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ name: 'twitter:image', content: this.defaultShareImage });
+    this.meta.updateTag({
+      name: 'twitter:image',
+      content: this.defaultShareImage,
+    });
 
-    let canonicalLink = this.document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    let canonicalLink = this.document.querySelector(
+      'link[rel="canonical"]',
+    ) as HTMLLinkElement | null;
     if (!canonicalLink) {
       canonicalLink = this.document.createElement('link');
       canonicalLink.setAttribute('rel', 'canonical');
@@ -482,7 +683,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         {
           '@type': 'Manufacturer',
           '@id': `${canonicalUrl}#manufacturer`,
-          name: isChinese ? '惠州鼎元盖业塑胶有限公司' : 'HuiZhou DingYuan Gaiye Plastic Co., Ltd.',
+          name: isChinese
+            ? '惠州鼎元盖业塑胶有限公司'
+            : 'HuiZhou DingYuan Gaiye Plastic Co., Ltd.',
           url: canonicalUrl,
           logo: `${this.siteUrl}/logo.png`,
           image: [
@@ -495,12 +698,19 @@ export class HomeComponent implements OnInit, OnDestroy {
           telephone: this.contact.phones[1],
           address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Building 6, Lvquan Intelligent Garden, Huangdong Village, Zhenlong Town, Huiyang District',
+            streetAddress:
+              'Building 6, Lvquan Intelligent Garden, Huangdong Village, Zhenlong Town, Huiyang District',
             addressLocality: 'Huizhou',
             addressRegion: 'Guangdong',
             addressCountry: 'CN',
           },
-          areaServed: ['China', 'Europe', 'Middle East', 'Africa', 'Southeast Asia'],
+          areaServed: [
+            'China',
+            'Europe',
+            'Middle East',
+            'Africa',
+            'Southeast Asia',
+          ],
           sameAs: [
             'https://www.facebook.com/share/1DpevTN1FE/',
             'https://www.tiktok.com/@dingyuangaiye?_r=1&_t=ZN-954OvEs3L8A',

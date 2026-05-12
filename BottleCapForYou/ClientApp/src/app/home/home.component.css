@@ -500,6 +500,7 @@
 .packaging-specs__value {
   color: #627484;
   background: #fff;
+  white-space: pre-line;
 }
 
 .packaging-card__note {
@@ -687,6 +688,11 @@
   margin: 0;
   font-size: 20px;
   line-height: 1.45;
+}
+
+.product-title__highlight {
+  color: #c32026;
+  font-weight: 800;
 }
 
 .about-copy p,
