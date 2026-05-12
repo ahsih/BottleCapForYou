@@ -101,9 +101,9 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       emailAddress: 'Email address',
       message: 'Message',
       productHint:
-        'Please let us know if there are any other plastic products you would like to make. We can help with those as well.',
+        'Tell us your bottle cap size, quantity and packing requirements. We support OEM production, wholesale supply and export orders.',
       productSubtitle:
-        'This 5 gallon water bottle cap is designed for drinking water factories and water production lines. Made of food grade material, safe and non-toxic for drinking water use. Features good sealing, leak-proof and non-spill performance. Fits standard 5 gallon PC water bottles. Suitable for bottled water plants, water production lines and wholesale distributors.',
+        'We manufacture 5 gallon water bottle caps for drinking water factories, distributors and OEM buyers. Our bottle caps use food-grade material and are designed for leak-resistant sealing, daily factory use and export supply. Suitable for standard 5 gallon PC water bottles and bulk commercial purchasing.',
       emailSubject: 'Bottle Cap Website Enquiry',
       senderNameLabel: 'Name',
       senderPhoneLabel: 'Phone',
@@ -122,20 +122,20 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       strapline: 'Large 5 Gallon Bottle Cap Manufacturer in China',
     },
     hero: {
-      tag: 'China Bottle Cap Factory for 5 Gallon Water Bottles',
-      subtitle: 'Large plastic bottle cap manufacturer in China for water plants, distributors and OEM buyers.',
-      body: 'HuiZhou DingYuan Gaiye Plastic Co., Ltd. is a bottle cap manufacturer in Guangdong, China specializing in large 5 gallon water bottle caps, sealing liners and related plastic closures. Since 2015, we have combined in-house manufacturing experience with mold workshop support to deliver food-grade, leak-resistant bottle cap solutions for bottled water factories, wholesale buyers and export customers.',
+      tag: 'China Bottle Cap Manufacturer for B2B Buyers',
+      subtitle: 'Bottle cap factory in China for water plants, distributors, importers and OEM wholesale buyers.',
+      body: 'HuiZhou DingYuan Gaiye Plastic Co., Ltd. is a plastic bottle cap manufacturer in Guangdong, China specializing in 5 gallon water bottle caps, reusable caps, one-time use caps, sealing liners and related plastic closures. Since 2015, we have supported bottled water factories and wholesale buyers with stable production, practical packing options and export-ready supply.',
       primary: 'Explore Products',
       secondary: 'Contact Us',
     },
-    heroPanel: [
-      'Food grade material',
-      'Leak-proof and non-spill',
-      'Fits standard 5 gallon bottles',
-      'Suitable for water factories',
-      'Durable and safe',
-      'Wholesale and bulk supply',
-    ],
+      heroPanel: [
+        'Food grade material',
+        'Leak-proof and non-spill',
+        'Fits standard 5 gallon bottles',
+        'Suitable for water factories',
+        'OEM and private-label support',
+        'Wholesale and export supply',
+      ],
     products: [
       {
         title: 'Food-Grade Bottle Caps',
@@ -208,9 +208,9 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       emailAddress: '邮箱地址',
       message: '留言内容',
       productHint:
-        '如果您还有其他想要定制的塑料产品，请告诉我们，我们也可以提供相关帮助。',
+        '请告诉我们您需要的瓶盖尺寸、数量和包装要求，我们支持 OEM 生产、批发供货和出口订单。',
       productSubtitle:
-        '这款 5 加仑水瓶盖专为饮用水工厂和桶装水生产线设计。采用食品级材料制成，安全无毒，适用于饮用水使用。具有良好的密封性，防漏防溢。适配标准 5 加仑 PC 水桶。适用于桶装水工厂、饮用水生产线及批发经销商。',
+        '我们为饮用水工厂、经销商和 OEM 客户生产 5 加仑桶装水瓶盖。产品采用食品级材料，注重密封、防漏和日常生产使用表现，适配标准 5 加仑 PC 水桶，适合批量采购与出口供货。',
       emailSubject: '瓶盖网站咨询',
       senderNameLabel: '姓名',
       senderPhoneLabel: '电话',
@@ -228,20 +228,20 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       strapline: '中国大型5加仑瓶盖制造商',
     },
     hero: {
-      tag: '中国5加仑桶装水瓶盖工厂',
-      subtitle: '面向水厂、经销商和 OEM 客户的大型塑料瓶盖制造商。',
-      body: '惠州鼎元盖业塑胶有限公司位于中国广东，专注于大型 5 加仑桶装水瓶盖、密封垫片及相关塑胶配件的生产。公司自 2015 年成立以来，持续结合自有生产经验与模具车间能力，为桶装水工厂、批发采购商和出口客户提供食品级、防漏型的瓶盖解决方案。',
+      tag: '面向 B2B 客户的中国瓶盖制造商',
+      subtitle: '服务于水厂、经销商、进口商和 OEM 客户的瓶盖工厂。',
+      body: '惠州鼎元盖业塑胶有限公司位于中国广东，专注于 5 加仑桶装水瓶盖、可重复使用瓶盖、一次性瓶盖、密封垫片及相关塑胶配件的生产。自 2015 年以来，我们持续为桶装水工厂、批发采购商和出口客户提供稳定产能、实用包装方案和可靠供货支持。',
       primary: '查看产品',
       secondary: '联系我们',
     },
-    heroPanel: [
-      '食品级材料',
-      '防漏防溢设计',
-      '适配标准 5 加仑水桶',
-      '适用于各类水厂',
-      '耐用安全',
-      '支持批发与大货供应',
-    ],
+      heroPanel: [
+        '食品级材料',
+        '防漏防溢设计',
+        '适配标准 5 加仑水桶',
+        '适用于各类水厂',
+        '支持 OEM 与贴牌',
+        '支持批发与出口供货',
+      ],
     products: [
       {
         title: '食品级瓶盖产品',

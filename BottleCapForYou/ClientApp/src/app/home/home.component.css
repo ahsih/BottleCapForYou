@@ -507,6 +507,57 @@
   font-weight: 600;
   color: #385066;
 }
+
+.buyer-intent {
+  margin-bottom: 34px;
+}
+
+.buyer-intent__grid,
+.faq-list {
+  display: grid;
+  gap: 18px;
+}
+
+.buyer-intent__grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.buyer-intent__card,
+.faq-card {
+  background: #fff;
+  border: 1px solid rgba(15, 56, 92, 0.1);
+  box-shadow: 0 16px 38px rgba(16, 47, 76, 0.08);
+}
+
+.buyer-intent__card {
+  padding: 22px 20px;
+}
+
+.buyer-intent__card h3,
+.faq-card h3 {
+  margin: 0;
+  color: #18314b;
+}
+
+.buyer-intent__card p,
+.faq-card p {
+  margin: 12px 0 0;
+  color: #627484;
+  line-height: 1.8;
+}
+
+.section--faq {
+  background: linear-gradient(180deg, #f8fbfd, #eef3f7);
+}
+
+.faq-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.faq-card {
+  padding: 24px 22px;
+}
+
 .section--about,
 .section--certifications {
   background: #fff;
@@ -960,7 +1011,9 @@
 
 @media (max-width: 1100px) {
   .products-grid,
-  .certification-grid {
+  .certification-grid,
+  .buyer-intent__grid,
+  .faq-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -987,6 +1040,13 @@
 
   .top-strip {
     font-size: 12px;
+  }
+
+  .buyer-intent__grid,
+  .faq-list,
+  .products-grid,
+  .certification-grid {
+    grid-template-columns: 1fr;
   }
 
   .top-strip__inner,

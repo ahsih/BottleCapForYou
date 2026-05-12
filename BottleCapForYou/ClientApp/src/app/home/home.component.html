@@ -159,6 +159,37 @@
   </section>
 
   <section id="products" class="section section--products">
+    <div class="container buyer-intent">
+      <div class="section-titlebar section-titlebar--stacked">
+        <div>
+          <p class="section-titlebar__eyebrow">
+            {{ language() === "zh-CN" ? "B2B 供应" : "B2B Supply" }}
+          </p>
+          <h2>
+            {{
+              language() === "zh-CN"
+                ? "面向批发与 OEM 客户的瓶盖制造支持"
+                : "Bottle Cap Manufacturing Support for Wholesale and OEM Buyers"
+            }}
+          </h2>
+        </div>
+        <p class="section-intro">
+          {{
+            language() === "zh-CN"
+              ? "如果您正在寻找瓶盖制造商、瓶盖供应商或中国塑胶瓶盖工厂，这里是我们为商业买家提供的核心支持。"
+              : "If you are searching for a bottle cap manufacturer, bottle cap supplier or plastic bottle cap factory in China, these are the core points we offer business buyers."
+          }}
+        </p>
+      </div>
+
+      <div class="buyer-intent__grid">
+        <article class="buyer-intent__card" *ngFor="let item of buyerFeatures">
+          <h3>{{ buyerFeatureTitle(item) }}</h3>
+          <p>{{ buyerFeatureText(item) }}</p>
+        </article>
+      </div>
+    </div>
+
     <div class="container">
       <div class="section-titlebar section-titlebar--products">
         <div class="section-titlebar__copy">
@@ -371,6 +402,39 @@
         >
           <img [src]="certificate.src" [alt]="certificate.alt" />
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--faq">
+    <div class="container">
+      <div class="section-titlebar section-titlebar--stacked">
+        <div>
+          <p class="section-titlebar__eyebrow">
+            {{ language() === "zh-CN" ? "常见问题" : "FAQ" }}
+          </p>
+          <h2>
+            {{
+              language() === "zh-CN"
+                ? "瓶盖制造商采购常见问题"
+                : "Frequently Asked Questions for Bottle Cap Buyers"
+            }}
+          </h2>
+        </div>
+        <p class="section-intro">
+          {{
+            language() === "zh-CN"
+              ? "这些常见问题有助于 Google 和采购客户更快理解我们的产品、供货方式和出口支持能力。"
+              : "These questions help both Google and business buyers understand our products, supply model and export support more clearly."
+          }}
+        </p>
+      </div>
+
+      <div class="faq-list">
+        <article class="faq-card" *ngFor="let item of seoFaqs">
+          <h3>{{ faqQuestion(item) }}</h3>
+          <p>{{ faqAnswer(item) }}</p>
+        </article>
       </div>
     </div>
   </section>

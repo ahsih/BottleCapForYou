@@ -46,6 +46,20 @@ type PackagingItem = {
   noteZh?: string;
 };
 
+type BuyerFeature = {
+  titleEn: string;
+  titleZh: string;
+  textEn: string;
+  textZh: string;
+};
+
+type FaqItem = {
+  questionEn: string;
+  questionZh: string;
+  answerEn: string;
+  answerZh: string;
+};
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -300,6 +314,74 @@ export class HomeComponent implements OnInit, OnDestroy {
       noteZh: '用于出口装柜规划的参考数量。',
     },
   ];
+  readonly buyerFeatures: BuyerFeature[] = [
+    {
+      titleEn: 'OEM and wholesale support',
+      titleZh: '支持 OEM 与批发',
+      textEn:
+        'We supply bottle caps for water plants, distributors, importers and private-label buyers who need stable bulk production.',
+      textZh:
+        '我们为水厂、经销商、进口商和贴牌客户提供稳定的大货瓶盖生产与供货支持。',
+    },
+    {
+      titleEn: 'Food-grade production',
+      titleZh: '食品级生产',
+      textEn:
+        'Our bottle caps are designed for drinking water packaging with practical sealing performance for daily production and transport.',
+      textZh:
+        '我们的瓶盖适用于饮用水包装，兼顾日常生产、密封表现和运输使用需求。',
+    },
+    {
+      titleEn: 'Export container planning',
+      titleZh: '出口装柜支持',
+      textEn:
+        'We provide packing references for one-time use and reusable caps to help buyers estimate loading capacity and shipping costs.',
+      textZh:
+        '我们提供一次性与可重复使用瓶盖的装柜参考，方便客户评估装柜数量和运输成本。',
+    },
+    {
+      titleEn: 'Factory-based supply',
+      titleZh: '工厂直供',
+      textEn:
+        'Based in Huizhou, Guangdong, we support long-term sourcing with responsive communication and dependable lead times.',
+      textZh:
+        '公司位于广东惠州，支持长期采购合作，并提供及时沟通和稳定交期。',
+    },
+  ];
+  readonly seoFaqs: FaqItem[] = [
+    {
+      questionEn: 'Are you a bottle cap manufacturer or trading company?',
+      questionZh: '你们是瓶盖生产厂家还是贸易公司？',
+      answerEn:
+        'We are a bottle cap manufacturer in Huizhou, Guangdong, China, focused on large 5 gallon water bottle caps, sealing liners and related plastic closures.',
+      answerZh:
+        '我们是位于中国广东惠州的瓶盖生产厂家，专注于大型 5 加仑桶装水瓶盖、密封垫片及相关塑胶配件。',
+    },
+    {
+      questionEn: 'Do you supply OEM and wholesale bottle cap orders?',
+      questionZh: '你们支持 OEM 和批发瓶盖订单吗？',
+      answerEn:
+        'Yes. We support OEM, wholesale and export orders for water plants, distributors, importers and private-label buyers.',
+      answerZh:
+        '支持。我们承接 OEM、批发和出口订单，服务于水厂、经销商、进口商和贴牌采购客户。',
+    },
+    {
+      questionEn: 'What bottle cap products do you supply?',
+      questionZh: '你们主要供应哪些瓶盖产品？',
+      answerEn:
+        'Our main products include one-time use 5 gallon water bottle caps, reusable bottle caps, sealing liners and matching plastic closure components.',
+      answerZh:
+        '我们的主要产品包括一次性 5 加仑桶装水瓶盖、可重复使用瓶盖、密封垫片及配套塑胶配件。',
+    },
+    {
+      questionEn: 'Can you share packing and container loading details?',
+      questionZh: '你们可以提供包装和装柜明细吗？',
+      answerEn:
+        'Yes. We provide bulk packing, stacked packing and container loading references so buyers can estimate shipment quantities and plan export orders.',
+      answerZh:
+        '可以。我们可提供散装、叠装和集装箱装柜参考，方便客户估算发货数量并规划出口订单。',
+    },
+  ];
 
   private readonly productsPerPage = 4;
   private companyPhotoIntervalId: ReturnType<typeof setInterval> | null = null;
@@ -504,6 +586,22 @@ export class HomeComponent implements OnInit, OnDestroy {
       : this.packagingDetailSections;
   }
 
+  buyerFeatureTitle(item: BuyerFeature): string {
+    return this.language() === 'zh-CN' ? item.titleZh : item.titleEn;
+  }
+
+  buyerFeatureText(item: BuyerFeature): string {
+    return this.language() === 'zh-CN' ? item.textZh : item.textEn;
+  }
+
+  faqQuestion(item: FaqItem): string {
+    return this.language() === 'zh-CN' ? item.questionZh : item.questionEn;
+  }
+
+  faqAnswer(item: FaqItem): string {
+    return this.language() === 'zh-CN' ? item.answerZh : item.answerEn;
+  }
+
   productTitle(item: ProductItem): string {
     return this.language() === 'zh-CN' ? item.titleZh : item.titleEn;
   }
@@ -616,13 +714,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     const isChinese = language === 'zh-CN';
     const title = isChinese
       ? '中国大型5加仑瓶盖制造商 | 惠州鼎元盖业塑胶有限公司'
-      : 'Large Bottle Cap Manufacturer in China | 5 Gallon Water Bottle Caps';
+      : 'Bottle Cap Manufacturer in China | OEM Plastic Bottle Cap Supplier';
     const description = isChinese
       ? '惠州鼎元盖业塑胶有限公司位于中国广东，专业生产大型5加仑桶装水瓶盖、密封垫片及相关塑胶配件，支持出口、批发和 OEM 订单。'
-      : 'HuiZhou DingYuan Gaiye Plastic Co., Ltd. is a large bottle cap manufacturer in China producing 5 gallon water bottle caps, sealing liners and OEM plastic closures for export and wholesale supply.';
+      : 'HuiZhou DingYuan Gaiye Plastic Co., Ltd. is a bottle cap manufacturer in China supplying 5 gallon water bottle caps, reusable bottle caps, one-time use caps, sealing liners and OEM plastic closures for wholesale and export orders.';
     const keywords = isChinese
       ? '中国瓶盖制造商,大型瓶盖厂家,5加仑桶装水瓶盖,桶装水瓶盖工厂,广东塑料瓶盖厂家'
-      : 'large bottle cap manufacturer in china, 5 gallon water bottle cap manufacturer, plastic bottle cap factory china, bottle cap supplier china, water bottle cap manufacturer';
+      : 'bottle cap manufacturer china, bottle cap producer, plastic bottle cap supplier, oem bottle cap manufacturer, 5 gallon water bottle cap manufacturer, reusable bottle cap supplier, one time use bottle cap supplier';
     const canonicalUrl = `${this.siteUrl}/`;
 
     this.title.setTitle(title);
@@ -696,6 +794,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           description,
           email: this.contact.email,
           telephone: this.contact.phones[1],
+          foundingDate: '2015',
           address: {
             '@type': 'PostalAddress',
             streetAddress:
@@ -717,6 +816,14 @@ export class HomeComponent implements OnInit, OnDestroy {
             'https://youtube.com/channel/UCIp2OXI9VbGaRNFmoiV6t_A?si=TfrkMJXu4LWZQozh',
           ],
           keywords,
+          knowsAbout: [
+            'Bottle cap manufacturing',
+            '5 gallon water bottle caps',
+            'Reusable bottle caps',
+            'One-time use bottle caps',
+            'Sealing liners',
+            'OEM plastic closures',
+          ],
           makesOffer: this.products.slice(0, 4).map((product) => ({
             '@type': 'Offer',
             itemOffered: {
@@ -732,6 +839,18 @@ export class HomeComponent implements OnInit, OnDestroy {
           url: canonicalUrl,
           name: 'Bottle Cap For You',
           inLanguage: isChinese ? 'zh-CN' : 'en',
+        },
+        {
+          '@type': 'FAQPage',
+          '@id': `${canonicalUrl}#faq`,
+          mainEntity: this.seoFaqs.map((faq) => ({
+            '@type': 'Question',
+            name: isChinese ? faq.questionZh : faq.questionEn,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: isChinese ? faq.answerZh : faq.answerEn,
+            },
+          })),
         },
       ],
     });
