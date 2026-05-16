@@ -26,6 +26,7 @@ export class I18nService {
   private applyLanguage(language: AppLanguage): void {
     this.currentLanguage.set(language);
     this.document.documentElement.lang = language;
+    this.document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
   }
 
   private resolveInitialLanguage(): AppLanguage {
@@ -34,12 +35,20 @@ export class I18nService {
     }
 
     const saved = localStorage.getItem(this.storageKey);
-    if (saved === 'en' || saved === 'zh-CN') {
+    if (saved === 'en' || saved === 'zh-CN' || saved === 'ar') {
       return saved;
     }
 
     const browserLanguage = navigator.language.toLowerCase();
-    return browserLanguage.startsWith('zh') ? 'zh-CN' : 'en';
+    if (browserLanguage.startsWith('zh')) {
+      return 'zh-CN';
+    }
+
+    if (browserLanguage.startsWith('ar')) {
+      return 'ar';
+    }
+
+    return 'en';
   }
 
   private persist(language: AppLanguage): void {

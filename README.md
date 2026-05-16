@@ -15,6 +15,7 @@ Homepage rebuild of the original Deyi Plastic Chemical website using ASP.NET Cor
 
 - English
 - Simplified Chinese (`zh-CN`)
+- Arabic (`ar`)
 
 ## Frameworks and Tools
 
@@ -26,7 +27,7 @@ Homepage rebuild of the original Deyi Plastic Chemical website using ASP.NET Cor
 
 - Angular 19 frontend with runtime language switching
 - ASP.NET Core backend with SPA proxy integration
-- English and Chinese homepage content
+- English, Chinese, and Arabic homepage content
 - Video-supported company introduction section
 
 ## Run Locally
@@ -49,4 +50,3 @@ npm start
 - `BottleCapForYou/` - ASP.NET Core app
 - `BottleCapForYou/ClientApp/` - Angular frontend
 - `BottleCapForYou/ClientApp/src/app/i18n/` - runtime translation files
-

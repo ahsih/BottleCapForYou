@@ -1,4 +1,4 @@
-﻿export type AppLanguage = 'en' | 'zh-CN';
+export type AppLanguage = 'en' | 'zh-CN' | 'ar';
 
 export interface SiteTranslations {
   nav: {
@@ -14,6 +14,7 @@ export interface SiteTranslations {
     links: string;
     send: string;
     switchLabel: string;
+    languageArabic: string;
     languageChinese: string;
     languageEnglish: string;
     homepageLabel: string;
@@ -88,6 +89,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       links: 'Hyperlinks',
       send: 'Submit',
       switchLabel: 'Language',
+      languageArabic: 'Switch to Arabic',
       languageChinese: 'Switch to Chinese',
       languageEnglish: 'Switch to English',
       homepageLabel: 'DingYuan bottle cap homepage',
@@ -123,19 +125,21 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
     },
     hero: {
       tag: 'China Bottle Cap Manufacturer for B2B Buyers',
-      subtitle: 'Bottle cap factory in China for water plants, distributors, importers and OEM wholesale buyers.',
-      body: 'HuiZhou DingYuan Gaiye Plastic Co., Ltd. is a plastic bottle cap manufacturer in Guangdong, China specializing in 5 gallon water bottle caps, reusable caps, one-time use caps, sealing liners and related plastic closures. Since 2015, we have supported bottled water factories and wholesale buyers with stable production, practical packing options and export-ready supply.',
+      subtitle:
+        'Bottle cap factory in China for water plants, distributors, importers and OEM wholesale buyers.',
+      body:
+        'HuiZhou DingYuan Gaiye Plastic Co., Ltd. is a plastic bottle cap manufacturer in Guangdong, China specializing in 5 gallon water bottle caps, reusable caps, one-time use caps, sealing liners and related plastic closures. Since 2015, we have supported bottled water factories and wholesale buyers with stable production, practical packing options and export-ready supply.',
       primary: 'Explore Products',
       secondary: 'Contact Us',
     },
-      heroPanel: [
-        'Food grade material',
-        'Leak-proof and non-spill',
-        'Fits standard 5 gallon bottles',
-        'Suitable for water factories',
-        'OEM and private-label support',
-        'Wholesale and export supply',
-      ],
+    heroPanel: [
+      'Food grade material',
+      'Leak-proof and non-spill',
+      'Fits standard 5 gallon bottles',
+      'Suitable for water factories',
+      'OEM and private-label support',
+      'Wholesale and export supply',
+    ],
     products: [
       {
         title: 'Food-Grade Bottle Caps',
@@ -195,6 +199,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       links: '相关链接',
       send: '提交',
       switchLabel: '语言切换',
+      languageArabic: '切换到阿拉伯语',
       languageChinese: '切换到中文',
       languageEnglish: '切换到英文',
       homepageLabel: '鼎元盖业首页',
@@ -230,18 +235,19 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
     hero: {
       tag: '面向 B2B 客户的中国瓶盖制造商',
       subtitle: '服务于水厂、经销商、进口商和 OEM 客户的瓶盖工厂。',
-      body: '惠州鼎元盖业塑胶有限公司位于中国广东，专注于 5 加仑桶装水瓶盖、可重复使用瓶盖、一次性瓶盖、密封垫片及相关塑胶配件的生产。自 2015 年以来，我们持续为桶装水工厂、批发采购商和出口客户提供稳定产能、实用包装方案和可靠供货支持。',
+      body:
+        '惠州鼎元盖业塑胶有限公司位于中国广东，专注于 5 加仑桶装水瓶盖、可重复使用瓶盖、一次性瓶盖、密封垫片及相关塑胶配件的生产。自 2015 年以来，我们持续为桶装水工厂、批发采购商和出口客户提供稳定产能、实用包装方案和可靠供货支持。',
       primary: '查看产品',
       secondary: '联系我们',
     },
-      heroPanel: [
-        '食品级材料',
-        '防漏防溢设计',
-        '适配标准 5 加仑水桶',
-        '适用于各类水厂',
-        '支持 OEM 与贴牌',
-        '支持批发与出口供货',
-      ],
+    heroPanel: [
+      '食品级材料',
+      '防漏防溢设计',
+      '适配标准 5 加仑水桶',
+      '适用于各类水厂',
+      '支持 OEM 与贴牌',
+      '支持批发与出口供货',
+    ],
     products: [
       {
         title: '食品级瓶盖产品',
@@ -283,6 +289,116 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
     },
     footer: {
       address: '惠州市惠阳区镇隆镇黄洞村绿全智造园6栋',
+    },
+  },
+  ar: {
+    nav: {
+      home: 'الرئيسية',
+      about: 'من نحن',
+      products: 'المنتجات',
+      certifications: 'الشهادات',
+      contact: 'اتصل بنا',
+    },
+    ui: {
+      allProducts: 'جميع المنتجات',
+      partners: 'الشركاء',
+      links: 'الروابط',
+      send: 'إرسال',
+      switchLabel: 'اللغة',
+      languageArabic: 'التبديل إلى العربية',
+      languageChinese: 'التبديل إلى الصينية',
+      languageEnglish: 'التبديل إلى الإنجليزية',
+      homepageLabel: 'الصفحة الرئيسية لـ DingYuan bottle cap',
+      addressLabel: 'العنوان',
+      telLabel: 'الهاتف',
+      faxLabel: 'الفاكس',
+      emailLabel: 'البريد الإلكتروني',
+      supplyScope: 'نطاق التوريد الرئيسي',
+      yourName: 'اسمك',
+      phoneNumber: 'رقم الهاتف',
+      emailAddress: 'البريد الإلكتروني',
+      message: 'الرسالة',
+      productHint:
+        'أخبرنا بمقاس أغطية الزجاجات والكمية ومتطلبات التعبئة. نحن ندعم تصنيع OEM والتوريد بالجملة وطلبات التصدير.',
+      productSubtitle:
+        'نقوم بتصنيع أغطية عبوات مياه سعة 5 جالون لمصانع مياه الشرب والموزعين ومشتري OEM. تُصنع أغطيتنا من مواد غذائية ومصممة لإحكام الغلق ومقاومة التسرب والاستخدام اليومي في المصانع والتوريد التصديري. مناسبة لعبوات المياه القياسية PC سعة 5 جالون وللشراء التجاري بكميات كبيرة.',
+      emailSubject: 'استفسار من موقع أغطية الزجاجات',
+      senderNameLabel: 'الاسم',
+      senderPhoneLabel: 'الهاتف',
+      senderEmailLabel: 'البريد الإلكتروني',
+      senderMessageLabel: 'الرسالة',
+      sending: 'جارٍ الإرسال...',
+      submitSuccess: 'شكرًا لك، تم إرسال رسالتك بنجاح.',
+      submitError:
+        'عذرًا، تعذر إرسال رسالتك الآن. يرجى المحاولة مرة أخرى بعد قليل.',
+      mapsLabel: 'الخرائط',
+      amapLabel: 'Amap',
+      googleMapsLabel: 'خرائط Google',
+    },
+    brand: {
+      company: 'شركة هويتشو دينغ يوان غاييه للبلاستيك المحدودة',
+      strapline: 'مصنع صيني كبير لأغطية عبوات 5 جالون',
+    },
+    hero: {
+      tag: 'مصنع أغطية زجاجات في الصين لمشتري B2B',
+      subtitle:
+        'مصنع أغطية زجاجات في الصين لمحطات المياه والموزعين والمستوردين ومشتري الجملة وOEM.',
+      body:
+        'تقع شركة هويتشو دينغ يوان غاييه للبلاستيك المحدودة في قوانغدونغ بالصين، ومتخصصة في أغطية عبوات المياه سعة 5 جالون، والأغطية القابلة لإعادة الاستخدام، والأغطية ذات الاستخدام الواحد، وبطانات الإحكام، والإغلاقات البلاستيكية ذات الصلة. منذ عام 2015، ندعم مصانع المياه المعبأة ومشتري الجملة بإنتاج مستقر وخيارات تعبئة عملية وتوريد جاهز للتصدير.',
+      primary: 'استعرض المنتجات',
+      secondary: 'اتصل بنا',
+    },
+    heroPanel: [
+      'مواد بدرجة غذائية',
+      'إحكام ضد التسرب والانسكاب',
+      'تناسب عبوات 5 جالون القياسية',
+      'مناسبة لمصانع المياه',
+      'دعم OEM والعلامة الخاصة',
+      'توريد بالجملة وللتصدير',
+    ],
+    products: [
+      {
+        title: 'أغطية زجاجات بدرجة غذائية',
+        text: 'مصنوعة من مواد موثوقة لتعبئة مياه الشرب والاستخدام اليومي بكميات كبيرة.',
+      },
+      {
+        title: 'تصميم غطاء مانع للتسرب',
+        text: 'مصمم لإحكام الغلق وسهولة المناولة الموثوقة أثناء النقل والتخزين.',
+      },
+      {
+        title: 'دعم توريد للمصانع',
+        text: 'طاقة إنتاج مستقرة لمحطات المياه والموزعين وطلبات OEM بالجملة.',
+      },
+      {
+        title: 'حلول تعبئة مخصصة',
+        text: 'دعم مرن لمواصفات المنتجات وطرق التعبئة واحتياجات التوريد التجاري.',
+      },
+    ],
+    about: {
+      title: 'من نحن',
+      paragraphs: [
+        'شركة هويتشو دينغ يوان غاييه للبلاستيك المحدودة هي مصنع صيني لأغطية الزجاجات يركز على جودة الإنتاج واستقرار المواعيد وقدرة التوريد التصديري الموثوق.',
+        'نحن ندعم مصانع المياه المعبأة والموزعين ومشتري العلامات الخاصة الذين يبحثون عن مورد موثوق للأغطية الكبيرة وأغطية مياه 5 جالون ومكونات الإحكام المطابقة.',
+      ],
+      groups: [
+        'أغطية كبيرة لعبوات المياه سعة 5 جالون وتطبيقات تعبئة المياه ذات الصلة.',
+        'عملية تصنيع موثوقة ومواد غذائية وتوريد ثابت بكميات كبيرة.',
+        'دعم للمصانع والموزعين والمستوردين وطلبات OEM بالجملة.',
+        'خدمة عملية تركز على الجودة وسرعة الاستجابة والثبات.',
+      ],
+      asideLabel: 'دعم متكامل',
+      asideText:
+        'من الإنتاج إلى التسليم، ندعم عملاءنا بتصنيع موثوق لأغطية الزجاجات وتوريد بالجملة.',
+    },
+    certifications: {
+      title: 'شهادات ISO',
+      eyebrow: 'جودة معتمدة',
+      description:
+        'تعمل شركتنا بتركيز قوي على مراقبة الجودة والامتثال. حصولنا على شهادات ISO يعكس التزامنا بمعايير تصنيع ثابتة ووعي بسلامة الغذاء وإجراءات تشغيل احترافية.',
+    },
+    footer: {
+      address:
+        'المبنى 6، حديقة لفيوان الذكية، قرية هوانغدونغ، بلدة تشنلونغ، منطقة هوييانغ، مدينة هويتشو، مقاطعة غوانغدونغ، الصين.',
     },
   },
 };
