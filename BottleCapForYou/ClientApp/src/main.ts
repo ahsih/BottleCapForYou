@@ -2,6 +2,7 @@
 import { provideRouter } from '@angular/router';
 import { AppComponent } from './app/app.component';
 import { HomeComponent } from './app/home/home.component';
+import { NewsComponent } from './app/news/news.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -10,6 +11,10 @@ bootstrapApplication(AppComponent, {
         path: '',
         pathMatch: 'full',
         component: HomeComponent
+      },
+      {
+        path: 'news',
+        component: NewsComponent
       },
       {
         path: '**',

@@ -1,0 +1,117 @@
+<div class="news-page" [attr.dir]="language() === 'ar' ? 'rtl' : 'ltr'">
+  <header class="news-header">
+    <div class="container news-header__inner">
+      <a class="brand" routerLink="/">
+        <img src="logo.png" [alt]="content().brand.company" />
+        <div>
+          <strong>{{ content().brand.company }}</strong>
+          <span>{{ content().brand.strapline }}</span>
+        </div>
+      </a>
+
+      <nav class="news-nav">
+        <a routerLink="/">{{ content().nav.home }}</a>
+        <a class="is-active" routerLink="/news">{{ content().nav.news }}</a>
+      </nav>
+
+      <div class="lang-switch" [attr.aria-label]="content().ui.switchLabel">
+        <button
+          type="button"
+          [class.active]="language() === 'ar'"
+          [attr.aria-label]="content().ui.languageArabic"
+          (click)="setLanguage('ar')"
+        >
+          AR
+        </button>
+        <button
+          type="button"
+          [class.active]="language() === 'zh-CN'"
+          [attr.aria-label]="content().ui.languageChinese"
+          (click)="setLanguage('zh-CN')"
+        >
+          中文
+        </button>
+        <button
+          type="button"
+          [class.active]="language() === 'en'"
+          [attr.aria-label]="content().ui.languageEnglish"
+          (click)="setLanguage('en')"
+        >
+          EN
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="news-hero">
+      <div class="container">
+        <p class="news-hero__eyebrow">{{ content().nav.news }}</p>
+        <h1>{{ pageTitle() }}</h1>
+        <p class="news-hero__intro">{{ pageIntro() }}</p>
+      </div>
+    </section>
+
+    <section class="news-listing">
+      <div class="container news-grid">
+        <article class="news-card" *ngFor="let post of posts()">
+          <div class="news-card__video-shell">
+            <iframe
+              class="news-card__video"
+              [src]="post.videoUrl"
+              [title]="post.title"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="news-card__date">{{ post.date }}</p>
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.summary }}</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="news-cta">
+      <div class="container news-cta__inner">
+        <div class="news-cta__copy">
+          <h2>{{ contactCta() }}</h2>
+          <p>{{ contactIntro() }}</p>
+          <p>{{ pageNote() }}</p>
+        </div>
+        <div class="news-contact-grid">
+          <article class="news-contact-card">
+            <span class="news-contact-card__label">{{ phoneLabel() }}</span>
+            <a
+              class="news-contact-card__value"
+              [href]="phoneHref(contact.phones[0])"
+            >
+              {{ contact.phones[0] }}
+            </a>
+          </article>
+          <article class="news-contact-card">
+            <span class="news-contact-card__label">{{ whatsappLabel() }}</span>
+            <a
+              class="news-contact-card__value"
+              [href]="whatsappHref(contact.whatsapp)"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {{ contact.whatsapp }}
+            </a>
+          </article>
+          <article class="news-contact-card">
+            <span class="news-contact-card__label">{{ emailLabel() }}</span>
+            <a
+              class="news-contact-card__value"
+              [href]="emailHref(contact.email)"
+            >
+              {{ contact.email }}
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

@@ -3,6 +3,7 @@ export type AppLanguage = 'en' | 'zh-CN' | 'ar';
 export interface SiteTranslations {
   nav: {
     home: string;
+    news: string;
     about: string;
     products: string;
     certifications: string;
@@ -78,6 +79,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
   en: {
     nav: {
       home: 'Home',
+      news: 'News',
       about: 'About',
       products: 'Products',
       certifications: 'Certifications',
@@ -188,6 +190,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
   'zh-CN': {
     nav: {
       home: '首页',
+      news: '新闻',
       about: '关于我们',
       products: '产品',
       certifications: '资质证书',
@@ -294,6 +297,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
   ar: {
     nav: {
       home: 'الرئيسية',
+      news: 'الأخبار',
       about: 'من نحن',
       products: 'المنتجات',
       certifications: 'الشهادات',
