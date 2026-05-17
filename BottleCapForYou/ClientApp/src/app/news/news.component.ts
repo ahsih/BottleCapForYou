@@ -13,6 +13,8 @@ type NewsPost = {
   title: Record<AppLanguage, string>;
   summary: Record<AppLanguage, string>;
   videoUrl: string;
+  embedUrl?: string;
+  source: 'facebook' | 'youtube';
 };
 
 type NewsVideoCard = {
@@ -20,6 +22,8 @@ type NewsVideoCard = {
   title: string;
   summary: string;
   videoUrl: SafeResourceUrl;
+  source: 'facebook' | 'youtube';
+  sourceUrl: string;
 };
 
 @Component({
@@ -45,11 +49,31 @@ export class NewsComponent {
       date: post.date,
       title: post.title[this.language()],
       summary: post.summary[this.language()],
-      videoUrl: this.toEmbedUrl(post.videoUrl),
+      videoUrl: this.toEmbedUrl(post),
+      source: post.source,
+      sourceUrl: post.videoUrl,
     })),
   );
 
   private readonly newsPosts: NewsPost[] = [
+    {
+      date: 'May 2026',
+      title: {
+        en: 'Bottle cap factory Facebook reel',
+        'zh-CN': 'Bottle cap factory Facebook reel',
+        ar: 'Bottle cap factory Facebook reel',
+      },
+      summary: {
+        en: 'A new short-form factory update shared on Facebook for buyers following current bottle cap production activity.',
+        'zh-CN':
+          'A new short-form factory update shared on Facebook for buyers following current bottle cap production activity.',
+        ar: 'A new short-form factory update shared on Facebook for buyers following current bottle cap production activity.',
+      },
+      videoUrl: 'https://www.facebook.com/reel/2067963057490543/',
+      embedUrl:
+        'https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2067963057490543%2F&show_text=false&width=267&t=0',
+      source: 'facebook',
+    },
     {
       date: 'May 2026',
       title: {
@@ -64,6 +88,7 @@ export class NewsComponent {
         ar: 'A closer look at current bottle cap production and factory output for wholesale and export supply.',
       },
       videoUrl: 'https://www.youtube.com/watch?v=ufULI2MLBdI',
+      source: 'youtube',
     },
     {
       date: 'May 2026',
@@ -79,6 +104,7 @@ export class NewsComponent {
         ar: 'This update highlights production flow, packing readiness and the type of factory footage buyers often ask to review.',
       },
       videoUrl: 'https://www.youtube.com/watch?v=MB_rIKS3rI8',
+      source: 'youtube',
     },
     {
       date: 'May 2026',
@@ -94,6 +120,7 @@ export class NewsComponent {
         ar: 'A video snapshot of the factory environment and product handling process for buyers comparing manufacturers.',
       },
       videoUrl: 'https://www.youtube.com/watch?v=lYfYZgAZP1Y',
+      source: 'youtube',
     },
     {
       date: 'May 2026',
@@ -109,6 +136,7 @@ export class NewsComponent {
         ar: 'The latest video rounds out the update section with additional factory footage, production detail and export-oriented presentation.',
       },
       videoUrl: 'https://www.youtube.com/watch?v=ELjbJtqVRgA',
+      source: 'youtube',
     },
   ];
 
@@ -217,8 +245,12 @@ export class NewsComponent {
     return `https://wa.me/${normalized}`;
   }
 
-  private toEmbedUrl(videoUrl: string): SafeResourceUrl {
-    const videoId = this.extractVideoId(videoUrl);
+  private toEmbedUrl(post: NewsPost): SafeResourceUrl {
+    if (post.embedUrl) {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(post.embedUrl);
+    }
+
+    const videoId = this.extractVideoId(post.videoUrl);
     return this.sanitizer.bypassSecurityTrustResourceUrl(
       `https://www.youtube.com/embed/${videoId}`,
     );

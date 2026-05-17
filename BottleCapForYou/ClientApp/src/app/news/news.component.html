@@ -55,7 +55,12 @@
     <section class="news-listing">
       <div class="container news-grid">
         <article class="news-card" *ngFor="let post of posts()">
-          <div class="news-card__video-shell">
+          <div
+            class="news-card__video-shell"
+            [class.news-card__video-shell--portrait]="
+              post.source === 'facebook'
+            "
+          >
             <iframe
               class="news-card__video"
               [src]="post.videoUrl"
@@ -69,6 +74,15 @@
           <p class="news-card__date">{{ post.date }}</p>
           <h2>{{ post.title }}</h2>
           <p>{{ post.summary }}</p>
+          <a
+            *ngIf="post.source === 'facebook'"
+            class="news-card__source"
+            [href]="post.sourceUrl"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Watch on Facebook
+          </a>
         </article>
       </div>
     </section>
