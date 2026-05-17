@@ -1138,7 +1138,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           makesOffer: this.products.slice(0, 4).map((product) => ({
             '@type': 'Offer',
             itemOffered: {
-              '@type': 'Product',
+              '@type': 'Thing',
               name: this.productNameForLanguage(product, language),
               category: productCategory,
             },
