@@ -37,6 +37,8 @@ export class NewsComponent {
   private readonly i18n = inject(I18nService);
   private readonly sanitizer = inject(DomSanitizer);
 
+  readonly facebookPageUrl =
+    'https://www.facebook.com/profile.php?id=61586840468520';
   readonly contact = {
     phones: ['+44 7597702688', '+86 18818995568'],
     email: 'jack.zhang@bottlecapforyou.com',
@@ -56,6 +58,24 @@ export class NewsComponent {
   );
 
   private readonly newsPosts: NewsPost[] = [
+    {
+      date: 'May 2026',
+      title: {
+        en: 'New bottle cap factory Facebook reel',
+        'zh-CN': 'New bottle cap factory Facebook reel',
+        ar: 'New bottle cap factory Facebook reel',
+      },
+      summary: {
+        en: 'A new Facebook reel update showing recent factory activity and bottle cap production for buyers reviewing current supply.',
+        'zh-CN':
+          'A new Facebook reel update showing recent factory activity and bottle cap production for buyers reviewing current supply.',
+        ar: 'A new Facebook reel update showing recent factory activity and bottle cap production for buyers reviewing current supply.',
+      },
+      videoUrl: 'https://www.facebook.com/reel/1331111505584543/',
+      embedUrl:
+        'https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1331111505584543%2F&show_text=false&width=267&t=0',
+      source: 'facebook',
+    },
     {
       date: 'May 2026',
       title: {
@@ -163,6 +183,17 @@ export class NewsComponent {
         return 'Browse the latest page updates about bottle cap production, export supply and factory capabilities.';
       default:
         return 'Browse the latest page updates about bottle cap production, export supply and factory capabilities.';
+    }
+  }
+
+  facebookPageLabel(): string {
+    switch (this.language()) {
+      case 'zh-CN':
+        return 'Follow on Facebook';
+      case 'ar':
+        return 'Follow on Facebook';
+      default:
+        return 'Follow on Facebook';
     }
   }
 

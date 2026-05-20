@@ -49,6 +49,20 @@
         <p class="news-hero__eyebrow">{{ content().nav.news }}</p>
         <h1>{{ pageTitle() }}</h1>
         <p class="news-hero__intro">{{ pageIntro() }}</p>
+        <a
+          class="news-hero__facebook"
+          [href]="facebookPageUrl"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Visit Facebook page"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M13.5 21v-8.03h2.7l.4-3.13H13.5V7.84c0-.9.25-1.52 1.55-1.52h1.66V3.52c-.81-.09-1.62-.13-2.44-.12-2.42 0-4.07 1.48-4.07 4.2v2.24H8v3.13h2.2V21h3.3Z"
+            />
+          </svg>
+          <span>{{ facebookPageLabel() }}</span>
+        </a>
       </div>
     </section>
 
