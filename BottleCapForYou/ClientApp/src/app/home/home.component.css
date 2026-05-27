@@ -328,6 +328,15 @@
   font-weight: 700;
 }
 
+.hero__sample-note {
+  max-width: 720px;
+  margin: 16px 0 0;
+  color: #ffe2a5;
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
 .hero__body {
   max-width: 760px;
   margin: 18px 0 0;
