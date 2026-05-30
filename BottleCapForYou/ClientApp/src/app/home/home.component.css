@@ -1097,7 +1097,6 @@
     grid-template-columns: 1fr;
   }
 
-  .top-strip__inner,
   .main-header__inner,
   .section-titlebar,
   .section-titlebar--products {
@@ -1106,12 +1105,15 @@
   }
 
   .top-strip__inner {
-    padding: 10px 0;
-    gap: 10px;
+    min-height: auto;
+    padding: 8px 0;
+    gap: 8px 10px;
+    flex-wrap: wrap;
   }
 
   .top-strip__contacts {
-    width: 100%;
+    flex: 1 1 260px;
+    width: auto;
     gap: 8px 12px;
     align-items: center;
   }
@@ -1410,44 +1412,55 @@
   }
 
   .top-strip__inner {
-    gap: 8px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 6px 8px;
+    padding: 6px 0;
   }
 
   .top-strip__contacts {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
-    gap: 8px 10px;
+    gap: 5px 8px;
+    min-width: 0;
+    width: 100%;
   }
 
   .social-links {
     grid-column: 1;
     grid-row: 1;
     align-self: center;
-    gap: 6px;
+    gap: 5px;
   }
 
   .contact-item:not(.contact-item--email) {
     grid-column: 2;
     justify-self: start;
+    min-height: 24px;
+    gap: 6px;
   }
 
   .contact-item--phone-secondary {
-    grid-row: 2;
+    grid-row: auto;
   }
 
   .contact-item--email {
     grid-column: 1 / -1;
-    grid-row: 3;
+    grid-row: auto;
     min-width: 0;
+    min-height: auto;
   }
 
   .contact-item--email .contact-link {
     overflow-wrap: anywhere;
+    line-height: 1.15;
   }
 
   .lang-switch {
-    align-self: flex-start;
+    justify-self: end;
+    align-self: center;
   }
 
   .site-header-shell--hidden {
@@ -1456,16 +1469,68 @@
 
   .social-link,
   .whatsapp-link {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .social-link svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .whatsapp-link svg {
+    width: 14px;
+    height: 14px;
   }
 
   .lang-switch button {
-    padding: 6px 10px;
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  .main-header__inner {
+    padding: 8px 0 10px;
+    gap: 10px;
+  }
+
+  .brand {
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand__logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+  }
+
+  .brand__copy {
+    gap: 2px;
+    min-width: 0;
   }
 
   .brand__copy strong {
-    font-size: 14px;
+    font-size: 13.5px;
+    line-height: 1.18;
+  }
+
+  .brand__copy span {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    line-height: 1.25;
+  }
+
+  .main-nav {
+    gap: 6px;
+    padding: 8px;
+    border-radius: 12px;
+  }
+
+  .main-nav a {
+    min-height: 34px;
+    padding: 7px 8px;
+    border-radius: 8px;
+    font-size: 12px;
   }
 
   .hero__tag,
