@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
-import {
-  DomSanitizer,
-  SafeResourceUrl,
-} from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { I18nService } from '../core/i18n.service';
 import { AppLanguage } from '../i18n/translations';
@@ -14,6 +11,7 @@ type NewsPost = {
   summary: Record<AppLanguage, string>;
   videoUrl: string;
   embedUrl?: string;
+  isPortrait?: boolean;
   source: 'facebook' | 'youtube';
 };
 
@@ -24,6 +22,7 @@ type NewsVideoCard = {
   videoUrl: SafeResourceUrl;
   source: 'facebook' | 'youtube';
   sourceUrl: string;
+  isPortrait: boolean;
 };
 
 @Component({
@@ -54,10 +53,29 @@ export class NewsComponent {
       videoUrl: this.toEmbedUrl(post),
       source: post.source,
       sourceUrl: post.videoUrl,
+      isPortrait: post.isPortrait ?? false,
     })),
   );
 
   private readonly newsPosts: NewsPost[] = [
+    {
+      date: 'June 2026',
+      title: {
+        en: 'Latest Facebook factory video update',
+        'zh-CN': 'Latest Facebook factory video update',
+        ar: 'Latest Facebook factory video update',
+      },
+      summary: {
+        en: 'A new Facebook video update for buyers reviewing current bottle cap production, factory activity and supply readiness.',
+        'zh-CN':
+          'A new Facebook video update for buyers reviewing current bottle cap production, factory activity and supply readiness.',
+        ar: 'A new Facebook video update for buyers reviewing current bottle cap production, factory activity and supply readiness.',
+      },
+      videoUrl: 'https://www.facebook.com/reel/2469506123501826/',
+      embedUrl:
+        'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2469506123501826%2F&show_text=false&width=560&t=0',
+      source: 'facebook',
+    },
     {
       date: 'May 2026',
       title: {
@@ -74,6 +92,7 @@ export class NewsComponent {
       videoUrl: 'https://www.facebook.com/reel/1331111505584543/',
       embedUrl:
         'https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1331111505584543%2F&show_text=false&width=267&t=0',
+      isPortrait: true,
       source: 'facebook',
     },
     {
@@ -92,6 +111,7 @@ export class NewsComponent {
       videoUrl: 'https://www.facebook.com/reel/2067963057490543/',
       embedUrl:
         'https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2067963057490543%2F&show_text=false&width=267&t=0',
+      isPortrait: true,
       source: 'facebook',
     },
     {
@@ -111,7 +131,7 @@ export class NewsComponent {
       source: 'youtube',
     },
     {
-      date: 'May 2026',
+      date: 'April 2026',
       title: {
         en: 'Bottle cap line and packing update',
         'zh-CN': 'Bottle cap line and packing update',
@@ -127,7 +147,7 @@ export class NewsComponent {
       source: 'youtube',
     },
     {
-      date: 'May 2026',
+      date: 'April 2026',
       title: {
         en: 'Factory showcase video for international buyers',
         'zh-CN': 'Factory showcase video for international buyers',
@@ -143,7 +163,7 @@ export class NewsComponent {
       source: 'youtube',
     },
     {
-      date: 'May 2026',
+      date: 'April 2026',
       title: {
         en: 'Latest bottle cap operations video',
         'zh-CN': 'Latest bottle cap operations video',
