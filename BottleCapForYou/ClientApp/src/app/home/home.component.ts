@@ -123,7 +123,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       imageCount: 8,
       titleEn: '8.2g large two-color 5 gallon water bottle cap (one time use)',
       titleZh: '8.2克桶装水一次性双色盖',
-      titleAr: 'غطاء عبوة مياه كبير ثنائي اللون 8.2 جم سعة 5 جالون (استخدام مرة واحدة)',
+      titleAr:
+        'غطاء عبوة مياه كبير ثنائي اللون 8.2 جم سعة 5 جالون (استخدام مرة واحدة)',
     },
     {
       id: 4,
@@ -141,7 +142,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       titleEn:
         '10.2g Blue two-color inner cover for water bottle caps (reusable)',
       titleZh: '10.2g 蓝色双色组合盖（可重复使用）',
-      titleAr: 'غطاء داخلي أزرق ثنائي اللون 10.2 جم لأغطية عبوات المياه (قابل لإعادة الاستخدام)',
+      titleAr:
+        'غطاء داخلي أزرق ثنائي اللون 10.2 جم لأغطية عبوات المياه (قابل لإعادة الاستخدام)',
     },
     {
       id: 8,
@@ -149,7 +151,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       imageCount: 8,
       titleEn: '8g Blue two-piece bottle cap set with sealing pad (reusable)',
       titleZh: '8g 蓝色两件套，配单色垫片（可重复使用）',
-      titleAr: 'طقم غطاء أزرق من قطعتين 8 جم مع بطانة إحكام (قابل لإعادة الاستخدام)',
+      titleAr:
+        'طقم غطاء أزرق من قطعتين 8 جم مع بطانة إحكام (قابل لإعادة الاستخدام)',
     },
   ];
   readonly packagingSections: PackagingItem[] = [
@@ -220,7 +223,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       descriptionEn:
         'Reference loading capacity for bulk packing and stacked cap packing in standard export containers.',
       descriptionZh: '标准出口集装箱中散装包装和叠盖包装的装柜数量参考。',
-      descriptionAr: 'مرجع لسعات التحميل الخاصة بالتعبئة السائبة والتعبئة المكدسة داخل حاويات التصدير القياسية.',
+      descriptionAr:
+        'مرجع لسعات التحميل الخاصة بالتعبئة السائبة والتعبئة المكدسة داخل حاويات التصدير القياسية.',
       specs: [
         {
           labelEn: '20FT container (bulk packing)',
@@ -271,7 +275,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       descriptionEn:
         'Container loading reference for one-time use bottle caps.',
       descriptionZh: '一次性瓶盖装柜参考信息。',
-      descriptionAr: 'معلومات مرجعية لتحميل حاويات أغطية الزجاجات ذات الاستخدام الواحد.',
+      descriptionAr:
+        'معلومات مرجعية لتحميل حاويات أغطية الزجاجات ذات الاستخدام الواحد.',
       specs: [
         {
           labelEn: '20ft container',
@@ -280,7 +285,8 @@ export class HomeComponent implements OnInit, OnDestroy {
           valueEn:
             'Bulk carton packing: 276,000\n600 caps/carton\nStacked packing: 479,000\n1000 caps/carton',
           valueZh: '纸箱散装：27.6万\n600个/箱\n叠装：47.9万\n1000个/箱',
-          valueAr: 'تعبئة كرتونية سائبة: 276,000\n600 غطاء/كرتون\nتعبئة مكدسة: 479,000\n1000 غطاء/كرتون',
+          valueAr:
+            'تعبئة كرتونية سائبة: 276,000\n600 غطاء/كرتون\nتعبئة مكدسة: 479,000\n1000 غطاء/كرتون',
         },
         {
           labelEn: '40ft container',
@@ -289,7 +295,8 @@ export class HomeComponent implements OnInit, OnDestroy {
           valueEn:
             'Bulk carton packing: 600,000\n1000 caps/carton\nStacked packing: 1,250,000\n1000 caps/carton',
           valueZh: '纸箱散装：60万\n1000个/箱\n叠装：125万\n1000个/箱',
-          valueAr: 'تعبئة كرتونية سائبة: 600,000\n1000 غطاء/كرتون\nتعبئة مكدسة: 1,250,000\n1000 غطاء/كرتون',
+          valueAr:
+            'تعبئة كرتونية سائبة: 600,000\n1000 غطاء/كرتون\nتعبئة مكدسة: 1,250,000\n1000 غطاء/كرتون',
         },
       ],
       noteEn: 'Container loading quantities for export planning.',
@@ -303,7 +310,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       titleAr: 'غطاء قابل لإعادة الاستخدام',
       descriptionEn: 'Container loading reference for reusable bottle caps.',
       descriptionZh: '可重复使用瓶盖装柜参考信息。',
-      descriptionAr: 'معلومات مرجعية لتحميل حاويات أغطية الزجاجات القابلة لإعادة الاستخدام.',
+      descriptionAr:
+        'معلومات مرجعية لتحميل حاويات أغطية الزجاجات القابلة لإعادة الاستخدام.',
       specs: [
         {
           labelEn: '20ft container',
@@ -312,7 +320,8 @@ export class HomeComponent implements OnInit, OnDestroy {
           valueEn:
             'Container quantity: 230,000\n500 caps/carton\nStacked packing: 479,000\n1000 caps/carton',
           valueZh: '装柜数量：23万\n每箱装500个\n叠装：47.9万\n1000个/箱',
-          valueAr: 'كمية الحاوية: 230,000\n500 غطاء/كرتون\nتعبئة مكدسة: 479,000\n1000 غطاء/كرتون',
+          valueAr:
+            'كمية الحاوية: 230,000\n500 غطاء/كرتون\nتعبئة مكدسة: 479,000\n1000 غطاء/كرتون',
         },
         {
           labelEn: '40ft container',
@@ -321,7 +330,8 @@ export class HomeComponent implements OnInit, OnDestroy {
           valueEn:
             'Bulk carton packing: 540,000\n900 caps/carton\nStacked packing: 11,040,000\n1000 caps/carton',
           valueZh: '纸箱散装：54万\n900个/箱\n叠装：1104万\n1000个/箱',
-          valueAr: 'تعبئة كرتونية سائبة: 540,000\n900 غطاء/كرتون\nتعبئة مكدسة: 11,040,000\n1000 غطاء/كرتون',
+          valueAr:
+            'تعبئة كرتونية سائبة: 540,000\n900 غطاء/كرتون\nتعبئة مكدسة: 11,040,000\n1000 غطاء/كرتون',
         },
       ],
       noteEn: 'Container loading quantities for export planning.',
@@ -369,8 +379,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       titleAr: 'توريد مباشر من المصنع',
       textEn:
         'Based in Huizhou, Guangdong, we support long-term sourcing with responsive communication and dependable lead times.',
-      textZh:
-        '公司位于广东惠州，支持长期采购合作，并提供及时沟通和稳定交期。',
+      textZh: '公司位于广东惠州，支持长期采购合作，并提供及时沟通和稳定交期。',
       textAr:
         'نحن موجودون في هويتشو بمقاطعة غوانغدونغ، وندعم التوريد طويل الأجل مع تواصل سريع ومواعيد تسليم موثوقة.',
     },
@@ -1002,7 +1011,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private updateSeo(language: AppLanguage): void {
-    let title = 'Bottle Cap Manufacturer in China | OEM Plastic Bottle Cap Supplier';
+    let title = '5 Gallon Bottle Cap Manufacturer';
     let description =
       'HuiZhou DingYuan Gaiye Plastic Co., Ltd. is a bottle cap manufacturer in China supplying 5 gallon water bottle caps, reusable bottle caps, one-time use caps, sealing liners and OEM plastic closures for wholesale and export orders.';
     let keywords =
