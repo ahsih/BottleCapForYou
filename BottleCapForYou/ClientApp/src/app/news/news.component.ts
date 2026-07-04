@@ -61,6 +61,24 @@ export class NewsComponent {
     {
       date: 'June 2026',
       title: {
+        en: 'Latest Facebook reel update',
+        'zh-CN': 'Latest Facebook reel update',
+        ar: 'Latest Facebook reel update',
+      },
+      summary: {
+        en: 'A new Facebook reel update with recent factory activity and bottle cap production footage for buyers reviewing current supply.',
+        'zh-CN':
+          'A new Facebook reel update with recent factory activity and bottle cap production footage for buyers reviewing current supply.',
+        ar: 'A new Facebook reel update with recent factory activity and bottle cap production footage for buyers reviewing current supply.',
+      },
+      videoUrl: 'https://www.facebook.com/reel/2445866769267547/',
+      embedUrl:
+        'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2445866769267547%2F&show_text=false&width=560&t=0',
+      source: 'facebook',
+    },
+    {
+      date: 'June 2026',
+      title: {
         en: 'Latest Facebook factory video update',
         'zh-CN': 'Latest Facebook factory video update',
         ar: 'Latest Facebook factory video update',
