@@ -59,6 +59,25 @@ export class NewsComponent {
 
   private readonly newsPosts: NewsPost[] = [
     {
+      date: 'July 2026',
+      title: {
+        en: 'New Facebook factory reel',
+        'zh-CN': 'New Facebook factory reel',
+        ar: 'New Facebook factory reel',
+      },
+      summary: {
+        en: 'A new Facebook reel update with recent factory footage and bottle cap production activity for buyers reviewing current supply.',
+        'zh-CN':
+          'A new Facebook reel update with recent factory footage and bottle cap production activity for buyers reviewing current supply.',
+        ar: 'A new Facebook reel update with recent factory footage and bottle cap production activity for buyers reviewing current supply.',
+      },
+      videoUrl: 'https://www.facebook.com/reel/1337281157942157/',
+      embedUrl:
+        'https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1337281157942157%2F&show_text=false&width=267&t=0',
+      isPortrait: true,
+      source: 'facebook',
+    },
+    {
       date: 'June 2026',
       title: {
         en: 'Latest Facebook reel update',
