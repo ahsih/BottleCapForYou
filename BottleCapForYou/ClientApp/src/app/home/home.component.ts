@@ -101,6 +101,95 @@ export class HomeComponent implements OnInit, OnDestroy {
     phones: ['+44 7597702688', '+86 15816427686'],
     email: 'jack.zhang@bottlecapforyou.com',
   };
+  private readonly productTextTranslations: Partial<
+    Record<AppLanguage, Record<string, string>>
+  > = {
+    'zh-CN': {
+      'Disposable Cap with Liner': '一次性带垫片瓶盖',
+      'Disposable Two-Color Cap': '一次性双色瓶盖',
+      'Single-Color Two-Piece Cap with Liner': '单色两件套带垫片瓶盖',
+      'Two-Color Two-Piece Cap': '双色两件套瓶盖',
+      Weight: '重量',
+      Height: '高度',
+      Liner: '垫片',
+      'Loose carton': '散装纸箱',
+      Carton: '装箱',
+      Stacked: '叠装',
+      'Stacked carton': '叠装纸箱',
+      'Loaded quantity': '装载数量',
+      '20 ft Container': '20尺集装箱',
+      '40 ft Container': '40尺集装箱',
+      '8 g': '8 克',
+      '8.2 g': '8.2 克',
+      '10.2 g': '10.2 克',
+      '35.5 mm': '35.5 毫米',
+      '36.2 mm': '36.2 毫米',
+      '37.5 mm': '37.5 毫米',
+      '1.5 mm': '1.5 毫米',
+      '276,000 pcs': '276,000 件',
+      '479,000 pcs': '479,000 件',
+      '600,000 pcs': '600,000 件',
+      '1,250,000 pcs': '1,250,000 件',
+      '230,000 pcs': '230,000 件',
+      '540,000 pcs': '540,000 件',
+      '1,104,000 pcs': '1,104,000 件',
+      '500 pcs/carton': '500 件/箱',
+      '600 pcs/carton': '600 件/箱',
+      '900 pcs/carton': '900 件/箱',
+      '1,000 pcs/carton': '1,000 件/箱',
+      'Waterproof liner options available: 1.5 mm and 2.0 mm. One-time use.':
+        '防水垫片可选 1.5 毫米和 2.0 毫米。一次性使用。',
+      'No white waterproof liner. One-time use.':
+        '无白色防水垫片。一次性使用。',
+      'Includes inner plug; no liner. Reusable design.':
+        '包含内塞；不含垫片。可重复使用设计。',
+      'Includes inner plug and liner. Reusable, eco-conscious design.':
+        '包含内塞和垫片。可重复使用，更环保。',
+    },
+    ar: {
+      'Disposable Cap with Liner': 'غطاء للاستخدام مرة واحدة مع بطانة',
+      'Disposable Two-Color Cap': 'غطاء ثنائي اللون للاستخدام مرة واحدة',
+      'Single-Color Two-Piece Cap with Liner':
+        'غطاء من قطعتين بلون واحد مع بطانة',
+      'Two-Color Two-Piece Cap': 'غطاء من قطعتين بلونين',
+      Weight: 'الوزن',
+      Height: 'الارتفاع',
+      Liner: 'البطانة',
+      'Loose carton': 'كرتون سائب',
+      Carton: 'الكرتون',
+      Stacked: 'مكدس',
+      'Stacked carton': 'كرتون مكدس',
+      'Loaded quantity': 'كمية التحميل',
+      '20 ft Container': 'حاوية 20 قدم',
+      '40 ft Container': 'حاوية 40 قدم',
+      '8 g': '8 جم',
+      '8.2 g': '8.2 جم',
+      '10.2 g': '10.2 جم',
+      '35.5 mm': '35.5 مم',
+      '36.2 mm': '36.2 مم',
+      '37.5 mm': '37.5 مم',
+      '1.5 mm': '1.5 مم',
+      '276,000 pcs': '276,000 قطعة',
+      '479,000 pcs': '479,000 قطعة',
+      '600,000 pcs': '600,000 قطعة',
+      '1,250,000 pcs': '1,250,000 قطعة',
+      '230,000 pcs': '230,000 قطعة',
+      '540,000 pcs': '540,000 قطعة',
+      '1,104,000 pcs': '1,104,000 قطعة',
+      '500 pcs/carton': '500 قطعة/كرتون',
+      '600 pcs/carton': '600 قطعة/كرتون',
+      '900 pcs/carton': '900 قطعة/كرتون',
+      '1,000 pcs/carton': '1,000 قطعة/كرتون',
+      'Waterproof liner options available: 1.5 mm and 2.0 mm. One-time use.':
+        'تتوفر بطانات مقاومة للماء بسماكة 1.5 مم و2.0 مم. للاستخدام مرة واحدة.',
+      'No white waterproof liner. One-time use.':
+        'بدون بطانة بيضاء مقاومة للماء. للاستخدام مرة واحدة.',
+      'Includes inner plug; no liner. Reusable design.':
+        'يتضمن سدادة داخلية؛ بدون بطانة. تصميم قابل لإعادة الاستخدام.',
+      'Includes inner plug and liner. Reusable, eco-conscious design.':
+        'يتضمن سدادة داخلية وبطانة. تصميم قابل لإعادة الاستخدام وصديق للبيئة.',
+    },
+  };
   readonly companyPhotos: CompanyPhoto[] = [
     {
       src: 'company_photos/main_entrance.jpg',
@@ -138,9 +227,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       titleEn:
         '8.2g Blue two-piece bottle cap set with liner sealing pad (one-time use)',
       titleZh:
-        '8.2g Blue two-piece bottle cap set with liner sealing pad (one-time use)',
+        '8.2g 蓝色两件套瓶盖，带内衬密封垫片（一次性）',
       titleAr:
-        '8.2g Blue two-piece bottle cap set with liner sealing pad (one-time use)',
+        'طقم غطاء أزرق من قطعتين 8.2 جم مع بطانة ووسادة إحكام (استخدام مرة واحدة)',
       catalogName: 'Disposable Cap with Liner',
       specs: [
         { label: 'Weight', value: '8 g' },
@@ -835,6 +924,26 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  productCatalogName(item: ProductItem): string {
+    return this.productText(item.catalogName);
+  }
+
+  productSpecLabel(item: ProductSpecItem): string {
+    return this.productText(item.label);
+  }
+
+  productSpecValue(item: ProductSpecItem): string {
+    return this.productText(item.value);
+  }
+
+  productLoadingLabel(item: ProductLoadingGroup): string {
+    return this.productText(`${item.label} Container`);
+  }
+
+  productNote(item: ProductItem): string {
+    return this.productText(item.note);
+  }
+
   productTitleBase(item: ProductItem): string {
     const title = this.productTitle(item);
     const highlight = this.productTitleHighlight(item);
@@ -851,9 +960,27 @@ export class HomeComponent implements OnInit, OnDestroy {
       '（可重复使用）',
       '(استخدام مرة واحدة)',
       '(قابل لإعادة الاستخدام)',
+      '（一次性）',
+      '（可重复使用）',
+      '(استخدام مرة واحدة)',
+      '(قابل لإعادة الاستخدام)',
     ];
 
     return suffixes.find((suffix) => title.endsWith(suffix)) ?? '';
+  }
+
+  private productText(text?: string): string {
+    if (!text) {
+      return '';
+    }
+
+    const language = this.language();
+
+    if (language === 'en') {
+      return text;
+    }
+
+    return this.productTextTranslations[language]?.[text] ?? text;
   }
 
   productAlt(item: ProductItem): string {
