@@ -197,7 +197,7 @@
             {{ content().ui.productSubtitle }}
           </p>
         </div>
-        <div class="product-carousel__controls">
+        <div class="product-carousel__controls" *ngIf="productPageCount > 1">
           <button
             type="button"
             class="product-carousel__button"
@@ -254,7 +254,10 @@
               </button>
             </div>
           </div>
-          <div class="product-card__body product-card__body--title-only">
+          <div class="product-card__body">
+            <p class="product-card__catalog" *ngIf="item.catalogName">
+              {{ item.catalogName }}
+            </p>
             <h3>
               <span>{{ productTitleBase(item) }}</span>
               <span
@@ -264,6 +267,26 @@
                 {{ highlight }}
               </span>
             </h3>
+            <div class="product-specs" *ngIf="item.specs as specs">
+              <dl class="product-specs__grid">
+                <div class="product-specs__item" *ngFor="let spec of specs">
+                  <dt>{{ spec.label }}</dt>
+                  <dd>{{ spec.value }}</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="product-loading" *ngIf="item.loading as loading">
+              <div class="product-loading__group" *ngFor="let group of loading">
+                <p>{{ group.label }} Container</p>
+                <dl>
+                  <div *ngFor="let row of group.rows">
+                    <dt>{{ row.label }}</dt>
+                    <dd>{{ row.value }}</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+            <p class="product-card__note" *ngIf="item.note">{{ item.note }}</p>
           </div>
         </article>
       </div>

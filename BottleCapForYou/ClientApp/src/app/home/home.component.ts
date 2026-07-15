@@ -20,6 +20,20 @@ type ProductItem = {
   titleEn: string;
   titleZh: string;
   titleAr: string;
+  catalogName?: string;
+  specs?: ProductSpecItem[];
+  loading?: ProductLoadingGroup[];
+  note?: string;
+};
+
+type ProductSpecItem = {
+  label: string;
+  value: string;
+};
+
+type ProductLoadingGroup = {
+  label: string;
+  rows: ProductSpecItem[];
 };
 
 type CompanyPhoto = {
@@ -84,7 +98,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
 
   readonly contact = {
-    phones: ['+44 7597702688', '+86 18818995568'],
+    phones: ['+44 7597702688', '+86 15816427686'],
     email: 'jack.zhang@bottlecapforyou.com',
   };
   readonly companyPhotos: CompanyPhoto[] = [
@@ -118,6 +132,45 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
   readonly products: ProductItem[] = [
     {
+      id: 11,
+      folder: '12',
+      imageCount: 5,
+      titleEn:
+        '8.2g Blue two-piece bottle cap set with liner sealing pad (one-time use)',
+      titleZh:
+        '8.2g Blue two-piece bottle cap set with liner sealing pad (one-time use)',
+      titleAr:
+        '8.2g Blue two-piece bottle cap set with liner sealing pad (one-time use)',
+      catalogName: 'Disposable Cap with Liner',
+      specs: [
+        { label: 'Weight', value: '8 g' },
+        { label: 'Height', value: '35.5 mm' },
+        { label: 'Liner', value: '1.5 mm' },
+      ],
+      loading: [
+        {
+          label: '20 ft',
+          rows: [
+            { label: 'Loose carton', value: '276,000 pcs' },
+            { label: 'Carton', value: '600 pcs/carton' },
+            { label: 'Stacked', value: '479,000 pcs' },
+            { label: 'Stacked carton', value: '1,000 pcs/carton' },
+          ],
+        },
+        {
+          label: '40 ft',
+          rows: [
+            { label: 'Loose carton', value: '600,000 pcs' },
+            { label: 'Carton', value: '1,000 pcs/carton' },
+            { label: 'Stacked', value: '1,250,000 pcs' },
+            { label: 'Stacked carton', value: '1,000 pcs/carton' },
+          ],
+        },
+      ],
+      note:
+        'Waterproof liner options available: 1.5 mm and 2.0 mm. One-time use.',
+    },
+    {
       id: 1,
       folder: '1',
       imageCount: 8,
@@ -128,28 +181,107 @@ export class HomeComponent implements OnInit, OnDestroy {
     },
     {
       id: 4,
-      folder: '4',
-      imageCount: 10,
+      folder: '13',
+      imageCount: 6,
       titleEn:
         '10.2g large 5 gallon bottle cap with 2 colors and (one time use)',
+      catalogName: 'Disposable Two-Color Cap',
+      specs: [
+        { label: 'Weight', value: '8.2 g' },
+        { label: 'Height', value: '36.2 mm' },
+      ],
+      loading: [
+        {
+          label: '20 ft',
+          rows: [
+            { label: 'Loose carton', value: '276,000 pcs' },
+            { label: 'Carton', value: '600 pcs/carton' },
+            { label: 'Stacked', value: '479,000 pcs' },
+            { label: 'Stacked carton', value: '1,000 pcs/carton' },
+          ],
+        },
+        {
+          label: '40 ft',
+          rows: [
+            { label: 'Loose carton', value: '600,000 pcs' },
+            { label: 'Carton', value: '1,000 pcs/carton' },
+            { label: 'Stacked', value: '1,250,000 pcs' },
+            { label: 'Stacked carton', value: '1,000 pcs/carton' },
+          ],
+        },
+      ],
+      note: 'No white waterproof liner. One-time use.',
       titleZh: '10.2克桶装水双色双套（蓝圈）',
       titleAr: 'غطاء عبوة كبير 10.2 جم سعة 5 جالون بلونين (استخدام مرة واحدة)',
     },
     {
       id: 7,
-      folder: '7',
-      imageCount: 7,
+      folder: '15',
+      imageCount: 6,
       titleEn:
         '10.2g Blue two-color inner cover for water bottle caps (reusable)',
+      catalogName: 'Two-Color Two-Piece Cap',
+      specs: [
+        { label: 'Weight', value: '10.2 g' },
+        { label: 'Height', value: '37.5 mm' },
+      ],
+      loading: [
+        {
+          label: '20 ft',
+          rows: [
+            { label: 'Loaded quantity', value: '230,000 pcs' },
+            { label: 'Carton', value: '500 pcs/carton' },
+            { label: 'Stacked', value: '479,000 pcs' },
+            { label: 'Stacked carton', value: '1,000 pcs/carton' },
+          ],
+        },
+        {
+          label: '40 ft',
+          rows: [
+            { label: 'Loose carton', value: '540,000 pcs' },
+            { label: 'Carton', value: '900 pcs/carton' },
+            { label: 'Stacked', value: '1,104,000 pcs' },
+            { label: 'Stacked carton', value: '1,000 pcs/carton' },
+          ],
+        },
+      ],
+      note: 'Includes inner plug; no liner. Reusable design.',
       titleZh: '10.2g 蓝色双色组合盖（可重复使用）',
       titleAr:
         'غطاء داخلي أزرق ثنائي اللون 10.2 جم لأغطية عبوات المياه (قابل لإعادة الاستخدام)',
     },
     {
       id: 8,
-      folder: '8',
-      imageCount: 8,
+      folder: '14',
+      imageCount: 6,
       titleEn: '8g Blue two-piece bottle cap set with sealing pad (reusable)',
+      catalogName: 'Single-Color Two-Piece Cap with Liner',
+      specs: [
+        { label: 'Weight', value: '10.2 g' },
+        { label: 'Height', value: '37.5 mm' },
+        { label: 'Liner', value: '1.5 mm' },
+      ],
+      loading: [
+        {
+          label: '20 ft',
+          rows: [
+            { label: 'Loaded quantity', value: '230,000 pcs' },
+            { label: 'Carton', value: '500 pcs/carton' },
+            { label: 'Stacked', value: '479,000 pcs' },
+            { label: 'Stacked carton', value: '1,000 pcs/carton' },
+          ],
+        },
+        {
+          label: '40 ft',
+          rows: [
+            { label: 'Loose carton', value: '540,000 pcs' },
+            { label: 'Carton', value: '900 pcs/carton' },
+            { label: 'Stacked', value: '1,104,000 pcs' },
+            { label: 'Stacked carton', value: '1,000 pcs/carton' },
+          ],
+        },
+      ],
+      note: 'Includes inner plug and liner. Reusable, eco-conscious design.',
       titleZh: '8g 蓝色两件套，配单色垫片（可重复使用）',
       titleAr:
         'طقم غطاء أزرق من قطعتين 8 جم مع بطانة إحكام (قابل لإعادة الاستخدام)',
@@ -622,13 +754,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     return `${(this.productImageIndexes[product.id] ?? 0) + 1} / ${product.imageCount}`;
   }
 
+  private get displayedProducts(): ProductItem[] {
+    const productOrder = [11, 4, 8, 7];
+
+    return productOrder
+      .map((productId) =>
+        this.products.find((product) => product.id === productId),
+      )
+      .filter((product): product is ProductItem => Boolean(product));
+  }
+
   get visibleProducts(): ProductItem[] {
     const start = this.productPageIndex * this.productsPerPage;
-    return this.products.slice(start, start + this.productsPerPage);
+    return this.displayedProducts.slice(start, start + this.productsPerPage);
   }
 
   get productPageCount(): number {
-    return Math.ceil(this.products.length / this.productsPerPage);
+    return Math.ceil(this.displayedProducts.length / this.productsPerPage);
   }
 
   get packagingDisplaySections(): PackagingItem[] {
@@ -703,6 +845,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const title = this.productTitle(item);
     const suffixes = [
       '(one time use)',
+      '(one-time use)',
       '(reusable)',
       '（一次性）',
       '（可重复使用）',
@@ -1144,7 +1287,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             'Sealing liners',
             'OEM plastic closures',
           ],
-          makesOffer: this.products.slice(0, 4).map((product) => ({
+          makesOffer: this.displayedProducts.slice(0, 4).map((product) => ({
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Thing',

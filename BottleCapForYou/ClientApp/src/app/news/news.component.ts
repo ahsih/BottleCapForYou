@@ -39,7 +39,7 @@ export class NewsComponent {
   readonly facebookPageUrl =
     'https://www.facebook.com/profile.php?id=61586840468520';
   readonly contact = {
-    phones: ['+44 7597702688', '+86 18818995568'],
+    phones: ['+44 7597702688', '+86 15816427686'],
     email: 'jack.zhang@bottlecapforyou.com',
     whatsapp: '+447597702688',
   };
