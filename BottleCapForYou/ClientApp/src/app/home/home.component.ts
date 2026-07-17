@@ -86,6 +86,14 @@ type FaqItem = {
   answerAr: string;
 };
 
+type ContactOffice = {
+  label: string;
+  description: string;
+  phone: string;
+  email?: string;
+  usesFactoryAddress?: boolean;
+};
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -101,6 +109,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     phones: ['+44 7597702688', '+86 15816427686'],
     email: 'jack.zhang@bottlecapforyou.com',
   };
+  readonly contactOffices: ContactOffice[] = [
+    {
+      label: 'UK Sales Office',
+      description:
+        'Sales enquiries, free sample requests and export support for UK and international buyers.',
+      phone: this.contact.phones[0],
+      email: this.contact.email,
+    },
+    {
+      label: 'China Manufacturing Factory',
+      description:
+        '5 gallon bottle cap production, quality control and export packing in Huizhou, Guangdong.',
+      phone: this.contact.phones[1],
+      usesFactoryAddress: true,
+    },
+  ];
   private readonly productTextTranslations: Partial<
     Record<AppLanguage, Record<string, string>>
   > = {
@@ -611,7 +635,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       questionZh: '你们是瓶盖生产厂家还是贸易公司？',
       questionAr: 'هل أنتم مصنع أغطية زجاجات أم شركة تجارية؟',
       answerEn:
-        'We are a bottle cap manufacturer in Huizhou, Guangdong, China, focused on large 5 gallon water bottle caps, sealing liners and related plastic closures.',
+        'We are a bottle cap manufacturer with a UK Sales Office for enquiries and a China Manufacturing Factory in Huizhou, Guangdong, focused on large 5 gallon water bottle caps, sealing liners and related plastic closures.',
       answerZh:
         '我们是位于中国广东惠州的瓶盖生产厂家，专注于大型 5 加仑桶装水瓶盖、密封垫片及相关塑胶配件。',
       answerAr:
@@ -724,6 +748,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     return this.language() === 'zh-CN'
       ? this.contact.phones
       : this.contact.phones.filter((phone) => !phone.startsWith('+86'));
+  }
+
+  companyPresenceLine(): string {
+    return 'UK Sales Office | China Manufacturing Factory';
+  }
+
+  contactPhoneLabel(phone: string): string {
+    return phone.startsWith('+44') ? 'UK Sales Office' : 'China Factory';
+  }
+
+  officeAddress(office: ContactOffice): string {
+    return office.usesFactoryAddress ? this.content().footer.address : '';
   }
 
   textDirection(): 'ltr' | 'rtl' {
@@ -1281,11 +1317,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private updateSeo(language: AppLanguage): void {
-    let title = '5 Gallon Bottle Cap Manufacturer';
+    let title =
+      '5 Gallon Bottle Cap Manufacturer | UK Sales Office & China Factory';
     let description =
-      'HuiZhou DingYuan Gaiye Plastic Co., Ltd. is a bottle cap manufacturer in China supplying 5 gallon water bottle caps, reusable bottle caps, one-time use caps, sealing liners and OEM plastic closures for wholesale and export orders.';
+      'HuiZhou DingYuan Gaiye Plastic Co., Ltd. has a UK Sales Office and China Manufacturing Factory supplying 5 gallon water bottle caps, sealing liners and OEM plastic closures.';
     let keywords =
-      'bottle cap manufacturer china, bottle cap producer, plastic bottle cap supplier, oem bottle cap manufacturer, 5 gallon water bottle cap manufacturer, reusable bottle cap supplier, one time use bottle cap supplier';
+      'bottle cap manufacturer china, UK sales office china manufacturing factory, bottle cap producer, plastic bottle cap supplier, oem bottle cap manufacturer, 5 gallon water bottle cap manufacturer, reusable bottle cap supplier, one time use bottle cap supplier';
     let locale = 'en_GB';
     let manufacturerName = 'HuiZhou DingYuan Gaiye Plastic Co., Ltd.';
     let productCategory = '5 gallon water bottle cap';
@@ -1383,7 +1420,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           ],
           description,
           email: this.contact.email,
-          telephone: this.contact.phones[1],
+          telephone: this.contact.phones,
           foundingDate: '2015',
           address: {
             '@type': 'PostalAddress',
@@ -1393,6 +1430,44 @@ export class HomeComponent implements OnInit, OnDestroy {
             addressRegion: 'Guangdong',
             addressCountry: 'CN',
           },
+          contactPoint: [
+            {
+              '@type': 'ContactPoint',
+              contactType: 'UK Sales Office',
+              telephone: this.contact.phones[0],
+              email: this.contact.email,
+              areaServed: ['GB', 'Europe', 'Worldwide'],
+              availableLanguage: ['English'],
+            },
+            {
+              '@type': 'ContactPoint',
+              contactType: 'China Manufacturing Factory',
+              telephone: this.contact.phones[1],
+              email: this.contact.email,
+              areaServed: ['CN', 'Worldwide'],
+              availableLanguage: ['English', 'Chinese'],
+            },
+          ],
+          location: [
+            {
+              '@type': 'Place',
+              name: 'UK Sales Office',
+              telephone: this.contact.phones[0],
+            },
+            {
+              '@type': 'Place',
+              name: 'China Manufacturing Factory',
+              telephone: this.contact.phones[1],
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress:
+                  'Building 6, Lvquan Intelligent Garden, Huangdong Village, Zhenlong Town, Huiyang District',
+                addressLocality: 'Huizhou',
+                addressRegion: 'Guangdong',
+                addressCountry: 'CN',
+              },
+            },
+          ],
           areaServed: [
             'China',
             'Europe',

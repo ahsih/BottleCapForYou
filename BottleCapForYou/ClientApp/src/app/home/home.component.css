@@ -100,6 +100,16 @@
   min-height: 28px;
 }
 
+.contact-item__label {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .contact-link,
 .footer-contact-link {
   color: inherit;
@@ -326,6 +336,20 @@
   letter-spacing: 0.18em;
   font-size: 12px;
   font-weight: 700;
+}
+
+.hero__presence {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0 0 18px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
 }
 
 .hero__summary {
@@ -1056,6 +1080,38 @@
   color: rgba(255, 255, 255, 0.84);
 }
 
+.footer-presence {
+  color: #f6d27d;
+  font-weight: 800;
+}
+
+.footer-offices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.footer-office {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.footer-office h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.footer-office p {
+  line-height: 1.65;
+}
+
 .footer-map-links {
   display: inline-flex;
   flex-wrap: wrap;
@@ -1564,6 +1620,10 @@
     width: 100%;
   }
 
+  .footer-offices {
+    grid-template-columns: 1fr;
+  }
+
   .footer-map-previews {
     grid-template-columns: 1fr;
   }
@@ -1618,6 +1678,11 @@
     justify-self: start;
     min-height: 24px;
     gap: 6px;
+  }
+
+  .contact-item__label {
+    font-size: 9px;
+    letter-spacing: 0.03em;
   }
 
   .contact-item--phone-secondary {
