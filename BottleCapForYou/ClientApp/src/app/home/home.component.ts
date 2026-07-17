@@ -106,17 +106,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
 
   readonly contact = {
-    phones: ['+44 7597702688', '+86 15816427686'],
+    phones: ['+44 7597702688', '+44 7597702688'],
     email: 'jack.zhang@bottlecapforyou.com',
   };
   readonly contactOffices: ContactOffice[] = [
-    {
-      label: 'UK Sales Office',
-      description:
-        'Sales enquiries, free sample requests and export support for UK and international buyers.',
-      phone: this.contact.phones[0],
-      email: this.contact.email,
-    },
     {
       label: 'China Manufacturing Factory',
       description:
@@ -250,8 +243,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       imageCount: 5,
       titleEn:
         '8.2g Blue two-piece bottle cap set with liner sealing pad (one-time use)',
-      titleZh:
-        '8.2g 蓝色两件套瓶盖，带内衬密封垫片（一次性）',
+      titleZh: '8.2g 蓝色两件套瓶盖，带内衬密封垫片（一次性）',
       titleAr:
         'طقم غطاء أزرق من قطعتين 8.2 جم مع بطانة ووسادة إحكام (استخدام مرة واحدة)',
       catalogName: 'Disposable Cap with Liner',
@@ -280,8 +272,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           ],
         },
       ],
-      note:
-        'Waterproof liner options available: 1.5 mm and 2.0 mm. One-time use.',
+      note: 'Waterproof liner options available: 1.5 mm and 2.0 mm. One-time use.',
     },
     {
       id: 1,
@@ -635,7 +626,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       questionZh: '你们是瓶盖生产厂家还是贸易公司？',
       questionAr: 'هل أنتم مصنع أغطية زجاجات أم شركة تجارية؟',
       answerEn:
-        'We are a bottle cap manufacturer with a UK Sales Office for enquiries and a China Manufacturing Factory in Huizhou, Guangdong, focused on large 5 gallon water bottle caps, sealing liners and related plastic closures.',
+        'We are a bottle cap manufacturer in Huizhou, Guangdong, focused on large 5 gallon water bottle caps, sealing liners and related plastic closures.',
       answerZh:
         '我们是位于中国广东惠州的瓶盖生产厂家，专注于大型 5 加仑桶装水瓶盖、密封垫片及相关塑胶配件。',
       answerAr:
@@ -751,11 +742,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   companyPresenceLine(): string {
-    return 'UK Sales Office | China Manufacturing Factory';
-  }
-
-  contactPhoneLabel(phone: string): string {
-    return phone.startsWith('+44') ? 'UK Sales Office' : 'China Factory';
+    return 'China Manufacturing Factory';
   }
 
   officeAddress(office: ContactOffice): string {
@@ -1317,12 +1304,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private updateSeo(language: AppLanguage): void {
-    let title =
-      '5 Gallon Bottle Cap Manufacturer | UK Sales Office & China Factory';
+    let title = '5 Gallon Bottle Cap Manufacturer | China Factory';
     let description =
-      'HuiZhou DingYuan Gaiye Plastic Co., Ltd. has a UK Sales Office and China Manufacturing Factory supplying 5 gallon water bottle caps, sealing liners and OEM plastic closures.';
+      'HuiZhou DingYuan Gaiye Plastic Co., Ltd. has a China Manufacturing Factory supplying 5 gallon water bottle caps, sealing liners and OEM plastic closures.';
     let keywords =
-      'bottle cap manufacturer china, UK sales office china manufacturing factory, bottle cap producer, plastic bottle cap supplier, oem bottle cap manufacturer, 5 gallon water bottle cap manufacturer, reusable bottle cap supplier, one time use bottle cap supplier';
+      'bottle cap manufacturer china, china manufacturing factory, bottle cap producer, plastic bottle cap supplier, oem bottle cap manufacturer, 5 gallon water bottle cap manufacturer, reusable bottle cap supplier, one time use bottle cap supplier';
     let locale = 'en_GB';
     let manufacturerName = 'HuiZhou DingYuan Gaiye Plastic Co., Ltd.';
     let productCategory = '5 gallon water bottle cap';
@@ -1433,7 +1419,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           contactPoint: [
             {
               '@type': 'ContactPoint',
-              contactType: 'UK Sales Office',
+              contactType: '',
               telephone: this.contact.phones[0],
               email: this.contact.email,
               areaServed: ['GB', 'Europe', 'Worldwide'],
@@ -1451,7 +1437,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           location: [
             {
               '@type': 'Place',
-              name: 'UK Sales Office',
+              name: '',
               telephone: this.contact.phones[0],
             },
             {

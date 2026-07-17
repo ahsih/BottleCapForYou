@@ -52,7 +52,6 @@
             *ngFor="let phone of visiblePhones; let i = index"
             [class.contact-item--phone-secondary]="i > 0"
           >
-            <span class="contact-item__label">{{ contactPhoneLabel(phone) }}</span>
             <a class="contact-link" [href]="phoneHref(phone)">{{ phone }}</a>
             <a
               class="whatsapp-link"
@@ -139,7 +138,9 @@
         <p class="hero__tag">{{ content().hero.tag }}</p>
         <p class="hero__presence">{{ companyPresenceLine() }}</p>
         <h1>{{ manufacturerHeading() }}</h1>
-        <p class="hero__sample-note">We can provide you free sample on request.</p>
+        <p class="hero__sample-note">
+          We can provide you free sample on request.
+        </p>
         <p class="hero__summary">{{ content().hero.subtitle }}</p>
         <p class="hero__body">{{ content().hero.body }}</p>
         <p class="hero__body">{{ manufacturerSummary() }}</p>
