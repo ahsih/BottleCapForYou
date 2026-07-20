@@ -1083,6 +1083,10 @@
   color: rgba(255, 255, 255, 0.84);
 }
 
+.footer-column--form {
+  scroll-margin-top: 120px;
+}
+
 .footer-presence {
   color: #f6d27d;
   font-weight: 800;
