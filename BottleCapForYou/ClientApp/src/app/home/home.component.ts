@@ -104,9 +104,10 @@ type ContactOffice = {
 export class HomeComponent implements OnInit, OnDestroy {
   private readonly siteUrl = 'https://www.bottlecapforyou.com';
   private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
+  private readonly primaryPhone = '+44 7597702688';
 
   readonly contact = {
-    phones: ['+44 7597702688', '+44 7597702688'],
+    phones: [this.primaryPhone],
     email: 'jack.zhang@bottlecapforyou.com',
   };
   readonly contactOffices: ContactOffice[] = [
@@ -114,7 +115,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       label: 'China Manufacturing Factory',
       description:
         '5 gallon bottle cap production, quality control and export packing in Huizhou, Guangdong.',
-      phone: this.contact.phones[1],
+      phone: this.primaryPhone,
       usesFactoryAddress: true,
     },
   ];
@@ -736,9 +737,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   get visiblePhones(): string[] {
-    return this.language() === 'zh-CN'
+    const phones = this.language() === 'zh-CN'
       ? this.contact.phones
       : this.contact.phones.filter((phone) => !phone.startsWith('+86'));
+
+    return [...new Set(phones)];
   }
 
   companyPresenceLine(): string {
@@ -1420,7 +1423,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             {
               '@type': 'ContactPoint',
               contactType: '',
-              telephone: this.contact.phones[0],
+              telephone: this.primaryPhone,
               email: this.contact.email,
               areaServed: ['GB', 'Europe', 'Worldwide'],
               availableLanguage: ['English'],
@@ -1428,7 +1431,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             {
               '@type': 'ContactPoint',
               contactType: 'China Manufacturing Factory',
-              telephone: this.contact.phones[1],
+              telephone: this.primaryPhone,
               email: this.contact.email,
               areaServed: ['CN', 'Worldwide'],
               availableLanguage: ['English', 'Chinese'],
@@ -1438,12 +1441,12 @@ export class HomeComponent implements OnInit, OnDestroy {
             {
               '@type': 'Place',
               name: '',
-              telephone: this.contact.phones[0],
+              telephone: this.primaryPhone,
             },
             {
               '@type': 'Place',
               name: 'China Manufacturing Factory',
-              telephone: this.contact.phones[1],
+              telephone: this.primaryPhone,
               address: {
                 '@type': 'PostalAddress',
                 streetAddress:
