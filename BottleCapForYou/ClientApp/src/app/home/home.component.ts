@@ -1,4 +1,4 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule, DOCUMENT, Location } from '@angular/common';
 import {
   Component,
   HostListener,
@@ -94,6 +94,14 @@ type ContactOffice = {
   usesFactoryAddress?: boolean;
 };
 
+type GoogleTagWindow = Window & {
+  gtag?: (
+    command: 'config',
+    targetId: string,
+    config?: Record<string, string>,
+  ) => void;
+};
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -105,6 +113,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   private readonly siteUrl = 'https://www.bottlecapforyou.com';
   private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
   private readonly primaryPhone = '+44 7597702688';
+  private readonly thankYouPath = '/thank-you';
+  private readonly googleAdsTagId = 'AW-18226061372';
 
   readonly contact = {
     phones: [this.primaryPhone],
@@ -695,6 +705,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
+  private readonly location = inject(Location);
 
   constructor() {
     effect(() => {
@@ -804,11 +815,39 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.enquiryEmail = '';
       this.enquiryMessage = '';
       this.submitStatus = 'success';
+      this.markEnquirySubmittedForAds();
     } catch {
       this.submitStatus = 'error';
     } finally {
       this.isSubmitting = false;
     }
+  }
+
+  private markEnquirySubmittedForAds(): void {
+    const currentPath = this.location.path().split(/[?#]/)[0] || '/';
+
+    if (currentPath !== this.thankYouPath) {
+      this.location.go(this.thankYouPath);
+    }
+
+    this.trackThankYouPageView();
+  }
+
+  private trackThankYouPageView(): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const gtag = (window as GoogleTagWindow).gtag;
+
+    if (typeof gtag !== 'function') {
+      return;
+    }
+
+    gtag('config', this.googleAdsTagId, {
+      page_path: this.thankYouPath,
+      page_location: `${window.location.origin}${this.thankYouPath}`,
+    });
   }
 
   contactFormStatusMessage(): string {

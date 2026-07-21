@@ -17,6 +17,10 @@ bootstrapApplication(AppComponent, {
         component: NewsComponent
       },
       {
+        path: 'thank-you',
+        component: HomeComponent
+      },
+      {
         path: '**',
         redirectTo: ''
       }
