@@ -93,12 +93,19 @@ type ContactOffice = {
   usesFactoryAddress?: boolean;
 };
 
+type GoogleTagFunction = {
+  (
+    command: 'event',
+    eventName: 'conversion',
+    config: {
+      event_callback?: () => void;
+      send_to: string;
+    },
+  ): void;
+};
+
 type GoogleTagWindow = Window & {
-  gtag?: (
-    command: 'config',
-    targetId: string,
-    config?: Record<string, string>,
-  ) => void;
+  gtag?: GoogleTagFunction;
 };
 
 @Component({
@@ -113,7 +120,8 @@ export class HomeComponent implements OnInit {
   private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
   private readonly primaryPhone = '+44 7597702688';
   private readonly thankYouPath = '/thank-you';
-  private readonly googleAdsTagId = 'AW-18226061372';
+  private readonly googleAdsConversionId =
+    'AW-18226061372/F-xUCOO3sNUcELzA7vJD';
 
   readonly contact = {
     phones: [this.primaryPhone],
@@ -829,10 +837,10 @@ export class HomeComponent implements OnInit {
       this.location.go(this.thankYouPath);
     }
 
-    this.trackThankYouPageView();
+    this.trackLeadFormConversion();
   }
 
-  private trackThankYouPageView(): void {
+  private trackLeadFormConversion(): void {
     if (typeof window === 'undefined') {
       return;
     }
@@ -843,9 +851,8 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    gtag('config', this.googleAdsTagId, {
-      page_path: this.thankYouPath,
-      page_location: `${window.location.origin}${this.thankYouPath}`,
+    gtag('event', 'conversion', {
+      send_to: this.googleAdsConversionId,
     });
   }
 
