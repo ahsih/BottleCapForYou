@@ -219,25 +219,25 @@ export class HomeComponent implements OnInit {
   };
   readonly companyPhotos: CompanyPhoto[] = [
     {
-      src: 'company_photos/main_entrance.jpg',
+      src: 'company_photos/main_entrance.webp',
       alt: 'Bottle cap factory entrance in Huizhou, China',
     },
-    { src: 'company_photos/office.jpg', alt: 'Bottle cap manufacturer office' },
-    { src: 'company_photos/Outside.jpg', alt: 'Bottle cap factory exterior' },
+    { src: 'company_photos/office.webp', alt: 'Bottle cap manufacturer office' },
+    { src: 'company_photos/Outside.webp', alt: 'Bottle cap factory exterior' },
     {
-      src: 'company_photos/factory_equipment_1.jpg',
+      src: 'company_photos/factory_equipment_1.webp',
       alt: 'Plastic bottle cap production equipment',
     },
     {
-      src: 'company_photos/factory_equipment_2.jpg',
+      src: 'company_photos/factory_equipment_2.webp',
       alt: 'Bottle cap manufacturing line',
     },
     {
-      src: 'company_photos/factory_equipment_3.jpg',
+      src: 'company_photos/factory_equipment_3.webp',
       alt: 'Bottle cap mold and production workshop',
     },
     {
-      src: 'company_photos/factory_equipment_4.jpg',
+      src: 'company_photos/factory_equipment_4.webp',
       alt: 'Large bottle cap factory equipment',
     },
   ];
@@ -1443,8 +1443,8 @@ export class HomeComponent implements OnInit {
           url: canonicalUrl,
           logo: `${this.siteUrl}/logo.png`,
           image: [
-            `${this.siteUrl}/company_photos/main_entrance.jpg`,
-            `${this.siteUrl}/company_photos/factory_equipment_1.jpg`,
+            `${this.siteUrl}/company_photos/main_entrance.webp`,
+            `${this.siteUrl}/company_photos/factory_equipment_1.webp`,
             `${this.siteUrl}/Bottle_And_Cap.jpg`,
           ],
           description,
