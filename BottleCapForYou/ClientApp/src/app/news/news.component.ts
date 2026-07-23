@@ -1,6 +1,11 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component, computed, effect, inject } from '@angular/core';
+import {
+  DomSanitizer,
+  Meta,
+  SafeResourceUrl,
+  Title,
+} from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { I18nService } from '../core/i18n.service';
 import { AppLanguage } from '../i18n/translations';
@@ -33,8 +38,13 @@ type NewsVideoCard = {
   styleUrl: './news.component.css',
 })
 export class NewsComponent {
+  private readonly siteUrl = 'https://www.bottlecapforyou.com';
+  private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
   private readonly i18n = inject(I18nService);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly titleService = inject(Title);
+  private readonly meta = inject(Meta);
+  private readonly document = inject(DOCUMENT);
 
   readonly facebookPageUrl =
     'https://www.facebook.com/profile.php?id=61586840468520';
@@ -217,6 +227,12 @@ export class NewsComponent {
     },
   ];
 
+  constructor() {
+    effect(() => {
+      this.updateSeo(this.language());
+    });
+  }
+
   setLanguage(language: AppLanguage): void {
     this.i18n.setLanguage(language);
   }
@@ -347,5 +363,87 @@ export class NewsComponent {
   private extractVideoId(videoUrl: string): string {
     const url = new URL(videoUrl);
     return url.searchParams.get('v') ?? '';
+  }
+
+  private updateSeo(language: AppLanguage): void {
+    let title = 'Bottle Cap Factory News and Production Updates | Bottle Cap For You';
+    let description =
+      'Watch recent bottle cap factory videos, production updates and export supply news from HuiZhou DingYuan Gaiye Plastic Co., Ltd.';
+    let locale = 'en_GB';
+    let inLanguage = 'en';
+
+    if (language === 'zh-CN') {
+      locale = 'zh_CN';
+      inLanguage = 'zh-CN';
+    } else if (language === 'ar') {
+      locale = 'ar';
+      inLanguage = 'ar';
+    }
+
+    const canonicalUrl = `${this.siteUrl}/news`;
+
+    this.titleService.setTitle(title);
+    this.meta.updateTag({ name: 'description', content: description });
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'index,follow,max-image-preview:large',
+    });
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:title', content: title });
+    this.meta.updateTag({ property: 'og:description', content: description });
+    this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
+    this.meta.updateTag({ property: 'og:image', content: this.defaultShareImage });
+    this.meta.updateTag({ property: 'og:site_name', content: 'Bottle Cap For You' });
+    this.meta.updateTag({ property: 'og:locale', content: locale });
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.meta.updateTag({ name: 'twitter:title', content: title });
+    this.meta.updateTag({ name: 'twitter:description', content: description });
+    this.meta.updateTag({ name: 'twitter:image', content: this.defaultShareImage });
+
+    let canonicalLink = this.document.querySelector(
+      'link[rel="canonical"]',
+    ) as HTMLLinkElement | null;
+    if (!canonicalLink) {
+      canonicalLink = this.document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      this.document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = canonicalUrl;
+
+    this.document.getElementById('manufacturer-schema')?.remove();
+
+    let schemaScript = this.document.getElementById('news-schema');
+    if (!schemaScript) {
+      schemaScript = this.document.createElement('script');
+      schemaScript.setAttribute('id', 'news-schema');
+      schemaScript.setAttribute('type', 'application/ld+json');
+      this.document.head.appendChild(schemaScript);
+    }
+
+    schemaScript.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: title,
+      description,
+      inLanguage,
+      isPartOf: {
+        '@type': 'WebSite',
+        '@id': `${this.siteUrl}/#website`,
+        url: `${this.siteUrl}/`,
+        name: 'Bottle Cap For You',
+      },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: this.newsPosts.map((post, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          url: post.videoUrl,
+          name: post.title[language],
+          description: post.summary[language],
+        })),
+      },
+    });
   }
 }

@@ -2,7 +2,6 @@ import { CommonModule, DOCUMENT, Location } from '@angular/common';
 import {
   Component,
   HostListener,
-  OnDestroy,
   OnInit,
   effect,
   inject,
@@ -109,7 +108,7 @@ type GoogleTagWindow = Window & {
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
   private readonly siteUrl = 'https://www.bottlecapforyou.com';
   private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
   private readonly primaryPhone = '+44 7597702688';
@@ -679,7 +678,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
 
   private readonly productsPerPage = 4;
-  private companyPhotoIntervalId: ReturnType<typeof setInterval> | null = null;
   private lastScrollY = 0;
   productPageIndex = 0;
   companyPhotoIndex = 0;
@@ -716,16 +714,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.lastScrollY = this.getScrollY();
     this.updateMobileHeaderVisibility();
-    this.companyPhotoIntervalId = setInterval(() => {
-      this.companyPhotoIndex =
-        (this.companyPhotoIndex + 1) % this.companyPhotos.length;
-    }, 4000);
-  }
-
-  ngOnDestroy(): void {
-    if (this.companyPhotoIntervalId) {
-      clearInterval(this.companyPhotoIntervalId);
-    }
   }
 
   @HostListener('window:scroll')
@@ -745,6 +733,17 @@ export class HomeComponent implements OnInit, OnDestroy {
           (this.companyPhotoIndex + offset) % this.companyPhotos.length
         ],
     );
+  }
+
+  previousCompanyPhotos(): void {
+    this.companyPhotoIndex =
+      (this.companyPhotoIndex - 1 + this.companyPhotos.length) %
+      this.companyPhotos.length;
+  }
+
+  nextCompanyPhotos(): void {
+    this.companyPhotoIndex =
+      (this.companyPhotoIndex + 1) % this.companyPhotos.length;
   }
 
   get visiblePhones(): string[] {
@@ -901,7 +900,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   productImagePath(product: ProductItem): string {
     const imageNumber = (this.productImageIndexes[product.id] ?? 0) + 1;
-    return `Products/${product.folder}/${imageNumber}.jpg`;
+    return `Products/${product.folder}/${imageNumber}.webp`;
   }
 
   productImagePosition(product: ProductItem): string {
@@ -1423,6 +1422,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.document.head.appendChild(canonicalLink);
     }
     canonicalLink.href = canonicalUrl;
+
+    this.document.getElementById('news-schema')?.remove();
 
     let schemaScript = this.document.getElementById('manufacturer-schema');
     if (!schemaScript) {

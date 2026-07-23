@@ -125,9 +125,7 @@
           <a href="#products">{{ content().nav.products }}</a>
           <a href="#certifications">{{ content().nav.certifications }}</a>
           <a href="#contact">{{ content().nav.contact }}</a>
-          <a class="main-nav__sample" href="#sample-request-form"
-            >Request Free Samples</a
-          >
+          <a class="main-nav__sample" href="#contact">Request Free Samples</a>
         </nav>
       </div>
     </header>
@@ -164,13 +162,31 @@
       </aside>
     </div>
 
-    <div class="container hero-stats">
-      <figure
-        class="hero-stat hero-stat--photo"
-        *ngFor="let photo of visibleCompanyPhotos"
+    <div class="container hero-gallery" aria-label="Company photo gallery">
+      <button
+        type="button"
+        class="hero-gallery__button hero-gallery__button--previous"
+        (click)="previousCompanyPhotos()"
+        [attr.aria-label]="previousLabel()"
       >
-        <img [src]="photo.src" [alt]="photo.alt" />
-      </figure>
+        <span aria-hidden="true">&#10094;</span>
+      </button>
+      <div class="hero-stats">
+        <figure
+          class="hero-stat hero-stat--photo"
+          *ngFor="let photo of visibleCompanyPhotos"
+        >
+          <img [src]="photo.src" [alt]="photo.alt" />
+        </figure>
+      </div>
+      <button
+        type="button"
+        class="hero-gallery__button hero-gallery__button--next"
+        (click)="nextCompanyPhotos()"
+        [attr.aria-label]="nextLabel()"
+      >
+        <span aria-hidden="true">&#10095;</span>
+      </button>
     </div>
   </section>
 
@@ -235,7 +251,12 @@
               (click)="openProductLightbox(item)"
               [attr.aria-label]="enlargeProductImageLabel()"
             >
-              <img [src]="productImagePath(item)" [alt]="productAlt(item)" />
+              <img
+                [src]="productImagePath(item)"
+                [alt]="productAlt(item)"
+                loading="lazy"
+                decoding="async"
+              />
             </button>
             <div class="product-card__switcher">
               <button
@@ -516,7 +537,7 @@
         </div>
       </div>
 
-      <div id="sample-request-form" class="footer-column footer-column--form">
+      <div class="footer-column footer-column--form">
         <div class="footer-form">
           <input
             type="text"
@@ -569,7 +590,11 @@
     (click)="closeProductLightbox()"
   >
     <div class="lightbox__dialog" (click)="$event.stopPropagation()">
-      <img [src]="activeLightboxImage" [alt]="activeLightboxAlt" />
+      <img
+        [src]="activeLightboxImage"
+        [alt]="activeLightboxAlt"
+        decoding="async"
+      />
     </div>
   </div>
 </div>
