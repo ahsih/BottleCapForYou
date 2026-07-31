@@ -118,7 +118,7 @@ type GoogleTagWindow = Window & {
 export class HomeComponent implements OnInit {
   private readonly siteUrl = 'https://www.bottlecapforyou.com';
   private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
-  private readonly primaryPhone = '+44 7597702688';
+  private readonly primaryPhone = '+86 15816427686';
   private readonly thankYouPath = '/thank-you';
   private readonly googleAdsConversionId =
     'AW-18226061372/F-xUCOO3sNUcELzA7vJD';
