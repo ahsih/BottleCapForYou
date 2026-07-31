@@ -755,11 +755,7 @@ export class HomeComponent implements OnInit {
   }
 
   get visiblePhones(): string[] {
-    const phones = this.language() === 'zh-CN'
-      ? this.contact.phones
-      : this.contact.phones.filter((phone) => !phone.startsWith('+86'));
-
-    return [...new Set(phones)];
+    return [...new Set(this.contact.phones)];
   }
 
   companyPresenceLine(): string {
