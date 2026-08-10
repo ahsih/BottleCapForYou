@@ -50,6 +50,17 @@ app.Use(async (context, next) =>
     await next();
 });
 
+app.Use(async (context, next) =>
+{
+    if (string.Equals(context.Request.Path.Value, "/news/", StringComparison.OrdinalIgnoreCase))
+    {
+        context.Response.Redirect(string.Concat("/news", context.Request.QueryString), permanent: true);
+        return;
+    }
+
+    await next();
+});
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -60,11 +71,6 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapGet("/news", ServeNewsIndexAsync);
-app.MapGet("/news/", context =>
-{
-    context.Response.Redirect(string.Concat("/news", context.Request.QueryString), permanent: true);
-    return Task.CompletedTask;
-});
 
 app.MapFallbackToFile("index.html");
 
