@@ -411,6 +411,7 @@ export class NewsComponent {
     canonicalLink.href = canonicalUrl;
 
     this.document.getElementById('manufacturer-schema')?.remove();
+    this.document.getElementById('product-list-schema')?.remove();
 
     let schemaScript = this.document.getElementById('news-schema');
     if (!schemaScript) {

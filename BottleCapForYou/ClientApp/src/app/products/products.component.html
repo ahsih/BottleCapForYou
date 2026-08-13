@@ -1,0 +1,242 @@
+<div class="products-page" [attr.dir]="textDirection()">
+  <header class="catalog-header">
+    <div class="catalog-header__inner">
+      <a
+        class="catalog-brand"
+        routerLink="/"
+        [attr.aria-label]="content().ui.homepageLabel"
+      >
+        <img src="logo.png" [alt]="content().brand.company" />
+      </a>
+
+      <nav class="catalog-nav" aria-label="Product page navigation">
+        <a routerLink="/">{{ content().nav.home }}</a>
+        <a routerLink="/news">{{ content().nav.news }}</a>
+        <a href="/#about">{{ content().nav.about }}</a>
+        <a class="active" routerLink="/products">{{
+          content().nav.products
+        }}</a>
+        <a href="/#contact">{{ content().nav.contact }}</a>
+      </nav>
+
+      <div class="lang-switch" [attr.aria-label]="content().ui.switchLabel">
+        <button
+          type="button"
+          [class.active]="language() === 'ar'"
+          [attr.aria-label]="content().ui.languageArabic"
+          (click)="setLanguage('ar')"
+        >
+          AR
+        </button>
+        <button
+          type="button"
+          [class.active]="language() === 'zh-CN'"
+          [attr.aria-label]="content().ui.languageChinese"
+          (click)="setLanguage('zh-CN')"
+        >
+          中文
+        </button>
+        <button
+          type="button"
+          [class.active]="language() === 'en'"
+          [attr.aria-label]="content().ui.languageEnglish"
+          (click)="setLanguage('en')"
+        >
+          EN
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="catalog-hero">
+      <div class="catalog-container catalog-hero__inner">
+        <div class="catalog-hero__copy">
+          <p class="catalog-eyebrow">Product Catalogue</p>
+          <h1>5 Gallon Bottle cap and water bottle</h1>
+          <p>
+            Browse bottle cap styles for drinking water factories, distributors,
+            importers, and OEM wholesale buyers.
+          </p>
+          <div class="catalog-hero__actions">
+            <a
+              class="catalog-button catalog-button--primary"
+              [href]="whatsappHref()"
+              target="_blank"
+              rel="noreferrer"
+            >
+              WhatsApp Quote
+            </a>
+            <a
+              class="catalog-button catalog-button--secondary"
+              href="/#contact"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="catalog-hero__media"
+          aria-label="Featured bottle cap photos"
+        >
+          <img
+            src="Products/12/1.webp"
+            alt="Blue two-piece bottle cap with liner"
+          />
+          <img src="Products/13/1.webp" alt="Two-color 5 gallon bottle cap" />
+          <img
+            src="Products/14/1.webp"
+            alt="Reusable bottle cap with sealing pad"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog-section">
+      <div class="catalog-container">
+        <div class="catalog-toolbar">
+          <label class="catalog-search">
+            <span>Search products</span>
+            <input
+              type="search"
+              [(ngModel)]="searchTerm"
+              placeholder="Search cap, liner, reusable..."
+              autocomplete="off"
+            />
+          </label>
+
+          <div class="catalog-filters" aria-label="Filter bottle caps">
+            <button
+              type="button"
+              *ngFor="let filter of filters"
+              [class.active]="selectedCategory === filter.id"
+              (click)="filterProducts(filter.id)"
+            >
+              {{ filter.label }}
+            </button>
+          </div>
+        </div>
+
+        <div class="catalog-results-bar">
+          <p>{{ productCountText() }}</p>
+          <button type="button" (click)="clearSearch()">Clear filters</button>
+        </div>
+
+        <div
+          class="catalog-grid"
+          *ngIf="filteredProducts.length; else emptyState"
+        >
+          <article
+            class="catalog-product-card"
+            *ngFor="let product of filteredProducts"
+            [class.catalog-product-card--selected]="isSelectedProduct(product)"
+          >
+            <div
+              class="catalog-product-card__media"
+              [class.catalog-product-card__media--zoomed]="zoomedProductIds[product.id]"
+            >
+              <button
+                type="button"
+                class="catalog-product-card__image-arrow catalog-product-card__image-arrow--previous"
+                *ngIf="product.imageCount > 1"
+                (click)="previousProductImage(product)"
+                [attr.aria-label]="'Show previous image for ' + product.title"
+              >
+                <span aria-hidden="true">&#10094;</span>
+              </button>
+              <button
+                type="button"
+                class="catalog-product-card__zoom-button"
+                (click)="toggleProductImageZoom(product)"
+                [attr.aria-label]="'Zoom image for ' + product.title"
+                [attr.aria-pressed]="zoomedProductIds[product.id] ? 'true' : 'false'"
+              >
+                <img
+                  [src]="productImagePath(product)"
+                  [alt]="product.title"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+              <button
+                type="button"
+                class="catalog-product-card__image-arrow catalog-product-card__image-arrow--next"
+                *ngIf="product.imageCount > 1"
+                (click)="nextProductImage(product)"
+                [attr.aria-label]="'Show next image for ' + product.title"
+              >
+                <span aria-hidden="true">&#10095;</span>
+              </button>
+              <span>{{ productImagePosition(product) }}</span>
+            </div>
+
+            <div class="catalog-product-card__body">
+              <h2>{{ product.title }}</h2>
+              <p class="catalog-product-card__summary">{{ product.summary }}</p>
+
+              <dl class="catalog-specs">
+                <div *ngFor="let spec of product.specs">
+                  <dt>{{ spec.label }}</dt>
+                  <dd>{{ spec.value }}</dd>
+                </div>
+              </dl>
+
+              <div class="catalog-tags" aria-label="Product features">
+                <span *ngFor="let tag of product.tags">{{ tag }}</span>
+              </div>
+            </div>
+
+            <div class="catalog-thumbs" *ngIf="product.imageCount > 1">
+              <button
+                type="button"
+                *ngFor="let imageNumber of productThumbnails(product)"
+                [class.active]="activeImageNumbers[product.id] === imageNumber"
+                (click)="setProductImage(product, imageNumber)"
+                [attr.aria-label]="
+                  'Show image ' + imageNumber + ' for ' + product.title
+                "
+              >
+                <img
+                  [src]="productImagePath(product, imageNumber)"
+                  [alt]="product.title + ' thumbnail ' + imageNumber"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+            </div>
+
+            <div class="catalog-product-card__actions">
+              <a
+                [href]="whatsappHref(product)"
+                target="_blank"
+                rel="noreferrer"
+              >
+                WhatsApp
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <ng-template #emptyState>
+          <div class="catalog-empty">
+            <h2>No bottle caps found</h2>
+            <p>Try clearing the filter or searching for another cap type.</p>
+            <button type="button" (click)="clearSearch()">
+              Show all products
+            </button>
+          </div>
+        </ng-template>
+      </div>
+    </section>
+  </main>
+
+  <a
+    class="mobile-quote-bar"
+    [href]="whatsappHref()"
+    target="_blank"
+    rel="noreferrer"
+  >
+    Ask for product quote
+  </a>
+</div>

@@ -1,4 +1,4 @@
-<div class="site-page" [attr.dir]="textDirection()">
+<div id="home" class="site-page" [attr.dir]="textDirection()">
   <div
     class="site-header-shell"
     [class.site-header-shell--hidden]="isMobileHeaderHidden"
@@ -122,7 +122,7 @@
           <a href="#home">{{ content().nav.home }}</a>
           <a routerLink="/news">{{ content().nav.news }}</a>
           <a href="#about">{{ content().nav.about }}</a>
-          <a href="#products">{{ content().nav.products }}</a>
+          <a routerLink="/products">{{ content().nav.products }}</a>
           <a href="#certifications">{{ content().nav.certifications }}</a>
           <a href="#contact">{{ content().nav.contact }}</a>
           <a class="main-nav__sample" href="#contact">Request Free Samples</a>
@@ -131,7 +131,122 @@
     </header>
   </div>
 
-  <section id="home" class="hero">
+  <section id="products" class="section section--products">
+    <div class="container product-preview">
+      <div class="section-titlebar section-titlebar--products">
+        <div class="section-titlebar__copy">
+          <p class="section-titlebar__eyebrow">{{ content().nav.products }}</p>
+          <h2>{{ productPreviewHeading() }}</h2>
+          <h3>{{ content().ui.productHint }}</h3>
+          <p class="section-intro section-intro--products">
+            {{ productPreviewIntro() }}
+          </p>
+        </div>
+        <div class="product-preview__actions">
+          <a class="product-preview__all-link" routerLink="/products">
+            {{ content().ui.allProducts }}
+          </a>
+        </div>
+      </div>
+
+      <div class="product-preview__viewport">
+        <div
+          class="product-preview__grid"
+          [style.--product-slide-index]="productPageIndex"
+        >
+          <article
+            class="product-preview-card"
+            *ngFor="let item of visibleProducts"
+          >
+            <div class="product-preview-card__media">
+              <a
+                class="product-preview-card__image-link"
+                [routerLink]="['/products']"
+                [queryParams]="{ product: item.id }"
+                [attr.aria-label]="viewProductDetailsLabel(item)"
+              >
+                <img
+                  [src]="productImagePath(item)"
+                  [alt]="productAlt(item)"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+              <div
+                class="product-preview-card__slide-controls"
+                *ngIf="productPageCount > 1"
+                aria-label="Featured products carousel"
+              >
+                <button
+                  type="button"
+                  class="product-preview__arrow product-preview__arrow--previous"
+                  (click)="previousProducts()"
+                  [attr.aria-label]="previousProductSlideLabel()"
+                >
+                  <span aria-hidden="true">&#10094;</span>
+                </button>
+                <span class="product-preview__status">
+                  {{ productPageIndex + 1 }} / {{ productPageCount }}
+                </span>
+                <button
+                  type="button"
+                  class="product-preview__arrow product-preview__arrow--next"
+                  (click)="nextProducts()"
+                  [attr.aria-label]="nextProductSlideLabel()"
+                >
+                  <span aria-hidden="true">&#10095;</span>
+                </button>
+              </div>
+            </div>
+            <a
+              class="product-preview-card__body"
+              [routerLink]="['/products']"
+              [queryParams]="{ product: item.id }"
+              [attr.aria-label]="viewProductDetailsLabel(item)"
+            >
+              <p
+                class="product-preview-card__catalog"
+                *ngIf="productCatalogName(item) as catalogName"
+              >
+                {{ catalogName }}
+              </p>
+              <h3>
+                <span>{{ productTitleBase(item) }}</span>
+                <span
+                  class="product-title__highlight"
+                  *ngIf="productTitleHighlight(item) as highlight"
+                >
+                  {{ highlight }}
+                </span>
+              </h3>
+              <span class="product-preview-card__cta">
+                {{ productPreviewCta() }}
+              </span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="container buyer-intent">
+      <div class="section-titlebar section-titlebar--stacked">
+        <div>
+          <p class="section-titlebar__eyebrow">{{ buyerIntentEyebrow() }}</p>
+          <h2>{{ buyerIntentHeading() }}</h2>
+        </div>
+        <p class="section-intro">{{ buyerIntentIntro() }}</p>
+      </div>
+
+      <div class="buyer-intent__grid">
+        <article class="buyer-intent__card" *ngFor="let item of buyerFeatures">
+          <h3>{{ buyerFeatureTitle(item) }}</h3>
+          <p>{{ buyerFeatureText(item) }}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero">
     <div class="hero__backdrop"></div>
     <div class="container hero__inner">
       <div class="hero__copy">
@@ -145,7 +260,7 @@
         <p class="hero__body">{{ content().hero.body }}</p>
         <p class="hero__body">{{ manufacturerSummary() }}</p>
         <div class="hero__actions">
-          <a class="hero__button hero__button--primary" href="#products">{{
+          <a class="hero__button hero__button--primary" routerLink="/products">{{
             content().hero.primary
           }}</a>
           <a class="hero__button hero__button--secondary" href="#contact">{{
@@ -187,140 +302,6 @@
       >
         <span aria-hidden="true">&#10095;</span>
       </button>
-    </div>
-  </section>
-
-  <section id="products" class="section section--products">
-    <div class="container buyer-intent">
-      <div class="section-titlebar section-titlebar--stacked">
-        <div>
-          <p class="section-titlebar__eyebrow">{{ buyerIntentEyebrow() }}</p>
-          <h2>{{ buyerIntentHeading() }}</h2>
-        </div>
-        <p class="section-intro">{{ buyerIntentIntro() }}</p>
-      </div>
-
-      <div class="buyer-intent__grid">
-        <article class="buyer-intent__card" *ngFor="let item of buyerFeatures">
-          <h3>{{ buyerFeatureTitle(item) }}</h3>
-          <p>{{ buyerFeatureText(item) }}</p>
-        </article>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="section-titlebar section-titlebar--products">
-        <div class="section-titlebar__copy">
-          <p class="section-titlebar__eyebrow">{{ content().nav.products }}</p>
-          <h2>{{ content().nav.products }}</h2>
-          <h3>{{ content().ui.productHint }}</h3>
-          <p class="section-intro section-intro--products">
-            {{ content().ui.productSubtitle }}
-          </p>
-        </div>
-        <div class="product-carousel__controls" *ngIf="productPageCount > 1">
-          <button
-            type="button"
-            class="product-carousel__button"
-            (click)="previousProducts()"
-          >
-            {{ previousLabel() }}
-          </button>
-          <span class="product-carousel__status"
-            >{{ productPageIndex + 1 }} / {{ productPageCount }}</span
-          >
-          <button
-            type="button"
-            class="product-carousel__button"
-            (click)="nextProducts()"
-          >
-            {{ nextLabel() }}
-          </button>
-        </div>
-      </div>
-
-      <div class="products-grid products-grid--carousel">
-        <article
-          class="product-card product-card--gallery"
-          *ngFor="let item of visibleProducts"
-        >
-          <div class="product-card__media product-card__media--gallery">
-            <button
-              type="button"
-              class="product-card__image-button"
-              (click)="openProductLightbox(item)"
-              [attr.aria-label]="enlargeProductImageLabel()"
-            >
-              <img
-                [src]="productImagePath(item)"
-                [alt]="productAlt(item)"
-                loading="lazy"
-                decoding="async"
-              />
-            </button>
-            <div class="product-card__switcher">
-              <button
-                type="button"
-                class="product-card__arrow"
-                (click)="previousProductImage(item)"
-                [attr.aria-label]="previousProductImageLabel()"
-              >
-                <span aria-hidden="true">&#9650;</span>
-              </button>
-              <span class="product-card__count">{{
-                productImagePosition(item)
-              }}</span>
-              <button
-                type="button"
-                class="product-card__arrow"
-                (click)="nextProductImage(item)"
-                [attr.aria-label]="nextProductImageLabel()"
-              >
-                <span aria-hidden="true">&#9660;</span>
-              </button>
-            </div>
-          </div>
-          <div class="product-card__body">
-            <p
-              class="product-card__catalog"
-              *ngIf="productCatalogName(item) as catalogName"
-            >
-              {{ catalogName }}
-            </p>
-            <h3>
-              <span>{{ productTitleBase(item) }}</span>
-              <span
-                class="product-title__highlight"
-                *ngIf="productTitleHighlight(item) as highlight"
-              >
-                {{ highlight }}
-              </span>
-            </h3>
-            <div class="product-specs" *ngIf="item.specs as specs">
-              <dl class="product-specs__grid">
-                <div class="product-specs__item" *ngFor="let spec of specs">
-                  <dt>{{ productSpecLabel(spec) }}</dt>
-                  <dd>{{ productSpecValue(spec) }}</dd>
-                </div>
-              </dl>
-            </div>
-            <div class="product-loading" *ngIf="item.loading as loading">
-              <div class="product-loading__group" *ngFor="let group of loading">
-                <p>{{ productLoadingLabel(group) }}</p>
-                <dl>
-                  <div *ngFor="let row of group.rows">
-                    <dt>{{ productSpecLabel(row) }}</dt>
-                    <dd>{{ productSpecValue(row) }}</dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
-            <p class="product-card__note" *ngIf="productNote(item) as note">
-              {{ note }}
-            </p>
-          </div>
-        </article>
-      </div>
     </div>
   </section>
 

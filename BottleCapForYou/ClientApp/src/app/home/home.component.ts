@@ -258,7 +258,7 @@ export class HomeComponent implements OnInit {
     {
       id: 11,
       folder: '12',
-      imageCount: 5,
+      imageCount: 2,
       titleEn:
         '8.2g Blue two-piece bottle cap set with liner sealing pad (one-time use)',
       titleZh: '8.2g 蓝色两件套瓶盖，带内衬密封垫片（一次性）',
@@ -304,7 +304,7 @@ export class HomeComponent implements OnInit {
     {
       id: 4,
       folder: '13',
-      imageCount: 6,
+      imageCount: 4,
       titleEn:
         '10.2g large 5 gallon bottle cap with 2 colors and (one time use)',
       catalogName: 'Disposable Two-Color Cap',
@@ -339,7 +339,7 @@ export class HomeComponent implements OnInit {
     {
       id: 7,
       folder: '15',
-      imageCount: 6,
+      imageCount: 5,
       titleEn:
         '10.2g Blue two-color inner cover for water bottle caps (reusable)',
       catalogName: 'Two-Color Two-Piece Cap',
@@ -375,7 +375,7 @@ export class HomeComponent implements OnInit {
     {
       id: 8,
       folder: '14',
-      imageCount: 6,
+      imageCount: 7,
       titleEn: '8g Blue two-piece bottle cap set with sealing pad (reusable)',
       catalogName: 'Single-Color Two-Piece Cap with Liner',
       specs: [
@@ -685,7 +685,6 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  private readonly productsPerPage = 4;
   private lastScrollY = 0;
   productPageIndex = 0;
   companyPhotoIndex = 0;
@@ -866,6 +865,10 @@ export class HomeComponent implements OnInit {
   }
 
   previousProducts(): void {
+    if (this.productPageCount <= 1) {
+      return;
+    }
+
     this.productPageIndex =
       this.productPageIndex === 0
         ? this.productPageCount - 1
@@ -873,6 +876,10 @@ export class HomeComponent implements OnInit {
   }
 
   nextProducts(): void {
+    if (this.productPageCount <= 1) {
+      return;
+    }
+
     this.productPageIndex =
       this.productPageIndex === this.productPageCount - 1
         ? 0
@@ -921,12 +928,11 @@ export class HomeComponent implements OnInit {
   }
 
   get visibleProducts(): ProductItem[] {
-    const start = this.productPageIndex * this.productsPerPage;
-    return this.displayedProducts.slice(start, start + this.productsPerPage);
+    return this.displayedProducts;
   }
 
   get productPageCount(): number {
-    return Math.ceil(this.displayedProducts.length / this.productsPerPage);
+    return this.displayedProducts.length;
   }
 
   get packagingDisplaySections(): PackagingItem[] {
@@ -1205,6 +1211,65 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  productPreviewHeading(): string {
+    switch (this.language()) {
+      case 'zh-CN':
+        return '精选瓶盖产品';
+      case 'ar':
+        return 'منتجات أغطية مختارة';
+      default:
+        return 'Featured Bottle Caps';
+    }
+  }
+
+  productPreviewIntro(): string {
+    switch (this.language()) {
+      case 'zh-CN':
+        return '点击任意产品即可进入完整产品页面，查看更多瓶盖款式、图片并联系我们报价。';
+      case 'ar':
+        return 'اضغط على أي منتج لفتح صفحة المنتجات الكاملة ومشاهدة مزيد من صور أغطية الزجاجات وطلب عرض سعر.';
+      default:
+        return 'Tap any product to open the full product page, browse more bottle cap styles, and request a quote.';
+    }
+  }
+
+  productPreviewCta(): string {
+    switch (this.language()) {
+      case 'zh-CN':
+        return '查看产品页面';
+      case 'ar':
+        return 'عرض صفحة المنتج';
+      default:
+        return 'View product page';
+    }
+  }
+
+  previousProductSlideLabel(): string {
+    switch (this.language()) {
+      case 'zh-CN':
+        return '查看上一个产品';
+      case 'ar':
+        return 'عرض المنتج السابق';
+      default:
+        return 'Show previous product';
+    }
+  }
+
+  nextProductSlideLabel(): string {
+    switch (this.language()) {
+      case 'zh-CN':
+        return '查看下一个产品';
+      case 'ar':
+        return 'عرض المنتج التالي';
+      default:
+        return 'Show next product';
+    }
+  }
+
+  viewProductDetailsLabel(item: ProductItem): string {
+    return `${this.productPreviewCta()}: ${this.productTitle(item)}`;
+  }
+
   enlargeProductImageLabel(): string {
     switch (this.language()) {
       case 'zh-CN':
@@ -1427,6 +1492,7 @@ export class HomeComponent implements OnInit {
     canonicalLink.href = canonicalUrl;
 
     this.document.getElementById('news-schema')?.remove();
+    this.document.getElementById('product-list-schema')?.remove();
 
     let schemaScript = this.document.getElementById('manufacturer-schema');
     if (!schemaScript) {
