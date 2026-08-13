@@ -9,7 +9,7 @@
         <img src="logo.png" [alt]="content().brand.company" />
       </a>
 
-      <nav class="catalog-nav" aria-label="Product page navigation">
+      <nav class="catalog-nav" [attr.aria-label]="catalogText('navigationLabel')">
         <a routerLink="/">{{ content().nav.home }}</a>
         <a routerLink="/news">{{ content().nav.news }}</a>
         <a href="/#about">{{ content().nav.about }}</a>
@@ -52,12 +52,9 @@
     <section class="catalog-hero">
       <div class="catalog-container catalog-hero__inner">
         <div class="catalog-hero__copy">
-          <p class="catalog-eyebrow">Product Catalogue</p>
-          <h1>5 Gallon Bottle cap and water bottle</h1>
-          <p>
-            Browse bottle cap styles for drinking water factories, distributors,
-            importers, and OEM wholesale buyers.
-          </p>
+          <p class="catalog-eyebrow">{{ catalogText('heroEyebrow') }}</p>
+          <h1>{{ catalogText('heroTitle') }}</h1>
+          <p>{{ catalogText('heroDescription') }}</p>
           <div class="catalog-hero__actions">
             <a
               class="catalog-button catalog-button--primary"
@@ -65,29 +62,32 @@
               target="_blank"
               rel="noreferrer"
             >
-              WhatsApp Quote
+              {{ catalogText('whatsappQuote') }}
             </a>
             <a
               class="catalog-button catalog-button--secondary"
               href="/#contact"
             >
-              Contact Us
+              {{ catalogText('contactUs') }}
             </a>
           </div>
         </div>
 
         <div
           class="catalog-hero__media"
-          aria-label="Featured bottle cap photos"
+          [attr.aria-label]="catalogText('featuredImagesLabel')"
         >
           <img
             src="Products/12/1.webp"
-            alt="Blue two-piece bottle cap with liner"
+            [alt]="catalogText('featuredImageAltLiner')"
           />
-          <img src="Products/13/1.webp" alt="Two-color 5 gallon bottle cap" />
+          <img
+            src="Products/13/1.webp"
+            [alt]="catalogText('featuredImageAltTwoColor')"
+          />
           <img
             src="Products/14/1.webp"
-            alt="Reusable bottle cap with sealing pad"
+            [alt]="catalogText('featuredImageAltReusable')"
           />
         </div>
       </div>
@@ -97,30 +97,35 @@
       <div class="catalog-container">
         <div class="catalog-toolbar">
           <label class="catalog-search">
-            <span>Search products</span>
+            <span>{{ catalogText('searchLabel') }}</span>
             <input
               type="search"
               [(ngModel)]="searchTerm"
-              placeholder="Search cap, liner, reusable..."
+              [placeholder]="catalogText('searchPlaceholder')"
               autocomplete="off"
             />
           </label>
 
-          <div class="catalog-filters" aria-label="Filter bottle caps">
+          <div
+            class="catalog-filters"
+            [attr.aria-label]="catalogText('filterLabel')"
+          >
             <button
               type="button"
               *ngFor="let filter of filters"
               [class.active]="selectedCategory === filter.id"
               (click)="filterProducts(filter.id)"
             >
-              {{ filter.label }}
+              {{ filterLabel(filter) }}
             </button>
           </div>
         </div>
 
         <div class="catalog-results-bar">
           <p>{{ productCountText() }}</p>
-          <button type="button" (click)="clearSearch()">Clear filters</button>
+          <button type="button" (click)="clearSearch()">
+            {{ catalogText('clearFilters') }}
+          </button>
         </div>
 
         <div
@@ -141,7 +146,7 @@
                 class="catalog-product-card__image-arrow catalog-product-card__image-arrow--previous"
                 *ngIf="product.imageCount > 1"
                 (click)="previousProductImage(product)"
-                [attr.aria-label]="'Show previous image for ' + product.title"
+                [attr.aria-label]="previousProductImageLabel(product)"
               >
                 <span aria-hidden="true">&#10094;</span>
               </button>
@@ -149,12 +154,12 @@
                 type="button"
                 class="catalog-product-card__zoom-button"
                 (click)="toggleProductImageZoom(product)"
-                [attr.aria-label]="'Zoom image for ' + product.title"
+                [attr.aria-label]="zoomProductImageLabel(product)"
                 [attr.aria-pressed]="zoomedProductIds[product.id] ? 'true' : 'false'"
               >
                 <img
                   [src]="productImagePath(product)"
-                  [alt]="product.title"
+                  [alt]="productAlt(product)"
                   loading="lazy"
                   decoding="async"
                 />
@@ -164,7 +169,7 @@
                 class="catalog-product-card__image-arrow catalog-product-card__image-arrow--next"
                 *ngIf="product.imageCount > 1"
                 (click)="nextProductImage(product)"
-                [attr.aria-label]="'Show next image for ' + product.title"
+                [attr.aria-label]="nextProductImageLabel(product)"
               >
                 <span aria-hidden="true">&#10095;</span>
               </button>
@@ -172,18 +177,25 @@
             </div>
 
             <div class="catalog-product-card__body">
-              <h2>{{ product.title }}</h2>
-              <p class="catalog-product-card__summary">{{ product.summary }}</p>
+              <h2>{{ productTitle(product) }}</h2>
+              <p class="catalog-product-card__summary">
+                {{ productSummary(product) }}
+              </p>
 
               <dl class="catalog-specs">
                 <div *ngFor="let spec of product.specs">
-                  <dt>{{ spec.label }}</dt>
-                  <dd>{{ spec.value }}</dd>
+                  <dt>{{ productSpecLabel(spec) }}</dt>
+                  <dd>{{ productSpecValue(spec) }}</dd>
                 </div>
               </dl>
 
-              <div class="catalog-tags" aria-label="Product features">
-                <span *ngFor="let tag of product.tags">{{ tag }}</span>
+              <div
+                class="catalog-tags"
+                [attr.aria-label]="catalogText('productFeaturesLabel')"
+              >
+                <span *ngFor="let tag of product.tags">{{
+                  productTag(tag)
+                }}</span>
               </div>
             </div>
 
@@ -193,13 +205,11 @@
                 *ngFor="let imageNumber of productThumbnails(product)"
                 [class.active]="activeImageNumbers[product.id] === imageNumber"
                 (click)="setProductImage(product, imageNumber)"
-                [attr.aria-label]="
-                  'Show image ' + imageNumber + ' for ' + product.title
-                "
+                [attr.aria-label]="productThumbnailLabel(product, imageNumber)"
               >
                 <img
                   [src]="productImagePath(product, imageNumber)"
-                  [alt]="product.title + ' thumbnail ' + imageNumber"
+                  [alt]="productThumbnailAlt(product, imageNumber)"
                   loading="lazy"
                   decoding="async"
                 />
@@ -212,7 +222,7 @@
                 target="_blank"
                 rel="noreferrer"
               >
-                WhatsApp
+                {{ catalogText('whatsapp') }}
               </a>
             </div>
           </article>
@@ -220,10 +230,10 @@
 
         <ng-template #emptyState>
           <div class="catalog-empty">
-            <h2>No bottle caps found</h2>
-            <p>Try clearing the filter or searching for another cap type.</p>
+            <h2>{{ catalogText('emptyTitle') }}</h2>
+            <p>{{ catalogText('emptyText') }}</p>
             <button type="button" (click)="clearSearch()">
-              Show all products
+              {{ catalogText('showAllProducts') }}
             </button>
           </div>
         </ng-template>
@@ -237,6 +247,6 @@
     target="_blank"
     rel="noreferrer"
   >
-    Ask for product quote
+    {{ catalogText('askForProductQuote') }}
   </a>
 </div>
