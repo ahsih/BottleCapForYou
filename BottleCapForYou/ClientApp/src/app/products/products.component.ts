@@ -19,6 +19,7 @@ type ProductListItem = {
   order: number;
   imageCount: number;
   imageExtension: 'jpg' | 'webp';
+  featuredImagePath?: string;
   title: string;
   summary: string;
   category: Exclude<ProductCategory, 'all'>;
@@ -326,6 +327,7 @@ export class ProductsComponent implements OnInit {
       folder: '12',
       imageCount: 2,
       imageExtension: 'webp',
+      featuredImagePath: 'Products/featured/12.webp',
       title: '8.2g blue two-piece bottle cap set with liner sealing pad',
       summary:
         'Detailed one-time use cap set with waterproof liner options for export orders.',
@@ -343,6 +345,7 @@ export class ProductsComponent implements OnInit {
       folder: '13',
       imageCount: 4,
       imageExtension: 'webp',
+      featuredImagePath: 'Products/featured/13.webp',
       title: '10.2g large two-color 5 gallon bottle cap',
       summary:
         'Two-color one-time use cap for buyers needing a heavier 5 gallon bottle cap style.',
@@ -359,6 +362,7 @@ export class ProductsComponent implements OnInit {
       folder: '14',
       imageCount: 7,
       imageExtension: 'webp',
+      featuredImagePath: 'Products/featured/14.webp',
       title: '8g blue two-piece reusable cap set with sealing pad',
       summary:
         'Reusable two-piece cap set with sealing pad for water bottle supply programmes.',
@@ -376,6 +380,7 @@ export class ProductsComponent implements OnInit {
       folder: '15',
       imageCount: 5,
       imageExtension: 'webp',
+      featuredImagePath: 'Products/featured/15.webp',
       title: '10.2g blue two-color reusable inner cover cap',
       summary:
         'Reusable two-color inner cover option with inner plug for 5 gallon water bottles.',
@@ -684,6 +689,10 @@ export class ProductsComponent implements OnInit {
   productImagePath(product: ProductListItem, imageNumber?: number): string {
     const selectedImageNumber =
       imageNumber ?? this.activeImageNumbers[product.id] ?? 1;
+    if (selectedImageNumber === 1 && product.featuredImagePath) {
+      return product.featuredImagePath;
+    }
+
     return `Products/${product.folder}/${selectedImageNumber}.${product.imageExtension}`;
   }
 

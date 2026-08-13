@@ -16,6 +16,7 @@ type ProductItem = {
   id: number;
   folder: string;
   imageCount: number;
+  featuredImagePath?: string;
   titleEn: string;
   titleZh: string;
   titleAr: string;
@@ -259,6 +260,7 @@ export class HomeComponent implements OnInit {
       id: 11,
       folder: '12',
       imageCount: 2,
+      featuredImagePath: 'Products/featured/12.webp',
       titleEn:
         '8.2g Blue two-piece bottle cap set with liner sealing pad (one-time use)',
       titleZh: '8.2g 蓝色两件套瓶盖，带内衬密封垫片（一次性）',
@@ -305,6 +307,7 @@ export class HomeComponent implements OnInit {
       id: 4,
       folder: '13',
       imageCount: 4,
+      featuredImagePath: 'Products/featured/13.webp',
       titleEn:
         '10.2g large 5 gallon bottle cap with 2 colors and (one time use)',
       catalogName: 'Disposable Two-Color Cap',
@@ -340,6 +343,7 @@ export class HomeComponent implements OnInit {
       id: 7,
       folder: '15',
       imageCount: 5,
+      featuredImagePath: 'Products/featured/15.webp',
       titleEn:
         '10.2g Blue two-color inner cover for water bottle caps (reusable)',
       catalogName: 'Two-Color Two-Piece Cap',
@@ -376,6 +380,7 @@ export class HomeComponent implements OnInit {
       id: 8,
       folder: '14',
       imageCount: 7,
+      featuredImagePath: 'Products/featured/14.webp',
       titleEn: '8g Blue two-piece bottle cap set with sealing pad (reusable)',
       catalogName: 'Single-Color Two-Piece Cap with Liner',
       specs: [
@@ -911,6 +916,10 @@ export class HomeComponent implements OnInit {
   productImagePath(product: ProductItem): string {
     const imageNumber = (this.productImageIndexes[product.id] ?? 0) + 1;
     return `Products/${product.folder}/${imageNumber}.webp`;
+  }
+
+  productFeaturedImagePath(product: ProductItem): string {
+    return product.featuredImagePath ?? this.productImagePath(product);
   }
 
   productImagePosition(product: ProductItem): string {
