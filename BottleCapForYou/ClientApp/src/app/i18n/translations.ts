@@ -41,6 +41,10 @@ export interface SiteTranslations {
     mapsLabel: string;
     amapLabel: string;
     googleMapsLabel: string;
+    more: string;
+    menu: string;
+    openMenuLabel: string;
+    closeMenuLabel: string;
   };
   brand: {
     company: string;
@@ -120,6 +124,10 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       mapsLabel: 'Maps',
       amapLabel: 'AMap',
       googleMapsLabel: 'Google Maps',
+      more: 'More',
+      menu: 'Menu',
+      openMenuLabel: 'Open navigation menu',
+      closeMenuLabel: 'Close navigation menu',
     },
     brand: {
       company: 'HuiZhou DingYuan Gaiye Plastic Co., Ltd.',
@@ -230,6 +238,10 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       mapsLabel: '地图导航',
       amapLabel: '高德地图',
       googleMapsLabel: '谷歌地图',
+      more: '更多',
+      menu: '菜单',
+      openMenuLabel: '打开导航菜单',
+      closeMenuLabel: '关闭导航菜单',
     },
     brand: {
       company: '惠州鼎元盖业塑胶有限公司',
@@ -338,6 +350,10 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       mapsLabel: 'الخرائط',
       amapLabel: 'Amap',
       googleMapsLabel: 'خرائط Google',
+      more: 'المزيد',
+      menu: 'القائمة',
+      openMenuLabel: 'فتح قائمة التنقل',
+      closeMenuLabel: 'إغلاق قائمة التنقل',
     },
     brand: {
       company: 'شركة هويتشو دينغ يوان غاييه للبلاستيك المحدودة',

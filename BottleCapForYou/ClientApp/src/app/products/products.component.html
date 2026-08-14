@@ -52,12 +52,14 @@
         aria-controls="catalog-mobile-navigation-panel"
         [attr.aria-expanded]="isMobileMenuOpen"
         [attr.aria-label]="
-          isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'
+          isMobileMenuOpen
+            ? content().ui.closeMenuLabel
+            : content().ui.openMenuLabel
         "
         (click)="toggleMobileMenu()"
       >
         <span aria-hidden="true">&#8942;</span>
-        <span>More</span>
+        <span>{{ content().ui.more }}</span>
       </button>
     </div>
   </header>
@@ -66,7 +68,7 @@
     <button
       type="button"
       class="catalog-mobile-nav__scrim"
-      aria-label="Close navigation menu"
+      [attr.aria-label]="content().ui.closeMenuLabel"
       (click)="closeMobileMenu()"
     ></button>
     <aside
@@ -74,14 +76,14 @@
       class="catalog-mobile-nav__panel"
       role="dialog"
       aria-modal="true"
-      aria-label="Mobile navigation"
+      [attr.aria-label]="content().ui.menu"
     >
       <div class="catalog-mobile-nav__header">
-        <span>Menu</span>
+        <span>{{ content().ui.menu }}</span>
         <button
           type="button"
           class="catalog-mobile-nav__close"
-          aria-label="Close navigation menu"
+          [attr.aria-label]="content().ui.closeMenuLabel"
           (click)="closeMobileMenu()"
         >
           <span aria-hidden="true">&times;</span>

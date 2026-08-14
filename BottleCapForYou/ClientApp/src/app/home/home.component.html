@@ -124,14 +124,16 @@
           aria-controls="mobile-navigation-panel"
           [attr.aria-expanded]="isMobileMenuOpen"
           [attr.aria-label]="
-            isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'
+            isMobileMenuOpen
+              ? content().ui.closeMenuLabel
+              : content().ui.openMenuLabel
           "
           (click)="toggleMobileMenu()"
         >
           <span class="mobile-menu-toggle__icon" aria-hidden="true"
             >&#8942;</span
           >
-          <span>More</span>
+          <span>{{ content().ui.more }}</span>
         </button>
 
         <nav class="main-nav">
@@ -151,7 +153,7 @@
     <button
       type="button"
       class="mobile-nav-drawer__scrim"
-      aria-label="Close navigation menu"
+      [attr.aria-label]="content().ui.closeMenuLabel"
       (click)="closeMobileMenu()"
     ></button>
     <aside
@@ -159,14 +161,14 @@
       class="mobile-nav-drawer__panel"
       role="dialog"
       aria-modal="true"
-      aria-label="Mobile navigation"
+      [attr.aria-label]="content().ui.menu"
     >
       <div class="mobile-nav-drawer__header">
-        <span class="mobile-nav-drawer__title">Menu</span>
+        <span class="mobile-nav-drawer__title">{{ content().ui.menu }}</span>
         <button
           type="button"
           class="mobile-nav-drawer__close"
-          aria-label="Close navigation menu"
+          [attr.aria-label]="content().ui.closeMenuLabel"
           (click)="closeMobileMenu()"
         >
           <span aria-hidden="true">&times;</span>
