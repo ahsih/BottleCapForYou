@@ -89,6 +89,24 @@
   transform: scaleX(1);
 }
 
+.catalog-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgba(15, 79, 132, 0.18);
+  border-radius: 8px;
+  background: #f6f9fc;
+  color: #17334d;
+  font-weight: 800;
+}
+
+.catalog-mobile-nav {
+  display: none;
+}
+
 .lang-switch {
   display: inline-flex;
   border: 1px solid rgba(15, 79, 132, 0.2);
@@ -640,7 +658,7 @@
 
   .catalog-header__inner {
     min-height: auto;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto auto;
     align-items: center;
   }
 
@@ -656,29 +674,60 @@
   }
 
   .catalog-nav {
-    flex-wrap: nowrap;
-    gap: 8px;
-  }
-
-  .catalog-nav a {
-    flex: 0 0 auto;
-    min-height: 36px;
-    display: inline-flex;
-    align-items: center;
-    padding: 0 12px;
-    border: 1px solid #d7e3ec;
-    border-radius: 8px;
-    background: #f5f8fb;
-    font-size: 13px;
-  }
-
-  .catalog-nav a::after {
     display: none;
   }
 
-  .catalog-nav a.active {
-    background: #d9ab45;
-    border-color: #d9ab45;
+  .catalog-menu-toggle {
+    display: inline-flex;
+  }
+
+  .catalog-mobile-nav {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+  }
+
+  .catalog-mobile-nav__scrim {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: rgba(7, 24, 39, 0.42);
+  }
+
+  .catalog-mobile-nav__panel {
+    position: relative;
+    width: min(82vw, 312px);
+    height: 100%;
+    padding: 18px;
+    background: #fff;
+  }
+
+  .catalog-mobile-nav__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e8ef;
+    font-weight: 800;
+  }
+
+  .catalog-mobile-nav__close {
+    border: 0;
+    background: transparent;
+  }
+
+  .catalog-mobile-nav__links a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid #e0e8ef;
+    color: #17334d;
+    text-decoration: none;
+  }
+
+  .catalog-mobile-nav__links a.active {
+    color: #0f4f84;
+    font-weight: 800;
   }
 
   .catalog-hero__inner {

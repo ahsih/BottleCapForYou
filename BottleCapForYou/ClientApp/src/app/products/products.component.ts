@@ -1,5 +1,5 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, OnInit, effect, inject } from '@angular/core';
+import { Component, HostListener, OnInit, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -530,6 +530,7 @@ export class ProductsComponent implements OnInit {
   selectedCategory: ProductCategory = 'all';
   selectedProductId: number | null = null;
   searchTerm = '';
+  isMobileMenuOpen = false;
   activeImageNumbers: Record<number, number> = this.products.reduce<
     Record<number, number>
   >((accumulator, product) => {
@@ -559,12 +560,32 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  @HostListener('document:keydown.escape')
+  onEscapeKey(): void {
+    this.closeMobileMenu();
+  }
+
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    if (typeof window !== 'undefined' && window.innerWidth > 760) {
+      this.closeMobileMenu();
+    }
+  }
+
   textDirection(): 'ltr' | 'rtl' {
     return this.language() === 'ar' ? 'rtl' : 'ltr';
   }
 
   setLanguage(language: AppLanguage): void {
     this.i18n.setLanguage(language);
+  }
+
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen = false;
   }
 
   catalogText(key: keyof ProductCatalogText): string {

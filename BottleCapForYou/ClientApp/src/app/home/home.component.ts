@@ -706,6 +706,7 @@ export class HomeComponent implements OnInit {
   enquiryPhone = '';
   enquiryEmail = '';
   enquiryMessage = '';
+  isMobileMenuOpen = false;
   isSubmitting = false;
   submitStatus: 'idle' | 'success' | 'error' = 'idle';
 
@@ -736,6 +737,11 @@ export class HomeComponent implements OnInit {
   @HostListener('window:resize')
   onWindowResize(): void {
     this.updateMobileHeaderVisibility(true);
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscapeKey(): void {
+    this.closeMobileMenu();
   }
 
   get visibleCompanyPhotos(): CompanyPhoto[] {
@@ -776,6 +782,18 @@ export class HomeComponent implements OnInit {
 
   setLanguage(language: AppLanguage): void {
     this.i18n.setLanguage(language);
+  }
+
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+
+    if (this.isMobileMenuOpen) {
+      this.isMobileHeaderHidden = false;
+    }
+  }
+
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen = false;
   }
 
   phoneHref(phone: string): string {
@@ -1398,6 +1416,13 @@ export class HomeComponent implements OnInit {
     const isMobile = window.innerWidth <= 760;
 
     if (!isMobile) {
+      this.isMobileHeaderHidden = false;
+      this.isMobileMenuOpen = false;
+      this.lastScrollY = currentScrollY;
+      return;
+    }
+
+    if (this.isMobileMenuOpen) {
       this.isMobileHeaderHidden = false;
       this.lastScrollY = currentScrollY;
       return;

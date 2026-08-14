@@ -45,8 +45,67 @@
           EN
         </button>
       </div>
+
+      <button
+        type="button"
+        class="catalog-menu-toggle"
+        aria-controls="catalog-mobile-navigation-panel"
+        [attr.aria-expanded]="isMobileMenuOpen"
+        [attr.aria-label]="
+          isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'
+        "
+        (click)="toggleMobileMenu()"
+      >
+        <span aria-hidden="true">&#8942;</span>
+        <span>More</span>
+      </button>
     </div>
   </header>
+
+  <div class="catalog-mobile-nav" *ngIf="isMobileMenuOpen">
+    <button
+      type="button"
+      class="catalog-mobile-nav__scrim"
+      aria-label="Close navigation menu"
+      (click)="closeMobileMenu()"
+    ></button>
+    <aside
+      id="catalog-mobile-navigation-panel"
+      class="catalog-mobile-nav__panel"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mobile navigation"
+    >
+      <div class="catalog-mobile-nav__header">
+        <span>Menu</span>
+        <button
+          type="button"
+          class="catalog-mobile-nav__close"
+          aria-label="Close navigation menu"
+          (click)="closeMobileMenu()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <nav class="catalog-mobile-nav__links">
+        <a routerLink="/" (click)="closeMobileMenu()">{{
+          content().nav.home
+        }}</a>
+        <a routerLink="/news" (click)="closeMobileMenu()">{{
+          content().nav.news
+        }}</a>
+        <a href="/#about" (click)="closeMobileMenu()">{{
+          content().nav.about
+        }}</a>
+        <a class="active" routerLink="/products" (click)="closeMobileMenu()">{{
+          content().nav.products
+        }}</a>
+        <a href="/#contact" (click)="closeMobileMenu()">{{
+          content().nav.contact
+        }}</a>
+      </nav>
+    </aside>
+  </div>
 
   <main>
     <section class="catalog-hero">
