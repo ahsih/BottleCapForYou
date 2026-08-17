@@ -317,7 +317,7 @@ const productTextTranslations: Partial<
   styleUrl: './products.component.css',
 })
 export class ProductsComponent implements OnInit {
-  private readonly siteUrl = 'https://www.bottlecapforyou.com';
+  private readonly siteUrl = 'https://bottlecapforyou.com';
   private readonly primaryPhone = '+86 15816427686';
 
   readonly products: ProductListItem[] = [

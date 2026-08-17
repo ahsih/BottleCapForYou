@@ -31,10 +31,10 @@ if (!app.Environment.IsDevelopment())
 
 app.Use(async (context, next) =>
 {
-    const string canonicalHost = "www.bottlecapforyou.com";
-    const string bareHost = "bottlecapforyou.com";
+    const string canonicalHost = "bottlecapforyou.com";
+    const string alternateHost = "www.bottlecapforyou.com";
 
-    if (string.Equals(context.Request.Host.Host, bareHost, StringComparison.OrdinalIgnoreCase))
+    if (string.Equals(context.Request.Host.Host, alternateHost, StringComparison.OrdinalIgnoreCase))
     {
         var redirectUri = string.Concat(
             "https://",
@@ -81,10 +81,10 @@ static async Task ServeNewsIndexAsync(HttpContext context)
     const string homeTitle = "5 Gallon Bottle Cap Manufacturer | China Factory";
     const string homeDescription = "HuiZhou DingYuan Gaiye Plastic Co., Ltd. China Manufacturing Factory supplying 5 gallon water bottle caps, sealing liners and OEM plastic closures.";
     const string homeOgDescription = "China Manufacturing Factory for 5 gallon water bottle caps, sealing liners and OEM supply.";
-    const string homeCanonicalUrl = "https://www.bottlecapforyou.com/";
+    const string homeCanonicalUrl = "https://bottlecapforyou.com/";
     const string newsTitle = "Bottle Cap Factory News and Production Updates | Bottle Cap For You";
     const string newsDescription = "Watch recent bottle cap factory videos, production updates and export supply news from HuiZhou DingYuan Gaiye Plastic Co., Ltd.";
-    const string newsCanonicalUrl = "https://www.bottlecapforyou.com/news";
+    const string newsCanonicalUrl = "https://bottlecapforyou.com/news";
 
     var webRoot = context.RequestServices.GetRequiredService<IWebHostEnvironment>().WebRootPath;
     if (string.IsNullOrWhiteSpace(webRoot))

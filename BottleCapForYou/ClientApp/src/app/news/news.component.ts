@@ -38,7 +38,7 @@ type NewsVideoCard = {
   styleUrl: './news.component.css',
 })
 export class NewsComponent {
-  private readonly siteUrl = 'https://www.bottlecapforyou.com';
+  private readonly siteUrl = 'https://bottlecapforyou.com';
   private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
   private readonly i18n = inject(I18nService);
   private readonly sanitizer = inject(DomSanitizer);

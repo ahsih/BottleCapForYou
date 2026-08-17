@@ -117,7 +117,7 @@ type GoogleTagWindow = Window & {
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-  private readonly siteUrl = 'https://www.bottlecapforyou.com';
+  private readonly siteUrl = 'https://bottlecapforyou.com';
   private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
   private readonly primaryPhone = '+86 15816427686';
   private readonly thankYouPath = '/thank-you';
