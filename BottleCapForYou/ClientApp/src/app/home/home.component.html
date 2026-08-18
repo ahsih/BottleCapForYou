@@ -226,7 +226,7 @@
         >
           <article
             class="product-preview-card"
-            *ngFor="let item of visibleProducts"
+            *ngFor="let item of visibleProducts; let first = first"
           >
             <div class="product-preview-card__media">
               <a
@@ -238,7 +238,8 @@
                 <img
                   [src]="productFeaturedImagePath(item)"
                   [alt]="productAlt(item)"
-                  loading="lazy"
+                  [attr.loading]="first ? 'eager' : 'lazy'"
+                  [attr.fetchpriority]="first ? 'high' : null"
                   decoding="async"
                 />
               </a>

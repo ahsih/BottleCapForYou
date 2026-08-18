@@ -6,7 +6,13 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { I18nService } from '../core/i18n.service';
 import { AppLanguage } from '../i18n/translations';
 
-type ProductCategory = 'all' | 'one-time' | 'reusable' | 'liner' | 'two-color';
+type ProductCategory =
+  | 'all'
+  | 'one-time'
+  | 'reusable'
+  | 'liner'
+  | 'two-color'
+  | 'accessories';
 
 type ProductSpec = {
   label: string;
@@ -64,9 +70,9 @@ const productCatalogText: Record<AppLanguage, ProductCatalogText> = {
   en: {
     navigationLabel: 'Product page navigation',
     heroEyebrow: 'Product Catalogue',
-    heroTitle: '5 Gallon Bottle cap and water bottle',
+    heroTitle: '5 Gallon Water Bottle Caps & Packaging Accessories',
     heroDescription:
-      'Browse bottle cap styles for drinking water factories, distributors, importers, and OEM wholesale buyers.',
+      'Browse bottle caps, 5 gallon water bottles, carrying handles, and packaging accessories for distributors, importers, and OEM wholesale buyers.',
     whatsappQuote: 'WhatsApp Quote',
     contactUs: 'Contact Us',
     featuredImagesLabel: 'Featured bottle cap photos',
@@ -74,13 +80,13 @@ const productCatalogText: Record<AppLanguage, ProductCatalogText> = {
     featuredImageAltTwoColor: 'Two-color 5 gallon bottle cap',
     featuredImageAltReusable: 'Reusable bottle cap with sealing pad',
     searchLabel: 'Search products',
-    searchPlaceholder: 'Search cap, liner, reusable...',
-    filterLabel: 'Filter bottle caps',
+    searchPlaceholder: 'Search caps, bottles, handles, accessories...',
+    filterLabel: 'Filter products',
     clearFilters: 'Clear filters',
     productFeaturesLabel: 'Product features',
     whatsapp: 'WhatsApp',
-    emptyTitle: 'No bottle caps found',
-    emptyText: 'Try clearing the filter or searching for another cap type.',
+    emptyTitle: 'No products found',
+    emptyText: 'Try clearing the filter or searching for another product type.',
     showAllProducts: 'Show all products',
     askForProductQuote: 'Ask for product quote',
     previousImageFor: 'Show previous image for',
@@ -92,9 +98,9 @@ const productCatalogText: Record<AppLanguage, ProductCatalogText> = {
   'zh-CN': {
     navigationLabel: '产品页面导航',
     heroEyebrow: '产品目录',
-    heroTitle: '5 加仑瓶盖和水桶',
+    heroTitle: '5 加仑桶装水瓶盖与包装配件',
     heroDescription:
-      '浏览适用于饮用水工厂、经销商、进口商和 OEM 批发买家的瓶盖款式。',
+      '浏览适用于经销商、进口商和 OEM 批发买家的瓶盖、5 加仑水桶、提手和包装配件。',
     whatsappQuote: 'WhatsApp 报价',
     contactUs: '联系我们',
     featuredImagesLabel: '精选瓶盖图片',
@@ -102,13 +108,13 @@ const productCatalogText: Record<AppLanguage, ProductCatalogText> = {
     featuredImageAltTwoColor: '双色 5 加仑瓶盖',
     featuredImageAltReusable: '带密封垫的可重复使用瓶盖',
     searchLabel: '搜索产品',
-    searchPlaceholder: '搜索瓶盖、内衬、可重复使用...',
-    filterLabel: '筛选瓶盖',
+    searchPlaceholder: '搜索瓶盖、水桶、提手、配件...',
+    filterLabel: '筛选产品',
     clearFilters: '清除筛选',
     productFeaturesLabel: '产品特点',
     whatsapp: 'WhatsApp',
-    emptyTitle: '未找到瓶盖产品',
-    emptyText: '请清除筛选条件，或搜索其他瓶盖类型。',
+    emptyTitle: '未找到产品',
+    emptyText: '请清除筛选条件，或搜索其他产品类型。',
     showAllProducts: '显示全部产品',
     askForProductQuote: '索取产品报价',
     previousImageFor: '显示上一张图片：',
@@ -120,9 +126,9 @@ const productCatalogText: Record<AppLanguage, ProductCatalogText> = {
   ar: {
     navigationLabel: 'التنقل في صفحة المنتجات',
     heroEyebrow: 'كتالوج المنتجات',
-    heroTitle: 'غطاء زجاجة 5 جالون وزجاجة ماء',
+    heroTitle: 'أغطية عبوات مياه 5 جالون وملحقات التعبئة',
     heroDescription:
-      'تصفح أنماط أغطية الزجاجات لمصانع مياه الشرب والموزعين والمستوردين ومشتري الجملة OEM.',
+      'تصفح الأغطية وعبوات المياه سعة 5 جالون ومقابض الحمل وملحقات التعبئة للموزعين والمستوردين ومشتري الجملة OEM.',
     whatsappQuote: 'عرض سعر واتساب',
     contactUs: 'اتصل بنا',
     featuredImagesLabel: 'صور مميزة لأغطية الزجاجات',
@@ -130,13 +136,13 @@ const productCatalogText: Record<AppLanguage, ProductCatalogText> = {
     featuredImageAltTwoColor: 'غطاء زجاجة 5 جالون بلونين',
     featuredImageAltReusable: 'غطاء قابل لإعادة الاستخدام مع وسادة إحكام',
     searchLabel: 'البحث عن المنتجات',
-    searchPlaceholder: 'ابحث عن غطاء أو بطانة أو قابل لإعادة الاستخدام...',
-    filterLabel: 'تصفية أغطية الزجاجات',
+    searchPlaceholder: 'ابحث عن أغطية أو عبوات أو مقابض أو ملحقات...',
+    filterLabel: 'تصفية المنتجات',
     clearFilters: 'مسح التصفية',
     productFeaturesLabel: 'مميزات المنتج',
     whatsapp: 'واتساب',
-    emptyTitle: 'لم يتم العثور على أغطية زجاجات',
-    emptyText: 'حاول مسح التصفية أو البحث عن نوع آخر من الأغطية.',
+    emptyTitle: 'لم يتم العثور على منتجات',
+    emptyText: 'حاول مسح التصفية أو البحث عن نوع آخر من المنتجات.',
     showAllProducts: 'عرض كل المنتجات',
     askForProductQuote: 'اطلب عرض سعر للمنتج',
     previousImageFor: 'عرض الصورة السابقة لـ',
@@ -151,6 +157,8 @@ const productTextTranslations: Partial<
   Record<Exclude<AppLanguage, 'en'>, Record<string, string>>
 > = {
   'zh-CN': {
+    'All products': '全部产品',
+    'Bottles & accessories': '水桶与配件',
     'All bottle caps': '全部瓶盖',
     'One-time use': '一次性使用',
     Reusable: '可重复使用',
@@ -169,6 +177,15 @@ const productTextTranslations: Partial<
     OEM: 'OEM',
     Component: '组件',
     Custom: '定制',
+    'Product range': '产品范围',
+    '5 gallon bottles, carrying handles & related accessories':
+      '5 加仑水桶、提手及相关配件',
+    Options: '可选项',
+    'Multiple sizes & colors': '多种尺寸与颜色',
+    Service: '服务',
+    'OEM customization': 'OEM 定制',
+    Supply: '供应方式',
+    'Wholesale & export supply': '批发与出口供应',
     Weight: '重量',
     Height: '高度',
     Use: '用途',
@@ -226,8 +243,14 @@ const productTextTranslations: Partial<
       '定制颜色 5 加仑桶装水瓶盖',
     'Contact us for the colour you wish to order':
       '如需订购指定颜色，请联系我们。',
+    '5 Gallon Water Bottles, Carrying Handles & Packaging Accessories':
+      '5 加仑水桶、提手及桶装水包装配件',
+    '5 gallon water bottles, carrying handles, and related accessories for bottled-water packaging.':
+      '适用于桶装水包装的 5 加仑水桶、提手及相关配件。',
   },
   ar: {
+    'All products': 'كل المنتجات',
+    'Bottles & accessories': 'العبوات والملحقات',
     'All bottle caps': 'كل أغطية الزجاجات',
     'One-time use': 'استخدام مرة واحدة',
     Reusable: 'قابل لإعادة الاستخدام',
@@ -246,6 +269,15 @@ const productTextTranslations: Partial<
     OEM: 'OEM',
     Component: 'مكون',
     Custom: 'مخصص',
+    'Product range': 'نطاق المنتجات',
+    '5 gallon bottles, carrying handles & related accessories':
+      'عبوات 5 جالون ومقابض حمل وملحقات ذات صلة',
+    Options: 'الخيارات',
+    'Multiple sizes & colors': 'مقاسات وألوان متعددة',
+    Service: 'الخدمة',
+    'OEM customization': 'تخصيص OEM',
+    Supply: 'التوريد',
+    'Wholesale & export supply': 'توريد بالجملة وللتصدير',
     Weight: 'الوزن',
     Height: 'الارتفاع',
     Use: 'الاستخدام',
@@ -306,6 +338,10 @@ const productTextTranslations: Partial<
       'لون مخصص لغطاء زجاجة ماء 5 جالون',
     'Contact us for the colour you wish to order':
       'اتصل بنا للون الذي ترغب في طلبه.',
+    '5 Gallon Water Bottles, Carrying Handles & Packaging Accessories':
+      'عبوات مياه 5 جالون ومقابض حمل وملحقات التعبئة',
+    '5 gallon water bottles, carrying handles, and related accessories for bottled-water packaging.':
+      'عبوات مياه سعة 5 جالون ومقابض حمل وملحقات ذات صلة لتعبئة المياه المعبأة.',
   },
 };
 
@@ -337,6 +373,33 @@ export class ProductsComponent implements OnInit {
         { label: 'Weight', value: '8 g' },
         { label: 'Height', value: '35.5 mm' },
         { label: 'Liner', value: '1.5 mm' },
+      ],
+    },
+    {
+      id: 16,
+      order: 2,
+      folder: '16',
+      imageCount: 3,
+      imageExtension: 'webp',
+      featuredImagePath: 'Products/featured/16.webp',
+      title:
+        '5 Gallon Water Bottles, Carrying Handles & Packaging Accessories',
+      summary:
+        '5 gallon water bottles, carrying handles, and related accessories for bottled-water packaging.',
+      category: 'accessories',
+      tags: [
+        'Multiple sizes & colors',
+        'OEM customization',
+        'Wholesale & export supply',
+      ],
+      specs: [
+        {
+          label: 'Product range',
+          value: '5 gallon bottles, carrying handles & related accessories',
+        },
+        { label: 'Options', value: 'Multiple sizes & colors' },
+        { label: 'Service', value: 'OEM customization' },
+        { label: 'Supply', value: 'Wholesale & export supply' },
       ],
     },
     {
@@ -520,11 +583,12 @@ export class ProductsComponent implements OnInit {
   ];
 
   readonly filters: ProductFilter[] = [
-    { id: 'all', label: 'All bottle caps' },
+    { id: 'all', label: 'All products' },
     { id: 'one-time', label: 'One-time use' },
     { id: 'reusable', label: 'Reusable' },
     { id: 'liner', label: 'With liner' },
     { id: 'two-color', label: 'Two-color' },
+    { id: 'accessories', label: 'Bottles & accessories' },
   ];
 
   selectedCategory: ProductCategory = 'all';
@@ -768,11 +832,11 @@ export class ProductsComponent implements OnInit {
 
     switch (this.language()) {
       case 'zh-CN':
-        return `${count} 个瓶盖产品`;
+        return `${count} 个产品`;
       case 'ar':
-        return `${count} منتج من أغطية الزجاجات`;
+        return `${count} منتج`;
       default:
-        return count === 1 ? '1 bottle cap' : `${count} bottle caps`;
+        return count === 1 ? '1 product' : `${count} products`;
     }
   }
 
@@ -782,8 +846,17 @@ export class ProductsComponent implements OnInit {
   }
 
   private productCategoryLabel(category: ProductCategory): string {
+    return this.productCategoryLabelForLanguage(category, this.language());
+  }
+
+  private productCategoryLabelForLanguage(
+    category: ProductCategory,
+    language: AppLanguage,
+  ): string {
     const filter = this.filters.find((item) => item.id === category);
-    return filter ? this.filterLabel(filter) : category;
+    return filter
+      ? this.productTextForLanguage(filter.label, language)
+      : category;
   }
 
   private productText(text?: string): string {
@@ -831,11 +904,11 @@ export class ProductsComponent implements OnInit {
 
     switch (this.language()) {
       case 'zh-CN':
-        return '您好，我想咨询你们的 5 加仑桶装水瓶盖。';
+        return '您好，我想咨询你们的 5 加仑桶装水瓶盖和包装配件。';
       case 'ar':
-        return 'مرحبا، أود الاستفسار عن أغطية زجاجات الماء 5 جالون.';
+        return 'مرحبا، أود الاستفسار عن أغطية عبوات المياه سعة 5 جالون وملحقات التعبئة.';
       default:
-        return 'Hello, I would like to ask about your 5 gallon bottle caps.';
+        return 'Hello, I would like to ask about your 5 gallon bottle caps and packaging accessories.';
     }
   }
 
@@ -843,35 +916,31 @@ export class ProductsComponent implements OnInit {
     title: string;
     description: string;
     keywords: string;
-    productCategory: string;
   } {
     switch (language) {
       case 'zh-CN':
         return {
-          title: '瓶盖产品 | 5 加仑桶装水瓶盖目录',
+          title: '瓶盖与包装产品 | 5 加仑桶装水产品目录',
           description:
-            '浏览惠州鼎元盖业塑胶有限公司的 5 加仑桶装水瓶盖、可重复使用瓶盖、一次性瓶盖、密封内衬和双色瓶盖产品。',
+            '浏览惠州鼎元盖业塑胶有限公司的 5 加仑桶装水瓶盖、水桶、提手、包装配件、密封内衬和双色瓶盖产品。',
           keywords:
-            '瓶盖产品, 5 加仑瓶盖目录, 可重复使用瓶盖, 一次性瓶盖, 密封内衬瓶盖, 塑料瓶盖供应商',
-          productCategory: '5 加仑桶装水瓶盖',
+            '瓶盖产品, 5 加仑水桶, 桶装水提手, 包装配件, 5 加仑瓶盖目录, 塑料瓶盖供应商',
         };
       case 'ar':
         return {
-          title: 'منتجات أغطية الزجاجات | كتالوج أغطية مياه 5 جالون',
+          title: 'منتجات الأغطية والتعبئة | كتالوج مياه 5 جالون',
           description:
-            'تصفح أغطية زجاجات المياه 5 جالون والأغطية القابلة لإعادة الاستخدام والأغطية للاستخدام مرة واحدة وبطانات الإحكام وخيارات الألوان من شركة HuiZhou DingYuan Gaiye Plastic Co., Ltd.',
+            'تصفح أغطية وعبوات مياه 5 جالون ومقابض الحمل وملحقات التعبئة وبطانات الإحكام وخيارات الألوان من شركة HuiZhou DingYuan Gaiye Plastic Co., Ltd.',
           keywords:
-            'منتجات أغطية الزجاجات, كتالوج أغطية 5 جالون, غطاء قابل لإعادة الاستخدام, غطاء للاستخدام مرة واحدة, غطاء ببطانة إحكام, مورد أغطية بلاستيكية',
-          productCategory: 'غطاء زجاجة ماء 5 جالون',
+            'منتجات الأغطية, عبوات مياه 5 جالون, مقابض حمل العبوات, ملحقات التعبئة, مورد أغطية بلاستيكية',
         };
       default:
         return {
-          title: 'Bottle Cap Products | 5 Gallon Water Bottle Cap Catalogue',
+          title: 'Bottle Cap & Packaging Products | 5 Gallon Water Catalogue',
           description:
-            'Browse 5 gallon water bottle caps, reusable caps, one-time use caps, sealing liners and two-color cap options from HuiZhou DingYuan Gaiye Plastic Co., Ltd.',
+            'Browse 5 gallon water bottle caps, bottles, carrying handles, packaging accessories, sealing liners and two-color cap options from HuiZhou DingYuan Gaiye Plastic Co., Ltd.',
           keywords:
-            'bottle cap products, 5 gallon bottle cap catalogue, reusable bottle cap, one-time use bottle cap, sealing liner bottle cap, plastic bottle cap supplier',
-          productCategory: '5 gallon water bottle cap',
+            'bottle cap products, 5 gallon water bottle, bottle carrying handle, bottled water packaging accessories, 5 gallon bottle cap catalogue, plastic bottle cap supplier',
         };
     }
   }
@@ -952,7 +1021,10 @@ export class ProductsComponent implements OnInit {
           name: this.productTitleForLanguage(product, language),
           description: this.productSummaryForLanguage(product, language),
           image: `${this.siteUrl}/${this.productImagePath(product, 1)}`,
-          category: seo.productCategory,
+          category: this.productCategoryLabelForLanguage(
+            product.category,
+            language,
+          ),
           brand: {
             '@type': 'Brand',
             name: 'Bottle Cap For You',

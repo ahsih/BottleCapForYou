@@ -109,7 +109,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       emailAddress: 'Email address',
       message: 'Message',
       productHint:
-        'Tell us your bottle cap size, quantity and packing requirements. We support OEM production, wholesale supply and export orders.',
+        'Tell us the product, size, color, quantity and packing requirements you need. We support OEM production, wholesale supply and export orders.',
       productSubtitle:
         'We manufacture 5 gallon water bottle caps for drinking water factories, distributors and OEM buyers. Our bottle caps use food-grade material and are designed for leak-resistant sealing, daily factory use and export supply. Suitable for standard 5 gallon PC water bottles and bulk commercial purchasing.',
       emailSubject: 'Bottle Cap Website Enquiry',
@@ -224,7 +224,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       emailAddress: '邮箱地址',
       message: '留言内容',
       productHint:
-        '请告诉我们您需要的瓶盖尺寸、数量和包装要求，我们支持 OEM 生产、批发供货和出口订单。',
+        '请告诉我们您需要的产品、尺寸、颜色、数量和包装要求，我们支持 OEM 生产、批发供货和出口订单。',
       productSubtitle:
         '我们为饮用水工厂、经销商和 OEM 客户生产 5 加仑桶装水瓶盖。产品采用食品级材料，注重密封、防漏和日常生产使用表现，适配标准 5 加仑 PC 水桶，适合批量采购与出口供货。',
       emailSubject: '瓶盖网站咨询',
@@ -335,7 +335,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
       emailAddress: 'البريد الإلكتروني',
       message: 'الرسالة',
       productHint:
-        'أخبرنا بمقاس أغطية الزجاجات والكمية ومتطلبات التعبئة. نحن ندعم تصنيع OEM والتوريد بالجملة وطلبات التصدير.',
+        'أخبرنا بالمنتج والمقاس واللون والكمية ومتطلبات التعبئة التي تحتاجها. نحن ندعم تصنيع OEM والتوريد بالجملة وطلبات التصدير.',
       productSubtitle:
         'نقوم بتصنيع أغطية عبوات مياه سعة 5 جالون لمصانع مياه الشرب والموزعين ومشتري OEM. تُصنع أغطيتنا من مواد غذائية ومصممة لإحكام الغلق ومقاومة التسرب والاستخدام اليومي في المصانع والتوريد التصديري. مناسبة لعبوات المياه القياسية PC سعة 5 جالون وللشراء التجاري بكميات كبيرة.',
       emailSubject: 'استفسار من موقع أغطية الزجاجات',

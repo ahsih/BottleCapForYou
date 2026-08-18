@@ -141,6 +141,7 @@ export class HomeComponent implements OnInit {
     Record<AppLanguage, Record<string, string>>
   > = {
     'zh-CN': {
+      'Bottles, Handles & Accessories': '水桶、提手与配件',
       'Disposable Cap with Liner': '一次性带垫片瓶盖',
       'Disposable Two-Color Cap': '一次性双色瓶盖',
       'Single-Color Two-Piece Cap with Liner': '单色两件套带垫片瓶盖',
@@ -183,6 +184,7 @@ export class HomeComponent implements OnInit {
         '包含内塞和垫片。可重复使用，更环保。',
     },
     ar: {
+      'Bottles, Handles & Accessories': 'العبوات والمقابض والملحقات',
       'Disposable Cap with Liner': 'غطاء للاستخدام مرة واحدة مع بطانة',
       'Disposable Two-Color Cap': 'غطاء ثنائي اللون للاستخدام مرة واحدة',
       'Single-Color Two-Piece Cap with Liner':
@@ -256,6 +258,17 @@ export class HomeComponent implements OnInit {
     { src: 'Certificates/Work_License.jpg', alt: 'Work license certificate' },
   ];
   readonly products: ProductItem[] = [
+    {
+      id: 16,
+      folder: '16',
+      imageCount: 3,
+      featuredImagePath: 'Products/featured/16.webp',
+      titleEn:
+        '5 Gallon Water Bottles, Carrying Handles & Packaging Accessories',
+      titleZh: '5 加仑水桶、提手及桶装水包装配件',
+      titleAr: 'عبوات مياه 5 جالون ومقابض حمل وملحقات التعبئة',
+      catalogName: 'Bottles, Handles & Accessories',
+    },
     {
       id: 11,
       folder: '12',
@@ -945,7 +958,7 @@ export class HomeComponent implements OnInit {
   }
 
   private get displayedProducts(): ProductItem[] {
-    const productOrder = [11, 4, 8, 7];
+    const productOrder = [16, 11, 4, 8, 7];
 
     return productOrder
       .map((productId) =>
@@ -1241,22 +1254,22 @@ export class HomeComponent implements OnInit {
   productPreviewHeading(): string {
     switch (this.language()) {
       case 'zh-CN':
-        return '精选瓶盖产品';
+        return '精选桶装水包装产品';
       case 'ar':
-        return 'منتجات أغطية مختارة';
+        return 'منتجات مختارة لتعبئة المياه';
       default:
-        return 'Featured Bottle Caps';
+        return 'Featured Bottled-Water Packaging Products';
     }
   }
 
   productPreviewIntro(): string {
     switch (this.language()) {
       case 'zh-CN':
-        return '点击任意产品即可进入完整产品页面，查看更多瓶盖款式、图片并联系我们报价。';
+        return '点击任意产品即可进入完整产品页面，查看更多桶装水包装产品、图片并联系我们报价。';
       case 'ar':
-        return 'اضغط على أي منتج لفتح صفحة المنتجات الكاملة ومشاهدة مزيد من صور أغطية الزجاجات وطلب عرض سعر.';
+        return 'اضغط على أي منتج لفتح صفحة المنتجات الكاملة ومشاهدة مزيد من منتجات تعبئة المياه وطلب عرض سعر.';
       default:
-        return 'Tap any product to open the full product page, browse more bottle cap styles, and request a quote.';
+        return 'Select any product to browse more bottled-water packaging options, view the full gallery, and request a quote.';
     }
   }
 
