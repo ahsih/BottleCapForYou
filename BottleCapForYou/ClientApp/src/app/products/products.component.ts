@@ -26,6 +26,7 @@ type ProductListItem = {
   imageCount: number;
   imageExtension: 'jpg' | 'webp';
   featuredImagePath?: string;
+  imagePaths?: string[];
   title: string;
   summary: string;
   category: Exclude<ProductCategory, 'all'>;
@@ -247,6 +248,42 @@ const productTextTranslations: Partial<
       '5 加仑水桶、提手及桶装水包装配件',
     '5 gallon water bottles, carrying handles, and related accessories for bottled-water packaging.':
       '适用于桶装水包装的 5 加仑水桶、提手及相关配件。',
+    'One-Piece Carrying Handle for 5 Gallon Water Bottles':
+      '一体式 5 加仑桶装水提手',
+    'Simple ring-fit carrying handle for easier lifting and handling of standard 5 gallon water bottles.':
+      '一体式套环提手，便于提起和搬运标准 5 加仑水桶。',
+    Compatibility: '适配范围',
+    'Standard 5 gallon bottles': '标准 5 加仑水桶',
+    Material: '材质',
+    'Moulded plastic': '注塑塑料',
+    'Multiple color combinations': '多种配色',
+    'One-piece design': '一体式设计',
+    'Ring-fit neck mount': '桶口套环安装',
+    'Multiple colors & OEM': '多种颜色与 OEM 定制',
+    'Handheld Water Bottles in Multiple & Custom Sizes':
+      '多尺寸与定制规格手提水桶',
+    'Handheld water bottles with integrated side grips, available in a variety of sizes. Custom size requests are welcome for wholesale and OEM orders.':
+      '手提水桶配有一体式侧提手，提供多种尺寸。批发与 OEM 订单可按需申请定制尺寸。',
+    'Integrated handle': '一体式提手',
+    'Multiple sizes': '多种尺寸',
+    'Custom sizes available': '可定制尺寸',
+    'Product type': '产品类型',
+    'Handheld water bottle': '手提水桶',
+    'Size options': '尺寸选项',
+    'Variety of sizes available': '多种尺寸可选',
+    'Custom request': '定制需求',
+    'Requested sizes welcome': '可按需申请尺寸',
+    'Wholesale & OEM supply': '批发与 OEM 供货',
+    'PET Bottle Preforms with Custom Colours': '可定制颜色 PET 瓶坯',
+    'PET preforms are the moulded starting form used before stretch blow moulding into finished bottles. Multiple sizes are available, and colours can be customized on request.':
+      'PET 瓶坯是拉伸吹塑成成品瓶之前使用的注塑初始坯体。提供多种规格，颜色可按需定制。',
+    'Before bottle forming': '成瓶前瓶坯',
+    'Multiple preform sizes': '多种瓶坯规格',
+    'Custom colours': '颜色可定制',
+    Stage: '生产阶段',
+    'Preform before bottle blowing': '吹瓶前瓶坯',
+    'Colour options': '颜色选项',
+    'Custom colours on request': '颜色可按需定制',
   },
   ar: {
     'All products': 'كل المنتجات',
@@ -342,6 +379,43 @@ const productTextTranslations: Partial<
       'عبوات مياه 5 جالون ومقابض حمل وملحقات التعبئة',
     '5 gallon water bottles, carrying handles, and related accessories for bottled-water packaging.':
       'عبوات مياه سعة 5 جالون ومقابض حمل وملحقات ذات صلة لتعبئة المياه المعبأة.',
+    'One-Piece Carrying Handle for 5 Gallon Water Bottles':
+      'مقبض حمل من قطعة واحدة لعبوات المياه سعة 5 جالون',
+    'Simple ring-fit carrying handle for easier lifting and handling of standard 5 gallon water bottles.':
+      'مقبض حمل بسيط بحلقة تثبيت لتسهيل رفع ومناولة عبوات المياه القياسية سعة 5 جالون.',
+    Compatibility: 'التوافق',
+    'Standard 5 gallon bottles': 'عبوات 5 جالون القياسية',
+    Material: 'المادة',
+    'Moulded plastic': 'بلاستيك مصبوب',
+    'Multiple color combinations': 'تركيبات ألوان متعددة',
+    'One-piece design': 'تصميم من قطعة واحدة',
+    'Ring-fit neck mount': 'حلقة تثبيت حول العنق',
+    'Multiple colors & OEM': 'ألوان متعددة وتخصيص OEM',
+    'Handheld Water Bottles in Multiple & Custom Sizes':
+      'عبوات مياه محمولة بمقاسات متعددة ومخصصة',
+    'Handheld water bottles with integrated side grips, available in a variety of sizes. Custom size requests are welcome for wholesale and OEM orders.':
+      'عبوات مياه محمولة بمقابض جانبية مدمجة، متوفرة بمجموعة متنوعة من المقاسات. نرحب بطلبات المقاسات المخصصة لطلبات الجملة وOEM.',
+    'Integrated handle': 'مقبض مدمج',
+    'Multiple sizes': 'مقاسات متعددة',
+    'Custom sizes available': 'مقاسات مخصصة متاحة',
+    'Product type': 'نوع المنتج',
+    'Handheld water bottle': 'عبوة مياه محمولة',
+    'Size options': 'خيارات المقاس',
+    'Variety of sizes available': 'مجموعة متنوعة من المقاسات',
+    'Custom request': 'طلب مخصص',
+    'Requested sizes welcome': 'نرحب بالمقاسات المطلوبة',
+    'Wholesale & OEM supply': 'توريد بالجملة وOEM',
+    'PET Bottle Preforms with Custom Colours':
+      'قوالب أولية لعبوات PET بألوان مخصصة',
+    'PET preforms are the moulded starting form used before stretch blow moulding into finished bottles. Multiple sizes are available, and colours can be customized on request.':
+      'قوالب PET الأولية هي الشكل المصبوب المستخدم قبل النفخ والتمدد لتكوين العبوات النهائية. تتوفر مقاسات متعددة، ويمكن تخصيص الألوان حسب الطلب.',
+    'Before bottle forming': 'قبل تشكيل العبوة',
+    'Multiple preform sizes': 'مقاسات متعددة للقوالب الأولية',
+    'Custom colours': 'ألوان مخصصة',
+    Stage: 'مرحلة الإنتاج',
+    'Preform before bottle blowing': 'قالب أولي قبل نفخ العبوة',
+    'Colour options': 'خيارات الألوان',
+    'Custom colours on request': 'ألوان مخصصة حسب الطلب',
   },
 };
 
@@ -381,25 +455,74 @@ export class ProductsComponent implements OnInit {
       folder: '16',
       imageCount: 3,
       imageExtension: 'webp',
-      featuredImagePath: 'Products/featured/16.webp',
-      title:
-        '5 Gallon Water Bottles, Carrying Handles & Packaging Accessories',
+      featuredImagePath: 'Products/16/carry-handle-studio.jpg',
+      imagePaths: [
+        'Products/16/carry-handle-studio.jpg',
+        'Products/16/carry-handle-installed.jpg',
+        'Products/16/carry-handle-in-use.jpg',
+      ],
+      title: 'One-Piece Carrying Handle for 5 Gallon Water Bottles',
       summary:
-        '5 gallon water bottles, carrying handles, and related accessories for bottled-water packaging.',
+        'Simple ring-fit carrying handle for easier lifting and handling of standard 5 gallon water bottles.',
+      category: 'accessories',
+      tags: ['One-piece design', 'Ring-fit neck mount', 'Multiple colors & OEM'],
+      specs: [
+        { label: 'Compatibility', value: 'Standard 5 gallon bottles' },
+        { label: 'Material', value: 'Moulded plastic' },
+        { label: 'Options', value: 'Multiple color combinations' },
+        { label: 'Supply', value: 'Wholesale & export supply' },
+      ],
+    },
+    {
+      id: 17,
+      order: 2.5,
+      folder: '17',
+      imageCount: 3,
+      imageExtension: 'jpg',
+      featuredImagePath: 'Products/17/handheld-bottle-upright.jpg',
+      imagePaths: [
+        'Products/17/handheld-bottle-upright.jpg',
+        'Products/17/handheld-bottle-side.jpg',
+        'Products/17/handheld-bottle-sizes.jpg',
+      ],
+      title: 'Handheld Water Bottles in Multiple & Custom Sizes',
+      summary:
+        'Handheld water bottles with integrated side grips, available in a variety of sizes. Custom size requests are welcome for wholesale and OEM orders.',
+      category: 'accessories',
+      tags: ['Integrated handle', 'Multiple sizes', 'Custom sizes available'],
+      specs: [
+        { label: 'Product type', value: 'Handheld water bottle' },
+        { label: 'Size options', value: 'Variety of sizes available' },
+        { label: 'Custom request', value: 'Requested sizes welcome' },
+        { label: 'Supply', value: 'Wholesale & OEM supply' },
+      ],
+    },
+    {
+      id: 18,
+      order: 2.75,
+      folder: '18',
+      imageCount: 3,
+      imageExtension: 'jpg',
+      featuredImagePath: 'Products/18/pet-preforms-blue.jpg',
+      imagePaths: [
+        'Products/18/pet-preforms-blue.jpg',
+        'Products/18/pet-preforms-sizes.jpg',
+        'Products/18/pet-preforms-colours.jpg',
+      ],
+      title: 'PET Bottle Preforms with Custom Colours',
+      summary:
+        'PET preforms are the moulded starting form used before stretch blow moulding into finished bottles. Multiple sizes are available, and colours can be customized on request.',
       category: 'accessories',
       tags: [
-        'Multiple sizes & colors',
-        'OEM customization',
-        'Wholesale & export supply',
+        'Before bottle forming',
+        'Multiple preform sizes',
+        'Custom colours',
       ],
       specs: [
-        {
-          label: 'Product range',
-          value: '5 gallon bottles, carrying handles & related accessories',
-        },
-        { label: 'Options', value: 'Multiple sizes & colors' },
-        { label: 'Service', value: 'OEM customization' },
-        { label: 'Supply', value: 'Wholesale & export supply' },
+        { label: 'Stage', value: 'Preform before bottle blowing' },
+        { label: 'Material', value: 'PET' },
+        { label: 'Size options', value: 'Multiple preform sizes' },
+        { label: 'Colour options', value: 'Custom colours on request' },
       ],
     },
     {
@@ -774,6 +897,11 @@ export class ProductsComponent implements OnInit {
   productImagePath(product: ProductListItem, imageNumber?: number): string {
     const selectedImageNumber =
       imageNumber ?? this.activeImageNumbers[product.id] ?? 1;
+    const explicitImagePath = product.imagePaths?.[selectedImageNumber - 1];
+    if (explicitImagePath) {
+      return explicitImagePath;
+    }
+
     if (selectedImageNumber === 1 && product.featuredImagePath) {
       return product.featuredImagePath;
     }
