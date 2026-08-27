@@ -284,6 +284,19 @@ const productTextTranslations: Partial<
     'Preform before bottle blowing': '吹瓶前瓶坯',
     'Colour options': '颜色选项',
     'Custom colours on request': '颜色可按需定制',
+    'Custom Plastic Screw Caps for 200ml, 500ml & 1 Litre Bottles':
+      '适用于 200 毫升、500 毫升和 1 升瓶的定制塑料旋盖',
+    'Custom-size plastic screw caps with a choice of colours and adjustable cap heights, available in bulk for 200ml, 500ml and 1 litre bottles.':
+      '定制尺寸塑料旋盖，可选颜色和可调盖高，适用于 200 毫升、500 毫升和 1 升瓶，支持批量供应。',
+    'Custom size': '定制尺寸',
+    'Adjustable cap height': '可调盖高',
+    'Bulk supply': '批量供应',
+    'Bottle sizes': '瓶子容量',
+    '200ml / 500ml / 1 litre': '200 毫升 / 500 毫升 / 1 升',
+    'Cap size': '瓶盖尺寸',
+    Colours: '颜色',
+    'Cap height': '瓶盖高度',
+    Adjustable: '可调',
   },
   ar: {
     'All products': 'كل المنتجات',
@@ -416,6 +429,19 @@ const productTextTranslations: Partial<
     'Preform before bottle blowing': 'قالب أولي قبل نفخ العبوة',
     'Colour options': 'خيارات الألوان',
     'Custom colours on request': 'ألوان مخصصة حسب الطلب',
+    'Custom Plastic Screw Caps for 200ml, 500ml & 1 Litre Bottles':
+      'أغطية لولبية بلاستيكية مخصصة لعبوات 200 مل و500 مل و1 لتر',
+    'Custom-size plastic screw caps with a choice of colours and adjustable cap heights, available in bulk for 200ml, 500ml and 1 litre bottles.':
+      'أغطية لولبية بلاستيكية بمقاسات مخصصة، مع خيارات ألوان وارتفاعات قابلة للتعديل، متوفرة بالجملة لعبوات 200 مل و500 مل و1 لتر.',
+    'Custom size': 'مقاس مخصص',
+    'Adjustable cap height': 'ارتفاع غطاء قابل للتعديل',
+    'Bulk supply': 'توريد بالجملة',
+    'Bottle sizes': 'سعات العبوات',
+    '200ml / 500ml / 1 litre': '200 مل / 500 مل / 1 لتر',
+    'Cap size': 'مقاس الغطاء',
+    Colours: 'الألوان',
+    'Cap height': 'ارتفاع الغطاء',
+    Adjustable: 'قابل للتعديل',
   },
 };
 
@@ -471,6 +497,30 @@ export class ProductsComponent implements OnInit {
         { label: 'Material', value: 'Moulded plastic' },
         { label: 'Options', value: 'Multiple color combinations' },
         { label: 'Supply', value: 'Wholesale & export supply' },
+      ],
+    },
+    {
+      id: 19,
+      order: 1.5,
+      folder: '19',
+      imageCount: 6,
+      imageExtension: 'webp',
+      title: 'Custom Plastic Screw Caps for 200ml, 500ml & 1 Litre Bottles',
+      summary:
+        'Custom-size plastic screw caps with a choice of colours and adjustable cap heights, available in bulk for 200ml, 500ml and 1 litre bottles.',
+      category: 'one-time',
+      tags: [
+        'Custom size',
+        'Custom colours',
+        'Adjustable cap height',
+        'Bulk supply',
+      ],
+      specs: [
+        { label: 'Bottle sizes', value: '200ml / 500ml / 1 litre' },
+        { label: 'Cap size', value: 'Custom size' },
+        { label: 'Colours', value: 'Custom colours' },
+        { label: 'Cap height', value: 'Adjustable' },
+        { label: 'Supply', value: 'Bulk supply' },
       ],
     },
     {

@@ -146,9 +146,20 @@ export class HomeComponent implements OnInit {
       'Disposable Two-Color Cap': '一次性双色瓶盖',
       'Single-Color Two-Piece Cap with Liner': '单色两件套带垫片瓶盖',
       'Two-Color Two-Piece Cap': '双色两件套瓶盖',
+      'Custom Screw Caps': '定制塑料旋盖',
       Weight: '重量',
       Height: '高度',
       Liner: '垫片',
+      'Bottle sizes': '瓶子容量',
+      'Cap size': '瓶盖尺寸',
+      Colours: '颜色',
+      'Cap height': '瓶盖高度',
+      Supply: '供应方式',
+      '200ml / 500ml / 1 litre': '200 毫升 / 500 毫升 / 1 升',
+      'Custom size': '定制尺寸',
+      'Custom colours': '定制颜色',
+      Adjustable: '可调',
+      'Bulk supply': '批量供应',
       'Loose carton': '散装纸箱',
       Carton: '装箱',
       Stacked: '叠装',
@@ -190,9 +201,20 @@ export class HomeComponent implements OnInit {
       'Single-Color Two-Piece Cap with Liner':
         'غطاء من قطعتين بلون واحد مع بطانة',
       'Two-Color Two-Piece Cap': 'غطاء من قطعتين بلونين',
+      'Custom Screw Caps': 'أغطية لولبية مخصصة',
       Weight: 'الوزن',
       Height: 'الارتفاع',
       Liner: 'البطانة',
+      'Bottle sizes': 'سعات العبوات',
+      'Cap size': 'مقاس الغطاء',
+      Colours: 'الألوان',
+      'Cap height': 'ارتفاع الغطاء',
+      Supply: 'التوريد',
+      '200ml / 500ml / 1 litre': '200 مل / 500 مل / 1 لتر',
+      'Custom size': 'مقاس مخصص',
+      'Custom colours': 'ألوان مخصصة',
+      Adjustable: 'قابل للتعديل',
+      'Bulk supply': 'توريد بالجملة',
       'Loose carton': 'كرتون سائب',
       Carton: 'الكرتون',
       Stacked: 'مكدس',
@@ -258,6 +280,25 @@ export class HomeComponent implements OnInit {
     { src: 'Certificates/Work_License.jpg', alt: 'Work license certificate' },
   ];
   readonly products: ProductItem[] = [
+    {
+      id: 19,
+      folder: '19',
+      imageCount: 6,
+      featuredImagePath: 'Products/19/1.webp',
+      titleEn:
+        'Custom Plastic Screw Caps for 200ml, 500ml & 1 Litre Bottles',
+      titleZh: '适用于 200 毫升、500 毫升和 1 升瓶的定制塑料旋盖',
+      titleAr:
+        'أغطية لولبية بلاستيكية مخصصة لعبوات 200 مل و500 مل و1 لتر',
+      catalogName: 'Custom Screw Caps',
+      specs: [
+        { label: 'Bottle sizes', value: '200ml / 500ml / 1 litre' },
+        { label: 'Cap size', value: 'Custom size' },
+        { label: 'Colours', value: 'Custom colours' },
+        { label: 'Cap height', value: 'Adjustable' },
+        { label: 'Supply', value: 'Bulk supply' },
+      ],
+    },
     {
       id: 16,
       folder: '16',
@@ -958,7 +999,7 @@ export class HomeComponent implements OnInit {
   }
 
   private get displayedProducts(): ProductItem[] {
-    const productOrder = [16, 11, 4, 8, 7];
+    const productOrder = [19, 16, 11, 4, 8, 7];
 
     return productOrder
       .map((productId) =>
