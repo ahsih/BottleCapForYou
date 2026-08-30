@@ -166,6 +166,8 @@ const productTextTranslations: Partial<
     'With liner': '带内衬',
     'Two-color': '双色',
     Liner: '内衬',
+    Premium: '高端款',
+    'Single-color': '单色',
     '8.2g': '8.2 克',
     '10.2g': '10.2 克',
     '8g': '8 克',
@@ -189,19 +191,34 @@ const productTextTranslations: Partial<
     'Wholesale & export supply': '批发与出口供应',
     Weight: '重量',
     Height: '高度',
+    'Cap wall height': '盖壁高度',
+    'Cap body height': '盖身高度',
+    'Pull tab': '尾巴',
     Use: '用途',
     Bottle: '水桶',
     'One-time': '一次性',
     '5 gallon': '5 加仑',
     '8 g': '8 克',
     '8.2 g': '8.2 克',
+    '8.2 g ± 0.2 g': '8.2 克 ± 0.2 克',
     '10.2 g': '10.2 克',
+    '11.8–12 g': '11.8–12 克',
     '35.5 mm': '35.5 毫米',
     '36.2 mm': '36.2 毫米',
     '37.5 mm': '37.5 毫米',
+    '40 mm': '40 毫米',
+    '17 mm': '17 毫米',
     '1.5 mm': '1.5 毫米',
     '8.2g blue two-piece bottle cap set with liner sealing pad':
       '8.2 克蓝色两件式瓶盖套装，带内衬密封垫',
+    'Premium single-color cap with inner plug and sealing liner':
+      '高端单色加塞加垫盖',
+    'High-end single-color non-spill cap fitted with an inner plug and sealing liner for 5 gallon water bottles.':
+      '高端单色不漏水瓶盖，配内塞和密封垫片，适用于 5 加仑桶装水。',
+    '8.2g blue single-color cap with sealing liner and pull tab':
+      '8.2 克蓝色单色带垫片拉环盖',
+    'Blue single-color cap with a pull tab and sealing liner for 5 gallon water bottles.':
+      '蓝色单色瓶盖，配 17 毫米拉环和密封垫片，适用于 5 加仑桶装水。',
     'Detailed one-time use cap set with waterproof liner options for export orders.':
       '适合出口订单的一次性瓶盖套装，可选防水内衬。',
     '10.2g large two-color 5 gallon bottle cap':
@@ -307,6 +324,8 @@ const productTextTranslations: Partial<
     'With liner': 'مع بطانة',
     'Two-color': 'لونان',
     Liner: 'بطانة',
+    Premium: 'فاخر',
+    'Single-color': 'لون واحد',
     '8.2g': '8.2 جم',
     '10.2g': '10.2 جم',
     '8g': '8 جم',
@@ -330,19 +349,34 @@ const productTextTranslations: Partial<
     'Wholesale & export supply': 'توريد بالجملة وللتصدير',
     Weight: 'الوزن',
     Height: 'الارتفاع',
+    'Cap wall height': 'ارتفاع جدار الغطاء',
+    'Cap body height': 'ارتفاع جسم الغطاء',
+    'Pull tab': 'لسان السحب',
     Use: 'الاستخدام',
     Bottle: 'الزجاجة',
     'One-time': 'مرة واحدة',
     '5 gallon': '5 جالون',
     '8 g': '8 جم',
     '8.2 g': '8.2 جم',
+    '8.2 g ± 0.2 g': '8.2 جم ± 0.2 جم',
     '10.2 g': '10.2 جم',
+    '11.8–12 g': '11.8–12 جم',
     '35.5 mm': '35.5 مم',
     '36.2 mm': '36.2 مم',
     '37.5 mm': '37.5 مم',
+    '40 mm': '40 مم',
+    '17 mm': '17 مم',
     '1.5 mm': '1.5 مم',
     '8.2g blue two-piece bottle cap set with liner sealing pad':
       'مجموعة غطاء زجاجة زرقاء من قطعتين وزن 8.2 جم مع بطانة إحكام',
+    'Premium single-color cap with inner plug and sealing liner':
+      'غطاء فاخر أحادي اللون مع سدادة داخلية وبطانة إحكام',
+    'High-end single-color non-spill cap fitted with an inner plug and sealing liner for 5 gallon water bottles.':
+      'غطاء فاخر مانع للانسكاب أحادي اللون، مزود بسدادة داخلية وبطانة إحكام لعبوات المياه سعة 5 جالون.',
+    '8.2g blue single-color cap with sealing liner and pull tab':
+      'غطاء أزرق أحادي اللون وزن 8.2 جم مع بطانة إحكام ولسان سحب',
+    'Blue single-color cap with a pull tab and sealing liner for 5 gallon water bottles.':
+      'غطاء أزرق أحادي اللون مزود بلسان سحب وبطانة إحكام لعبوات المياه سعة 5 جالون.',
     'Detailed one-time use cap set with waterproof liner options for export orders.':
       'مجموعة غطاء للاستخدام مرة واحدة مع خيارات بطانة مقاومة للماء لطلبات التصدير.',
     '10.2g large two-color 5 gallon bottle cap':
@@ -457,6 +491,42 @@ export class ProductsComponent implements OnInit {
   private readonly primaryPhone = '+86 15816427686';
 
   readonly products: ProductListItem[] = [
+    {
+      id: 20,
+      order: 0.5,
+      folder: '20',
+      imageCount: 4,
+      imageExtension: 'webp',
+      featuredImagePath: 'Products/20/1.webp',
+      title: 'Premium single-color cap with inner plug and sealing liner',
+      summary:
+        'High-end single-color non-spill cap fitted with an inner plug and sealing liner for 5 gallon water bottles.',
+      category: 'liner',
+      tags: ['Premium', 'Single-color', 'Inner plug', 'Liner'],
+      specs: [
+        { label: 'Weight', value: '11.8–12 g' },
+        { label: 'Cap wall height', value: '40 mm' },
+        { label: 'Pull tab', value: '17 mm' },
+      ],
+    },
+    {
+      id: 21,
+      order: 0.75,
+      folder: '21',
+      imageCount: 3,
+      imageExtension: 'webp',
+      featuredImagePath: 'Products/21/1.webp',
+      title: '8.2g blue single-color cap with sealing liner and pull tab',
+      summary:
+        'Blue single-color cap with a pull tab and sealing liner for 5 gallon water bottles.',
+      category: 'liner',
+      tags: ['8.2g', 'Single-color', 'Liner', 'Pull detail'],
+      specs: [
+        { label: 'Weight', value: '8.2 g ± 0.2 g' },
+        { label: 'Cap body height', value: '36.2 mm' },
+        { label: 'Pull tab', value: '17 mm' },
+      ],
+    },
     {
       id: 11,
       order: 1,

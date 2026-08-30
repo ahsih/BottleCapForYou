@@ -147,8 +147,13 @@ export class HomeComponent implements OnInit {
       'Single-Color Two-Piece Cap with Liner': '单色两件套带垫片瓶盖',
       'Two-Color Two-Piece Cap': '双色两件套瓶盖',
       'Custom Screw Caps': '定制塑料旋盖',
+      'Premium Single-Color Cap': '高端单色瓶盖',
+      'Blue Single-Color Cap': '蓝色单色瓶盖',
       Weight: '重量',
       Height: '高度',
+      'Cap wall height': '盖壁高度',
+      'Cap body height': '盖身高度',
+      'Pull tab': '尾巴',
       Liner: '垫片',
       'Bottle sizes': '瓶子容量',
       'Cap size': '瓶盖尺寸',
@@ -169,10 +174,14 @@ export class HomeComponent implements OnInit {
       '40 ft Container': '40尺集装箱',
       '8 g': '8 克',
       '8.2 g': '8.2 克',
+      '8.2 g ± 0.2 g': '8.2 克 ± 0.2 克',
       '10.2 g': '10.2 克',
+      '11.8–12 g': '11.8–12 克',
       '35.5 mm': '35.5 毫米',
       '36.2 mm': '36.2 毫米',
       '37.5 mm': '37.5 毫米',
+      '40 mm': '40 毫米',
+      '17 mm': '17 毫米',
       '1.5 mm': '1.5 毫米',
       '276,000 pcs': '276,000 件',
       '479,000 pcs': '479,000 件',
@@ -193,6 +202,10 @@ export class HomeComponent implements OnInit {
         '包含内塞；不含垫片。可重复使用设计。',
       'Includes inner plug and liner. Reusable, eco-conscious design.':
         '包含内塞和垫片。可重复使用，更环保。',
+      'Includes inner plug and sealing liner. Premium model.':
+        '包含内塞和密封垫片。高端款。',
+      'Includes sealing liner and 17 mm pull tab.':
+        '包含密封垫片和 17 毫米尾巴。',
     },
     ar: {
       'Bottles, Handles & Accessories': 'العبوات والمقابض والملحقات',
@@ -202,8 +215,13 @@ export class HomeComponent implements OnInit {
         'غطاء من قطعتين بلون واحد مع بطانة',
       'Two-Color Two-Piece Cap': 'غطاء من قطعتين بلونين',
       'Custom Screw Caps': 'أغطية لولبية مخصصة',
+      'Premium Single-Color Cap': 'غطاء فاخر أحادي اللون',
+      'Blue Single-Color Cap': 'غطاء أزرق أحادي اللون',
       Weight: 'الوزن',
       Height: 'الارتفاع',
+      'Cap wall height': 'ارتفاع جدار الغطاء',
+      'Cap body height': 'ارتفاع جسم الغطاء',
+      'Pull tab': 'لسان السحب',
       Liner: 'البطانة',
       'Bottle sizes': 'سعات العبوات',
       'Cap size': 'مقاس الغطاء',
@@ -224,10 +242,14 @@ export class HomeComponent implements OnInit {
       '40 ft Container': 'حاوية 40 قدم',
       '8 g': '8 جم',
       '8.2 g': '8.2 جم',
+      '8.2 g ± 0.2 g': '8.2 جم ± 0.2 جم',
       '10.2 g': '10.2 جم',
+      '11.8–12 g': '11.8–12 جم',
       '35.5 mm': '35.5 مم',
       '36.2 mm': '36.2 مم',
       '37.5 mm': '37.5 مم',
+      '40 mm': '40 مم',
+      '17 mm': '17 مم',
       '1.5 mm': '1.5 مم',
       '276,000 pcs': '276,000 قطعة',
       '479,000 pcs': '479,000 قطعة',
@@ -248,6 +270,10 @@ export class HomeComponent implements OnInit {
         'يتضمن سدادة داخلية؛ بدون بطانة. تصميم قابل لإعادة الاستخدام.',
       'Includes inner plug and liner. Reusable, eco-conscious design.':
         'يتضمن سدادة داخلية وبطانة. تصميم قابل لإعادة الاستخدام وصديق للبيئة.',
+      'Includes inner plug and sealing liner. Premium model.':
+        'يتضمن سدادة داخلية وبطانة إحكام. طراز فاخر.',
+      'Includes sealing liner and 17 mm pull tab.':
+        'يتضمن بطانة إحكام ولسان سحب بطول 17 مم.',
     },
   };
   readonly companyPhotos: CompanyPhoto[] = [
@@ -280,6 +306,38 @@ export class HomeComponent implements OnInit {
     { src: 'Certificates/Work_License.jpg', alt: 'Work license certificate' },
   ];
   readonly products: ProductItem[] = [
+    {
+      id: 20,
+      folder: '20',
+      imageCount: 4,
+      featuredImagePath: 'Products/20/1.webp',
+      titleEn: 'Premium Single-Color Cap with Inner Plug and Sealing Liner',
+      titleZh: '高端单色加塞加垫盖',
+      titleAr: 'غطاء فاخر أحادي اللون مع سدادة داخلية وبطانة إحكام',
+      catalogName: 'Premium Single-Color Cap',
+      specs: [
+        { label: 'Weight', value: '11.8–12 g' },
+        { label: 'Cap wall height', value: '40 mm' },
+        { label: 'Pull tab', value: '17 mm' },
+      ],
+      note: 'Includes inner plug and sealing liner. Premium model.',
+    },
+    {
+      id: 21,
+      folder: '21',
+      imageCount: 3,
+      featuredImagePath: 'Products/21/1.webp',
+      titleEn: '8.2g Blue Single-Color Cap with Sealing Liner and Pull Tab',
+      titleZh: '8.2 克蓝色单色带垫片拉环盖',
+      titleAr: 'غطاء أزرق أحادي اللون وزن 8.2 جم مع بطانة إحكام ولسان سحب',
+      catalogName: 'Blue Single-Color Cap',
+      specs: [
+        { label: 'Weight', value: '8.2 g ± 0.2 g' },
+        { label: 'Cap body height', value: '36.2 mm' },
+        { label: 'Pull tab', value: '17 mm' },
+      ],
+      note: 'Includes sealing liner and 17 mm pull tab.',
+    },
     {
       id: 19,
       folder: '19',
@@ -999,7 +1057,7 @@ export class HomeComponent implements OnInit {
   }
 
   private get displayedProducts(): ProductItem[] {
-    const productOrder = [19, 16, 11, 4, 8, 7];
+    const productOrder = [20, 21, 19, 16, 11, 4];
 
     return productOrder
       .map((productId) =>
