@@ -314,6 +314,11 @@ const productTextTranslations: Partial<
     Colours: '颜色',
     'Cap height': '瓶盖高度',
     Adjustable: '可调',
+    '3025 Bottle Cap': '3025 瓶盖',
+    '3025 bottle cap supplied in cases of 5,000.':
+      '3025 瓶盖，每箱 5,000 个。',
+    Packing: '包装',
+    '5,000/case': '5,000 个/箱',
   },
   ar: {
     'All products': 'كل المنتجات',
@@ -476,6 +481,11 @@ const productTextTranslations: Partial<
     Colours: 'الألوان',
     'Cap height': 'ارتفاع الغطاء',
     Adjustable: 'قابل للتعديل',
+    '3025 Bottle Cap': 'غطاء زجاجة 3025',
+    '3025 bottle cap supplied in cases of 5,000.':
+      'غطاء زجاجة 3025، يُورّد في عبوات تحتوي على 5,000 قطعة.',
+    Packing: 'التعبئة',
+    '5,000/case': '5,000/عبوة',
   },
 };
 
@@ -491,6 +501,18 @@ export class ProductsComponent implements OnInit {
   private readonly primaryPhone = '+86 15816427686';
 
   readonly products: ProductListItem[] = [
+    {
+      id: 22,
+      order: 0.25,
+      folder: '22',
+      imageCount: 4,
+      imageExtension: 'webp',
+      title: '3025 Bottle Cap',
+      summary: '3025 bottle cap supplied in cases of 5,000.',
+      category: 'one-time',
+      tags: ['Bulk'],
+      specs: [{ label: 'Packing', value: '5,000/case' }],
+    },
     {
       id: 20,
       order: 0.5,

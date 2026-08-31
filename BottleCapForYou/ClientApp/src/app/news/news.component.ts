@@ -69,6 +69,24 @@ export class NewsComponent {
 
   private readonly newsPosts: NewsPost[] = [
     {
+      date: 'August 2026',
+      title: {
+        en: '5 Gallon Bottle Cap Quality Check',
+        'zh-CN': '5 Gallon Bottle Cap Quality Check',
+        ar: '5 Gallon Bottle Cap Quality Check',
+      },
+      summary: {
+        en: 'A close look at the quality checks used for 5-gallon bottle caps before wholesale and export supply.',
+        'zh-CN':
+          'A close look at the quality checks used for 5-gallon bottle caps before wholesale and export supply.',
+        ar: 'A close look at the quality checks used for 5-gallon bottle caps before wholesale and export supply.',
+      },
+      videoUrl: 'https://www.facebook.com/reel/1984735465512587/',
+      embedUrl:
+        'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1984735465512587%2F&show_text=false&width=560&t=0',
+      source: 'facebook',
+    },
+    {
       date: 'July 2026',
       title: {
         en: 'New Facebook factory reel',
