@@ -315,10 +315,11 @@ const productTextTranslations: Partial<
     'Cap height': '瓶盖高度',
     Adjustable: '可调',
     '3025 Bottle Cap': '3025 瓶盖',
-    '3025 bottle cap supplied in cases of 5,000.':
-      '3025 瓶盖，每箱 5,000 个。',
+    '3025 bottle cap supplied in cases of 5,000. The cap must be used with a 30/25 (3025) bottle neck; other neck sizes may result in a loose fit or slippage.':
+      '3025 瓶盖，每箱 5,000 个。此瓶盖必须配合 30/25（3025）瓶口使用；其他瓶口规格可能导致瓶盖松动或打滑。',
     Packing: '包装',
     '5,000/case': '5,000 个/箱',
+    '30/25 (3025) bottle neck only': '仅适用于 30/25（3025）瓶口',
   },
   ar: {
     'All products': 'كل المنتجات',
@@ -482,10 +483,11 @@ const productTextTranslations: Partial<
     'Cap height': 'ارتفاع الغطاء',
     Adjustable: 'قابل للتعديل',
     '3025 Bottle Cap': 'غطاء زجاجة 3025',
-    '3025 bottle cap supplied in cases of 5,000.':
-      'غطاء زجاجة 3025، يُورّد في عبوات تحتوي على 5,000 قطعة.',
+    '3025 bottle cap supplied in cases of 5,000. The cap must be used with a 30/25 (3025) bottle neck; other neck sizes may result in a loose fit or slippage.':
+      'غطاء زجاجة 3025، يُورّد في عبوات تحتوي على 5,000 قطعة. يجب استخدام الغطاء مع عنق زجاجة 30/25 (3025)؛ فقد يؤدي استخدام مقاس عنق آخر إلى ارتخاء الغطاء أو انزلاقه.',
     Packing: 'التعبئة',
     '5,000/case': '5,000/عبوة',
+    '30/25 (3025) bottle neck only': 'عنق زجاجة 30/25 (3025) فقط',
   },
 };
 
@@ -505,13 +507,24 @@ export class ProductsComponent implements OnInit {
       id: 22,
       order: 0.25,
       folder: '22',
-      imageCount: 4,
+      imageCount: 5,
       imageExtension: 'webp',
+      imagePaths: [
+        'Products/22/1.webp',
+        'Products/22/5.webp',
+        'Products/22/2.webp',
+        'Products/22/3.webp',
+        'Products/22/4.webp',
+      ],
       title: '3025 Bottle Cap',
-      summary: '3025 bottle cap supplied in cases of 5,000.',
+      summary:
+        '3025 bottle cap supplied in cases of 5,000. The cap must be used with a 30/25 (3025) bottle neck; other neck sizes may result in a loose fit or slippage.',
       category: 'one-time',
       tags: ['Bulk'],
-      specs: [{ label: 'Packing', value: '5,000/case' }],
+      specs: [
+        { label: 'Packing', value: '5,000/case' },
+        { label: 'Compatibility', value: '30/25 (3025) bottle neck only' },
+      ],
     },
     {
       id: 20,
