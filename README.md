@@ -19,9 +19,9 @@ Homepage rebuild of the original Deyi Plastic Chemical website using ASP.NET Cor
 
 ## Frameworks and Tools
 
-- .NET 9 / ASP.NET Core
+- .NET 10 / ASP.NET Core
 - Angular 19
-- Node.js / npm
+- Node.js 22 / npm
 
 ## Features
 
@@ -44,6 +44,17 @@ If needed, from `ClientApp`:
 npm install
 npm start
 ```
+
+## Build and Run with Docker
+
+Build with the newest .NET 10 and OS patches available for the configured image tags:
+
+```powershell
+docker build --pull -t bottlecapforyou .
+docker run --rm -p 8080:8080 --name bottlecapforyou bottlecapforyou
+```
+
+The application is available at `http://localhost:8080`.
 
 ## Project Structure
 
