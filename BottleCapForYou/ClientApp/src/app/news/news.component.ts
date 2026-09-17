@@ -69,6 +69,24 @@ export class NewsComponent {
 
   private readonly newsPosts: NewsPost[] = [
     {
+      date: 'September 2026',
+      title: {
+        en: 'Latest Facebook factory reel',
+        'zh-CN': 'Latest Facebook factory reel',
+        ar: 'Latest Facebook factory reel',
+      },
+      summary: {
+        en: 'A new Facebook reel featuring recent bottle cap production and factory activity for buyers reviewing current supply.',
+        'zh-CN':
+          'A new Facebook reel featuring recent bottle cap production and factory activity for buyers reviewing current supply.',
+        ar: 'A new Facebook reel featuring recent bottle cap production and factory activity for buyers reviewing current supply.',
+      },
+      videoUrl: 'https://www.facebook.com/reel/1355573703229172/',
+      embedUrl:
+        'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1355573703229172%2F&show_text=false&width=560&t=0',
+      source: 'facebook',
+    },
+    {
       date: 'August 2026',
       title: {
         en: '5 Gallon Bottle Cap Quality Check',
