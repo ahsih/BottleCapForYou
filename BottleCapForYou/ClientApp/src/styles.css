@@ -28,3 +28,168 @@ input,
 textarea {
   font: inherit;
 }
+
+.trade-terms {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 34px;
+  padding-top: 3px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #d7a83d, #f0c763, #d7a83d);
+  box-shadow: 0 16px 38px rgba(13, 61, 103, 0.16);
+}
+
+.trade-terms::before {
+  position: absolute;
+  top: -72px;
+  right: -36px;
+  width: 210px;
+  height: 210px;
+  border: 34px solid rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.trade-terms__list {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  border-radius: 9px 9px 12px 12px;
+  background: linear-gradient(110deg, #0b3c64 0%, #155f94 100%);
+  color: #fff;
+}
+
+.trade-terms__item {
+  position: relative;
+  display: grid;
+  align-content: center;
+  min-width: 0;
+  min-height: 104px;
+  padding: 21px 26px;
+}
+
+.trade-terms__item + .trade-terms__item::before {
+  position: absolute;
+  top: 22px;
+  bottom: 22px;
+  left: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.18);
+  content: "";
+}
+
+.site-page[dir="rtl"] .trade-terms__item + .trade-terms__item::before {
+  right: 0;
+  left: auto;
+}
+
+.trade-terms dt {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 7px;
+  color: #f6cf70;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.trade-terms dd {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.55vw, 1.35rem);
+  font-weight: 850;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.trade-terms dd span {
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0;
+  opacity: 0.78;
+}
+
+.trade-terms__mobile-break {
+  display: none;
+}
+
+.trade-terms small {
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.trade-terms__item--samples {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.trade-terms__item--samples dt svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+@media (max-width: 1100px) {
+  .trade-terms__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .trade-terms__item:nth-child(odd)::before {
+    display: none;
+  }
+
+  .trade-terms__item:nth-child(n + 3) {
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+}
+
+@media (max-width: 760px) {
+  .trade-terms {
+    margin-bottom: 24px;
+    border-radius: 10px;
+  }
+
+  .trade-terms__list {
+    border-radius: 7px 7px 10px 10px;
+  }
+
+  .trade-terms__item {
+    min-height: 88px;
+    padding: 16px 18px;
+  }
+
+  .trade-terms__item + .trade-terms__item::before {
+    top: 16px;
+    bottom: 16px;
+  }
+
+  .trade-terms dt {
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+
+  .trade-terms dd {
+    font-size: 1rem;
+  }
+
+  .trade-terms__mobile-break {
+    display: block;
+  }
+
+  .trade-terms small {
+    font-size: 9.5px;
+  }
+}
