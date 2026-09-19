@@ -1,34 +1,5 @@
-﻿import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { HomeComponent } from './app/home/home.component';
-import { NewsComponent } from './app/news/news.component';
-import { ProductsComponent } from './app/products/products.component';
+import { appConfig } from './app/app.config';
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideRouter([
-      {
-        path: '',
-        pathMatch: 'full',
-        component: HomeComponent
-      },
-      {
-        path: 'news',
-        component: NewsComponent
-      },
-      {
-        path: 'products',
-        component: ProductsComponent
-      },
-      {
-        path: 'thank-you',
-        component: HomeComponent
-      },
-      {
-        path: '**',
-        redirectTo: ''
-      }
-    ])
-  ]
-}).catch((err) => console.error(err));
+bootstrapApplication(AppComponent, appConfig).catch((err) => console.error(err));

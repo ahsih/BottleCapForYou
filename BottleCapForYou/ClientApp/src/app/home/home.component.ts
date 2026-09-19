@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { I18nService } from '../core/i18n.service';
+import { SeoLinksService } from '../core/seo-links.service';
+import { PageKey, localizedRoute } from '../core/locale';
+import { pageRoute } from '../core/locale';
 import { AppLanguage } from '../i18n/translations';
 
 type ProductItem = {
@@ -120,7 +123,6 @@ export class HomeComponent implements OnInit {
   private readonly siteUrl = 'https://bottlecapforyou.com';
   private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
   private readonly primaryPhone = '+86 15816427686';
-  private readonly thankYouPath = '/thank-you';
   private readonly googleAdsConversionId =
     'AW-18226061372/F-xUCOO3sNUcELzA7vJD';
 
@@ -823,12 +825,25 @@ export class HomeComponent implements OnInit {
   submitStatus: 'idle' | 'success' | 'error' = 'idle';
 
   protected readonly i18n = inject(I18nService);
+
+  private readonly seoLinks = inject(SeoLinksService);
   protected readonly language = this.i18n.language;
   protected readonly content = this.i18n.content;
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
   private readonly location = inject(Location);
+
+  /** Language-aware router path for in-site navigation. */
+  protected localePath(page: PageKey): string {
+    return localizedRoute(this.i18n.language(), page);
+  }
+
+  /** Language-aware link to a section anchor on the home page, e.g. '/zh#contact'. */
+  protected homeAnchor(fragment: string): string {
+    const home = localizedRoute(this.i18n.language(), 'home');
+    return home === '/' ? `/#${fragment}` : `${home}#${fragment}`;
+  }
 
   constructor() {
     effect(() => {
@@ -893,7 +908,7 @@ export class HomeComponent implements OnInit {
   }
 
   setLanguage(language: AppLanguage): void {
-    this.i18n.setLanguage(language);
+    this.i18n.switchLanguage(language);
   }
 
   toggleMobileMenu(): void {
@@ -961,10 +976,13 @@ export class HomeComponent implements OnInit {
   }
 
   private markEnquirySubmittedForAds(): void {
+    // Stay inside the current language's URL space, so a visitor who submitted
+    // the form from /zh is not dropped onto the English confirmation URL.
+    const thankYouPath = pageRoute(this.i18n.language(), 'thank-you');
     const currentPath = this.location.path().split(/[?#]/)[0] || '/';
 
-    if (currentPath !== this.thankYouPath) {
-      this.location.go(this.thankYouPath);
+    if (currentPath !== thankYouPath) {
+      this.location.go(thankYouPath);
     }
 
     this.trackLeadFormConversion();
@@ -1591,7 +1609,7 @@ export class HomeComponent implements OnInit {
       inLanguage = 'ar';
     }
 
-    const canonicalUrl = `${this.siteUrl}/`;
+    const canonicalUrl = this.seoLinks.apply(language, this.i18n.page());
 
     this.title.setTitle(title);
     this.meta.updateTag({ name: 'description', content: description });
@@ -1626,16 +1644,6 @@ export class HomeComponent implements OnInit {
       name: 'twitter:image',
       content: this.defaultShareImage,
     });
-
-    let canonicalLink = this.document.querySelector(
-      'link[rel="canonical"]',
-    ) as HTMLLinkElement | null;
-    if (!canonicalLink) {
-      canonicalLink = this.document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      this.document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.href = canonicalUrl;
 
     this.document.getElementById('news-schema')?.remove();
     this.document.getElementById('product-list-schema')?.remove();

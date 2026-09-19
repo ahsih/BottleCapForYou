@@ -50,13 +50,14 @@ app.Use(async (context, next) =>
     await next();
 });
 
+// Collapse trailing slashes onto the canonical, slash-free form. Covers the
+// localized paths (/zh/, /ar/products/, ...) without needing a list of routes.
 app.Use(async (context, next) =>
 {
     var path = context.Request.Path.Value;
-    if (string.Equals(path, "/news/", StringComparison.OrdinalIgnoreCase) ||
-        string.Equals(path, "/products/", StringComparison.OrdinalIgnoreCase))
+    if (path is { Length: > 1 } && path.EndsWith('/'))
     {
-        context.Response.Redirect(string.Concat(path!.TrimEnd('/'), context.Request.QueryString), permanent: true);
+        context.Response.Redirect(string.Concat(path.TrimEnd('/'), context.Request.QueryString), permanent: true);
         return;
     }
 
@@ -72,65 +73,70 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapGet("/news", ServeNewsIndexAsync);
-app.MapGet("/products", ServeProductsIndexAsync);
+// Serve the prerendered (SSG) HTML that `ng build` emits for these routes, so
+// crawlers and the Ads landing-page check receive real content instead of the
+// empty <app-root> shell. Each component sets its own title, description and
+// canonical tag through Angular's Title/Meta services during prerendering, so
+// no HTML post-processing is needed here.
+//
+// These are mapped explicitly rather than via UseDefaultFiles(), which would
+// redirect "/products" to "/products/" and collide with the trailing-slash
+// redirect above, producing a permanent redirect loop.
+//
+// English is served from the root; the other languages live under a prefix, so
+// each language version has its own crawlable, indexable URL. These must stay
+// in step with LANGUAGE_PREFIX and PAGE_PATH in ClientApp/src/app/core/locale.ts.
+// "news" is English-only: its content is not translated yet, so it has no /zh
+// or /ar variant. See LOCALIZED_PAGES in ClientApp/src/app/core/locale.ts.
+string[] englishPages = ["news", "products", "thank-you"];
+string[] localizedPages = ["products", "thank-you"];
+
+foreach (var page in englishPages)
+{
+    app.MapGet($"/{page}", () => ServePrerenderedPage(app.Environment, page));
+}
+
+foreach (var prefix in new[] { "zh", "ar" })
+{
+    // The localized home pages: /zh and /ar. English home is the fallback below.
+    app.MapGet($"/{prefix}", () => ServePrerenderedPage(app.Environment, prefix));
+
+    foreach (var page in localizedPages)
+    {
+        var route = $"{prefix}/{page}";
+        app.MapGet($"/{route}", () => ServePrerenderedPage(app.Environment, route));
+    }
+
+    // Prefixed URLs for English-only pages are never generated. Point them at
+    // the page that does exist rather than letting the catch-all answer 200
+    // with the English home page, which would read as duplicate content.
+    foreach (var page in englishPages.Except(localizedPages))
+    {
+        var target = page;
+        app.MapGet($"/{prefix}/{target}", (HttpContext context) =>
+            Results.Redirect($"/{target}{context.Request.QueryString}", permanent: true));
+    }
+}
 
 app.MapFallbackToFile("index.html");
 
 app.Run();
 
-static Task ServeNewsIndexAsync(HttpContext context)
+static IResult ServePrerenderedPage(IWebHostEnvironment environment, string route)
 {
-    const string title = "Bottle Cap Factory News and Production Updates | Bottle Cap For You";
-    const string description = "Watch recent bottle cap factory videos, production updates and export supply news from HuiZhou DingYuan Gaiye Plastic Co., Ltd.";
-    const string canonicalUrl = "https://bottlecapforyou.com/news";
-
-    return ServeIndexWithSeoAsync(context, title, description, canonicalUrl);
-}
-
-static Task ServeProductsIndexAsync(HttpContext context)
-{
-    const string title = "Bottle Cap & Packaging Products | 5 Gallon Water Catalogue";
-    const string description = "Browse 5 gallon water bottle caps, bottles, carrying handles, packaging accessories, sealing liners and two-color cap options from HuiZhou DingYuan Gaiye Plastic Co., Ltd.";
-    const string canonicalUrl = "https://bottlecapforyou.com/products";
-
-    return ServeIndexWithSeoAsync(context, title, description, canonicalUrl);
-}
-
-static async Task ServeIndexWithSeoAsync(
-    HttpContext context,
-    string pageTitle,
-    string pageDescription,
-    string pageCanonicalUrl)
-{
-    const string homeTitle = "5 Gallon Bottle Cap Manufacturer | China Factory";
-    const string homeDescription = "HuiZhou DingYuan Gaiye Plastic Co., Ltd. China Manufacturing Factory supplying 5 gallon water bottle caps, sealing liners and OEM plastic closures.";
-    const string homeOgDescription = "China Manufacturing Factory for 5 gallon water bottle caps, sealing liners and OEM supply.";
-    const string homeCanonicalUrl = "https://bottlecapforyou.com/";
-
-    var webRoot = context.RequestServices.GetRequiredService<IWebHostEnvironment>().WebRootPath;
+    var webRoot = environment.WebRootPath;
     if (string.IsNullOrWhiteSpace(webRoot))
     {
-        context.Response.StatusCode = StatusCodes.Status404NotFound;
-        return;
+        return Results.NotFound();
     }
 
-    var indexPath = Path.Combine(webRoot, "index.html");
-    if (!File.Exists(indexPath))
-    {
-        context.Response.StatusCode = StatusCodes.Status404NotFound;
-        return;
-    }
+    // Split so the segments join with the platform separator rather than
+    // relying on '/' being accepted inside a path component.
+    var segments = route.Split('/', StringSplitOptions.RemoveEmptyEntries);
+    var pagePath = Path.Combine([webRoot, .. segments, "index.html"]);
 
-    var html = await File.ReadAllTextAsync(indexPath, context.RequestAborted);
-    html = html
-        .Replace($"<title>{homeTitle}</title>", $"<title>{pageTitle}</title>")
-        .Replace($"content=\"{homeTitle}\"", $"content=\"{pageTitle}\"")
-        .Replace($"content=\"{homeDescription}\"", $"content=\"{pageDescription}\"")
-        .Replace($"content=\"{homeOgDescription}\"", $"content=\"{pageDescription}\"")
-        .Replace($"content=\"{homeCanonicalUrl}\"", $"content=\"{pageCanonicalUrl}\"")
-        .Replace($"href=\"{homeCanonicalUrl}\"", $"href=\"{pageCanonicalUrl}\"");
-
-    context.Response.ContentType = "text/html; charset=utf-8";
-    await context.Response.WriteAsync(html, context.RequestAborted);
+    return File.Exists(pagePath)
+        ? Results.File(pagePath, "text/html; charset=utf-8")
+        : Results.NotFound();
 }
+

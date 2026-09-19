@@ -8,6 +8,8 @@ import {
 } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { I18nService } from '../core/i18n.service';
+import { SeoLinksService } from '../core/seo-links.service';
+import { PageKey, localizedRoute } from '../core/locale';
 import { AppLanguage } from '../i18n/translations';
 
 type NewsPost = {
@@ -41,6 +43,8 @@ export class NewsComponent {
   private readonly siteUrl = 'https://bottlecapforyou.com';
   private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
   private readonly i18n = inject(I18nService);
+
+  private readonly seoLinks = inject(SeoLinksService);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly titleService = inject(Title);
   private readonly meta = inject(Meta);
@@ -263,6 +267,17 @@ export class NewsComponent {
     },
   ];
 
+  /** Language-aware router path for in-site navigation. */
+  protected localePath(page: PageKey): string {
+    return localizedRoute(this.i18n.language(), page);
+  }
+
+  /** Language-aware link to a section anchor on the home page, e.g. '/zh#contact'. */
+  protected homeAnchor(fragment: string): string {
+    const home = localizedRoute(this.i18n.language(), 'home');
+    return home === '/' ? `/#${fragment}` : `${home}#${fragment}`;
+  }
+
   constructor() {
     effect(() => {
       this.updateSeo(this.language());
@@ -270,7 +285,7 @@ export class NewsComponent {
   }
 
   setLanguage(language: AppLanguage): void {
-    this.i18n.setLanguage(language);
+    this.i18n.switchLanguage(language);
   }
 
   pageTitle(): string {
@@ -416,7 +431,7 @@ export class NewsComponent {
       inLanguage = 'ar';
     }
 
-    const canonicalUrl = `${this.siteUrl}/news`;
+    const canonicalUrl = this.seoLinks.apply(language, this.i18n.page());
 
     this.titleService.setTitle(title);
     this.meta.updateTag({ name: 'description', content: description });
@@ -435,16 +450,6 @@ export class NewsComponent {
     this.meta.updateTag({ name: 'twitter:title', content: title });
     this.meta.updateTag({ name: 'twitter:description', content: description });
     this.meta.updateTag({ name: 'twitter:image', content: this.defaultShareImage });
-
-    let canonicalLink = this.document.querySelector(
-      'link[rel="canonical"]',
-    ) as HTMLLinkElement | null;
-    if (!canonicalLink) {
-      canonicalLink = this.document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      this.document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.href = canonicalUrl;
 
     this.document.getElementById('manufacturer-schema')?.remove();
     this.document.getElementById('product-list-schema')?.remove();

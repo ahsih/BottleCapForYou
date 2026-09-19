@@ -3,20 +3,20 @@
     <div class="catalog-header__inner">
       <a
         class="catalog-brand"
-        routerLink="/"
+        [routerLink]="localePath('home')"
         [attr.aria-label]="content().ui.homepageLabel"
       >
         <img src="logo.png" [alt]="content().brand.company" />
       </a>
 
       <nav class="catalog-nav" [attr.aria-label]="catalogText('navigationLabel')">
-        <a routerLink="/">{{ content().nav.home }}</a>
-        <a routerLink="/news">{{ content().nav.news }}</a>
-        <a href="/#about">{{ content().nav.about }}</a>
-        <a class="active" routerLink="/products">{{
+        <a [routerLink]="localePath('home')">{{ content().nav.home }}</a>
+        <a [routerLink]="localePath('news')">{{ content().nav.news }}</a>
+        <a [href]="homeAnchor('about')">{{ content().nav.about }}</a>
+        <a class="active" [routerLink]="localePath('products')">{{
           content().nav.products
         }}</a>
-        <a href="/#contact">{{ content().nav.contact }}</a>
+        <a [href]="homeAnchor('contact')">{{ content().nav.contact }}</a>
       </nav>
 
       <div class="lang-switch" [attr.aria-label]="content().ui.switchLabel">
@@ -90,19 +90,19 @@
         </button>
       </div>
       <nav class="catalog-mobile-nav__links">
-        <a routerLink="/" (click)="closeMobileMenu()">{{
+        <a [routerLink]="localePath('home')" (click)="closeMobileMenu()">{{
           content().nav.home
         }}</a>
-        <a routerLink="/news" (click)="closeMobileMenu()">{{
+        <a [routerLink]="localePath('news')" (click)="closeMobileMenu()">{{
           content().nav.news
         }}</a>
-        <a href="/#about" (click)="closeMobileMenu()">{{
+        <a [href]="homeAnchor('about')" (click)="closeMobileMenu()">{{
           content().nav.about
         }}</a>
-        <a class="active" routerLink="/products" (click)="closeMobileMenu()">{{
+        <a class="active" [routerLink]="localePath('products')" (click)="closeMobileMenu()">{{
           content().nav.products
         }}</a>
-        <a href="/#contact" (click)="closeMobileMenu()">{{
+        <a [href]="homeAnchor('contact')" (click)="closeMobileMenu()">{{
           content().nav.contact
         }}</a>
       </nav>
@@ -127,7 +127,7 @@
             </a>
             <a
               class="catalog-button catalog-button--secondary"
-              href="/#contact"
+              [href]="homeAnchor('contact')"
             >
               {{ catalogText('contactUs') }}
             </a>

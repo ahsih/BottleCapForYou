@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { I18nService } from '../core/i18n.service';
+import { SeoLinksService } from '../core/seo-links.service';
+import { PageKey, localizedRoute } from '../core/locale';
 import { AppLanguage } from '../i18n/translations';
 
 type ProductCategory =
@@ -882,12 +884,25 @@ export class ProductsComponent implements OnInit {
   zoomedProductIds: Record<number, boolean> = {};
 
   protected readonly i18n = inject(I18nService);
+
+  private readonly seoLinks = inject(SeoLinksService);
   protected readonly language = this.i18n.language;
   protected readonly content = this.i18n.content;
   private readonly route = inject(ActivatedRoute);
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
+
+  /** Language-aware router path for in-site navigation. */
+  protected localePath(page: PageKey): string {
+    return localizedRoute(this.i18n.language(), page);
+  }
+
+  /** Language-aware link to a section anchor on the home page, e.g. '/zh#contact'. */
+  protected homeAnchor(fragment: string): string {
+    const home = localizedRoute(this.i18n.language(), 'home');
+    return home === '/' ? `/#${fragment}` : `${home}#${fragment}`;
+  }
 
   constructor() {
     effect(() => {
@@ -919,7 +934,7 @@ export class ProductsComponent implements OnInit {
   }
 
   setLanguage(language: AppLanguage): void {
-    this.i18n.setLanguage(language);
+    this.i18n.switchLanguage(language);
   }
 
   toggleMobileMenu(): void {
@@ -1232,7 +1247,7 @@ export class ProductsComponent implements OnInit {
     const seo = this.productSeoContent(language);
     const title = seo.title;
     const description = seo.description;
-    const canonicalUrl = `${this.siteUrl}/products`;
+    const canonicalUrl = this.seoLinks.apply(language, this.i18n.page());
     const inLanguage =
       language === 'zh-CN' ? 'zh-CN' : language === 'ar' ? 'ar' : 'en';
 
@@ -1268,16 +1283,6 @@ export class ProductsComponent implements OnInit {
       name: 'twitter:image',
       content: `${this.siteUrl}/Products/12/1.webp`,
     });
-
-    let canonicalLink = this.document.querySelector(
-      'link[rel="canonical"]',
-    ) as HTMLLinkElement | null;
-    if (!canonicalLink) {
-      canonicalLink = this.document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      this.document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.href = canonicalUrl;
 
     this.document.getElementById('manufacturer-schema')?.remove();
     this.document.getElementById('news-schema')?.remove();

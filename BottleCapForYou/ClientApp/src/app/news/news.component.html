@@ -1,7 +1,7 @@
 <div class="news-page" [attr.dir]="language() === 'ar' ? 'rtl' : 'ltr'">
   <header class="news-header">
     <div class="container news-header__inner">
-      <a class="brand" routerLink="/">
+      <a class="brand" [routerLink]="localePath('home')">
         <img src="logo.png" [alt]="content().brand.company" />
         <div>
           <strong>{{ content().brand.company }}</strong>
@@ -10,9 +10,9 @@
       </a>
 
       <nav class="news-nav">
-        <a routerLink="/">{{ content().nav.home }}</a>
-        <a class="is-active" routerLink="/news">{{ content().nav.news }}</a>
-        <a routerLink="/products">{{ content().nav.products }}</a>
+        <a [routerLink]="localePath('home')">{{ content().nav.home }}</a>
+        <a class="is-active" [routerLink]="localePath('news')">{{ content().nav.news }}</a>
+        <a [routerLink]="localePath('products')">{{ content().nav.products }}</a>
       </nav>
 
       <div class="lang-switch" [attr.aria-label]="content().ui.switchLabel">
