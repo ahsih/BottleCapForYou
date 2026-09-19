@@ -1,11 +1,5 @@
 import { CommonModule, DOCUMENT, Location } from '@angular/common';
-import {
-  Component,
-  HostListener,
-  OnInit,
-  effect,
-  inject,
-} from '@angular/core';
+import { Component, HostListener, OnInit, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
@@ -283,7 +277,10 @@ export class HomeComponent implements OnInit {
       src: 'company_photos/main_entrance.webp',
       alt: 'Bottle cap factory entrance in Huizhou, China',
     },
-    { src: 'company_photos/office.webp', alt: 'Bottle cap manufacturer office' },
+    {
+      src: 'company_photos/office.webp',
+      alt: 'Bottle cap manufacturer office',
+    },
     { src: 'company_photos/Outside.webp', alt: 'Bottle cap factory exterior' },
     {
       src: 'company_photos/factory_equipment_1.webp',
@@ -345,11 +342,9 @@ export class HomeComponent implements OnInit {
       folder: '19',
       imageCount: 6,
       featuredImagePath: 'Products/19/1.webp',
-      titleEn:
-        'Custom Plastic Screw Caps for 200ml, 500ml & 1 Litre Bottles',
+      titleEn: 'Custom Plastic Screw Caps for 200ml, 500ml & 1 Litre Bottles',
       titleZh: '适用于 200 毫升、500 毫升和 1 升瓶的定制塑料旋盖',
-      titleAr:
-        'أغطية لولبية بلاستيكية مخصصة لعبوات 200 مل و500 مل و1 لتر',
+      titleAr: 'أغطية لولبية بلاستيكية مخصصة لعبوات 200 مل و500 مل و1 لتر',
       catalogName: 'Custom Screw Caps',
       specs: [
         { label: 'Bottle sizes', value: '200ml / 500ml / 1 litre' },
@@ -701,10 +696,10 @@ export class HomeComponent implements OnInit {
           labelZh: '40尺柜',
           labelAr: 'حاوية 40 قدم',
           valueEn:
-            'Bulk carton packing: 540,000\n900 caps/carton\nStacked packing: 11,040,000\n1000 caps/carton',
-          valueZh: '纸箱散装：54万\n900个/箱\n叠装：1104万\n1000个/箱',
+            'Bulk carton packing: 540,000\n900 caps/carton\nStacked packing: 1,040,000\n1000 caps/carton',
+          valueZh: '纸箱散装：54万\n900个/箱\n叠装：104万\n1000个/箱',
           valueAr:
-            'تعبئة كرتونية سائبة: 540,000\n900 غطاء/كرتون\nتعبئة مكدسة: 11,040,000\n1000 غطاء/كرتون',
+            'تعبئة كرتونية سائبة: 540,000\n900 غطاء/كرتون\nتعبئة مكدسة: 1,040,000\n1000 غطاء/كرتون',
         },
       ],
       noteEn: 'Container loading quantities for export planning.',

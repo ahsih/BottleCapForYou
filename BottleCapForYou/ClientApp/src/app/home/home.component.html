@@ -201,6 +201,89 @@
     </aside>
   </div>
 
+  <section class="hero">
+    <div class="hero__backdrop"></div>
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <p class="hero__tag">{{ content().hero.tag }}</p>
+        <h1>{{ manufacturerHeading() }}</h1>
+        <p class="hero__summary">{{ content().hero.subtitle }}</p>
+
+        <figure class="hero__product">
+          <img
+            src="Bottle_And_Cap.jpg"
+            [alt]="content().hero.subtitle"
+            width="1200"
+            height="900"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </figure>
+
+        <!--
+          WhatsApp leads: it is the enquiry route most Gulf buyers actually use,
+          and it needs to be reachable on the first screen without scrolling.
+        -->
+        <div class="hero__actions">
+          <a
+            class="hero__button hero__button--whatsapp"
+            [href]="whatsappHref(contact.phones[0])"
+            target="_blank"
+            rel="noreferrer"
+            >{{ content().hero.whatsapp }}</a
+          >
+          <a class="hero__button hero__button--primary" [routerLink]="localePath('products')">{{
+            content().hero.primary
+          }}</a>
+          <a class="hero__button hero__button--secondary" href="#contact">{{
+            content().hero.secondary
+          }}</a>
+        </div>
+
+        <p class="hero__presence">{{ companyPresenceLine() }}</p>
+        <p class="hero__body">{{ content().hero.body }}</p>
+        <p class="hero__body">{{ manufacturerSummary() }}</p>
+        <p class="hero__sample-note">
+          We can provide you free sample on request.
+        </p>
+      </div>
+
+      <aside class="hero__panel">
+        <div class="hero__panel-header">{{ content().ui.supplyScope }}</div>
+        <ul>
+          <li *ngFor="let item of content().heroPanel">{{ item }}</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="container hero-gallery" aria-label="Company photo gallery">
+      <button
+        type="button"
+        class="hero-gallery__button hero-gallery__button--previous"
+        (click)="previousCompanyPhotos()"
+        [attr.aria-label]="previousLabel()"
+      >
+        <span aria-hidden="true">&#10094;</span>
+      </button>
+      <div class="hero-stats">
+        <figure
+          class="hero-stat hero-stat--photo"
+          *ngFor="let photo of visibleCompanyPhotos"
+        >
+          <img [src]="photo.src" [alt]="photo.alt" />
+        </figure>
+      </div>
+      <button
+        type="button"
+        class="hero-gallery__button hero-gallery__button--next"
+        (click)="nextCompanyPhotos()"
+        [attr.aria-label]="nextLabel()"
+      >
+        <span aria-hidden="true">&#10095;</span>
+      </button>
+    </div>
+  </section>
+
   <section id="products" class="section section--products">
     <div class="container product-preview">
       <aside
@@ -215,8 +298,8 @@
           <div class="trade-terms__item trade-terms__item--price">
             <dt>Price</dt>
             <dd>
-              USD$0.042 –<br class="trade-terms__mobile-break" />
-              USD$0.08<span>/pc</span>
+              USD 42 –<br class="trade-terms__mobile-break" />
+              USD 80<span>/1,000 pcs</span>
             </dd>
             <small>FOB Shenzhen</small>
           </div>
@@ -352,64 +435,6 @@
     </div>
   </section>
 
-  <section class="hero">
-    <div class="hero__backdrop"></div>
-    <div class="container hero__inner">
-      <div class="hero__copy">
-        <p class="hero__tag">{{ content().hero.tag }}</p>
-        <p class="hero__presence">{{ companyPresenceLine() }}</p>
-        <h1>{{ manufacturerHeading() }}</h1>
-        <p class="hero__sample-note">
-          We can provide you free sample on request.
-        </p>
-        <p class="hero__summary">{{ content().hero.subtitle }}</p>
-        <p class="hero__body">{{ content().hero.body }}</p>
-        <p class="hero__body">{{ manufacturerSummary() }}</p>
-        <div class="hero__actions">
-          <a class="hero__button hero__button--primary" [routerLink]="localePath('products')">{{
-            content().hero.primary
-          }}</a>
-          <a class="hero__button hero__button--secondary" href="#contact">{{
-            content().hero.secondary
-          }}</a>
-        </div>
-      </div>
-
-      <aside class="hero__panel">
-        <div class="hero__panel-header">{{ content().ui.supplyScope }}</div>
-        <ul>
-          <li *ngFor="let item of content().heroPanel">{{ item }}</li>
-        </ul>
-      </aside>
-    </div>
-
-    <div class="container hero-gallery" aria-label="Company photo gallery">
-      <button
-        type="button"
-        class="hero-gallery__button hero-gallery__button--previous"
-        (click)="previousCompanyPhotos()"
-        [attr.aria-label]="previousLabel()"
-      >
-        <span aria-hidden="true">&#10094;</span>
-      </button>
-      <div class="hero-stats">
-        <figure
-          class="hero-stat hero-stat--photo"
-          *ngFor="let photo of visibleCompanyPhotos"
-        >
-          <img [src]="photo.src" [alt]="photo.alt" />
-        </figure>
-      </div>
-      <button
-        type="button"
-        class="hero-gallery__button hero-gallery__button--next"
-        (click)="nextCompanyPhotos()"
-        [attr.aria-label]="nextLabel()"
-      >
-        <span aria-hidden="true">&#10095;</span>
-      </button>
-    </div>
-  </section>
 
   <section id="packaging" class="section section--packaging">
     <div class="container">

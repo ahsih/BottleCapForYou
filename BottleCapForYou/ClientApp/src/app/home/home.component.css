@@ -356,7 +356,8 @@
 .hero__presence {
   display: inline-flex;
   width: fit-content;
-  margin: 0 0 18px;
+  /* Sits below the button row since the hero reorder, so it needs clearance above. */
+  margin: 28px 0 18px;
   padding: 8px 12px;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 8px;
@@ -418,6 +419,31 @@
 .hero__button--secondary {
   border: 1px solid rgba(255, 255, 255, 0.34);
   color: #fff;
+}
+
+.hero__button--whatsapp {
+  background: #25d366;
+  color: #08331a;
+}
+
+/*
+ * A product photograph on the first screen. On desktop the hero already has
+ * the panel and gallery, so this stays modest; on mobile it is the only image
+ * above the fold and earns more room.
+ */
+.hero__product {
+  margin: 24px 0 0;
+  max-width: 420px;
+}
+
+.hero__product img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(6, 26, 45, 0.35);
 }
 
 .hero__panel {
@@ -1647,7 +1673,9 @@
   }
 
   .hero__inner {
-    padding: 54px 0 22px;
+    /* Tightened so the photograph and the WhatsApp button both land on the
+       first screen at 375x812. */
+    padding: 24px 0 22px;
     gap: 20px;
   }
 
@@ -1676,6 +1704,15 @@
     width: 100%;
     min-width: 0;
     min-height: 46px;
+  }
+
+  .hero__product {
+    margin-top: 18px;
+    max-width: none;
+  }
+
+  .hero__product img {
+    aspect-ratio: 3 / 2;
   }
 
   .hero__panel {

@@ -56,6 +56,7 @@ export interface SiteTranslations {
     body: string;
     primary: string;
     secondary: string;
+    whatsapp: string;
   };
   heroPanel: string[];
   products: Array<{
@@ -141,6 +142,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
         'HuiZhou DingYuan Gaiye Plastic Co., Ltd. is a plastic bottle cap manufacturer in Guangdong, China specializing in 5 gallon water bottle caps, reusable caps, one-time use caps, sealing liners and related plastic closures. Since 2015, we have supported bottled water factories and wholesale buyers with stable production, practical packing options and export-ready supply.',
       primary: 'Explore Products',
       secondary: 'Contact Us',
+      whatsapp: 'WhatsApp Enquiry',
     },
     heroPanel: [
       'Food grade material',
@@ -254,6 +256,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
         '惠州鼎元盖业塑胶有限公司位于中国广东，专注于 5 加仑桶装水瓶盖、可重复使用瓶盖、一次性瓶盖、密封垫片及相关塑胶配件的生产。自 2015 年以来，我们持续为桶装水工厂、批发采购商和出口客户提供稳定产能、实用包装方案和可靠供货支持。',
       primary: '查看产品',
       secondary: '联系我们',
+      whatsapp: 'WhatsApp 咨询',
     },
     heroPanel: [
       '食品级材料',
@@ -367,6 +370,7 @@ export const translations: Record<AppLanguage, SiteTranslations> = {
         'تقع شركة هويتشو دينغ يوان غاييه للبلاستيك المحدودة في قوانغدونغ بالصين، ومتخصصة في أغطية عبوات المياه سعة 5 جالون، والأغطية القابلة لإعادة الاستخدام، والأغطية ذات الاستخدام الواحد، وبطانات الإحكام، والإغلاقات البلاستيكية ذات الصلة. منذ عام 2015، ندعم مصانع المياه المعبأة ومشتري الجملة بإنتاج مستقر وخيارات تعبئة عملية وتوريد جاهز للتصدير.',
       primary: 'استعرض المنتجات',
       secondary: 'اتصل بنا',
+      whatsapp: 'استفسار عبر واتساب',
     },
     heroPanel: [
       'مواد بدرجة غذائية',
