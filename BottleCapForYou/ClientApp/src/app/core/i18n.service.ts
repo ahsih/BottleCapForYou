@@ -8,6 +8,7 @@ import {
   directionFor,
   matchBrowserLanguage,
   pageRoute,
+  productRoute,
   switchTarget
 } from './locale';
 
@@ -27,9 +28,11 @@ export class I18nService {
 
   private readonly currentLanguage = signal<AppLanguage>('en');
   private readonly currentPage = signal<PageKey>('home');
+  private readonly currentSlug = signal<string | null>(null);
 
   readonly language = this.currentLanguage.asReadonly();
   readonly page = this.currentPage.asReadonly();
+  readonly slug = this.currentSlug.asReadonly();
   readonly content = computed<SiteTranslations>(() => translations[this.currentLanguage()]);
   readonly direction = computed(() => directionFor(this.currentLanguage()));
 
@@ -47,6 +50,14 @@ export class I18nService {
   /** Navigates to the same page in another language. */
   switchLanguage(language: AppLanguage): void {
     this.persistChoice(language);
+
+    // Stay on the same product rather than falling back to the catalogue.
+    const slug = this.currentSlug();
+    if (this.currentPage() === 'product' && slug) {
+      void this.router.navigateByUrl(productRoute(language, slug));
+      return;
+    }
+
     void this.router.navigateByUrl(pageRoute(language, switchTarget(this.currentPage(), language)));
   }
 
@@ -95,6 +106,7 @@ export class I18nService {
     const language = (data['language'] as AppLanguage | undefined) ?? 'en';
 
     this.currentPage.set((data['page'] as PageKey | undefined) ?? 'home');
+    this.currentSlug.set((route.snapshot.params['slug'] as string | undefined) ?? null);
     this.applyLanguage(language);
   }
 

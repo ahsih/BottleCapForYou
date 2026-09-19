@@ -1,7 +1,11 @@
 import { AppLanguage } from '../i18n/translations';
 
-/** Pages that exist in every language. */
-export type PageKey = 'home' | 'news' | 'products' | 'thank-you';
+/**
+ * Pages that exist in every language. `product` is the per-product detail page;
+ * it carries a slug, so its URLs are built with productRoute/productUrl rather
+ * than from PAGE_PATH.
+ */
+export type PageKey = 'home' | 'news' | 'products' | 'product' | 'thank-you';
 
 export const SITE_URL = 'https://bottlecapforyou.com';
 
@@ -32,6 +36,8 @@ export const PAGE_PATH: Record<PageKey, string> = {
   home: '',
   news: '/news',
   products: '/products',
+  // Fallback only: a real product page appends its slug via productRoute().
+  product: '/products',
   'thank-you': '/thank-you'
 };
 
@@ -59,6 +65,16 @@ export function localizedRoute(language: AppLanguage, page: PageKey): string {
   return pageRoute(isLocalized(page) ? language : 'en', page);
 }
 
+/** Router path for one product's page, e.g. '/zh/products/3025-bottle-cap'. */
+export function productRoute(language: AppLanguage, slug: string): string {
+  return `${LANGUAGE_PREFIX[language]}/products/${slug}`;
+}
+
+/** Absolute URL for one product's page, used for canonical and hreflang. */
+export function productUrl(language: AppLanguage, slug: string): string {
+  return `${SITE_URL}${productRoute(language, slug)}`;
+}
+
 /** Absolute URL for a page in a language, used for canonical and hreflang. */
 export function pageUrl(language: AppLanguage, page: PageKey): string {
   const path = `${LANGUAGE_PREFIX[language]}${PAGE_PATH[page]}`;
@@ -75,7 +91,7 @@ export function pageUrl(language: AppLanguage, page: PageKey): string {
  * content is translated - routes, hreflang, and the server mappings all follow
  * from this list.
  */
-export const LOCALIZED_PAGES: readonly PageKey[] = ['home', 'products', 'thank-you'];
+export const LOCALIZED_PAGES: readonly PageKey[] = ['home', 'products', 'product', 'thank-you'];
 
 export function isLocalized(page: PageKey): boolean {
   return LOCALIZED_PAGES.includes(page);

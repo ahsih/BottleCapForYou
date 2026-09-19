@@ -7,6 +7,7 @@ import {
   PageKey,
   isLocalized,
   pageUrl,
+  productUrl,
   switchTarget
 } from './locale';
 
@@ -33,7 +34,17 @@ export class SeoLinksService {
 
     // A page that exists in only one language gets no hreflang at all -
     // annotations are a claim that alternatives exist.
-    this.setAlternates(isLocalized(seoPage) ? seoPage : null);
+    this.setAlternates(isLocalized(seoPage) ? (lang) => pageUrl(lang, seoPage) : null);
+
+    return canonical;
+  }
+
+  /** Applies the tags for one product's page and returns its canonical URL. */
+  applyProduct(language: AppLanguage, slug: string): string {
+    const canonical = productUrl(language, slug);
+
+    this.setCanonical(canonical);
+    this.setAlternates((lang) => productUrl(lang, slug));
 
     return canonical;
   }
@@ -50,22 +61,22 @@ export class SeoLinksService {
     link.setAttribute('href', href);
   }
 
-  private setAlternates(page: PageKey | null): void {
+  private setAlternates(urlFor: ((language: AppLanguage) => string) | null): void {
     // Rebuild rather than patch: the set belongs to the current page, and
     // stale entries from the previous navigation would be wrong here.
     this.document
       .querySelectorAll('link[rel="alternate"][hreflang]')
       .forEach((link) => link.remove());
 
-    if (page === null) {
+    if (urlFor === null) {
       return;
     }
 
     for (const language of APP_LANGUAGES) {
-      this.appendAlternate(HREFLANG_CODE[language], pageUrl(language, page));
+      this.appendAlternate(HREFLANG_CODE[language], urlFor(language));
     }
 
-    this.appendAlternate('x-default', pageUrl('en', page));
+    this.appendAlternate('x-default', urlFor('en'));
   }
 
   private appendAlternate(hreflang: string, href: string): void {

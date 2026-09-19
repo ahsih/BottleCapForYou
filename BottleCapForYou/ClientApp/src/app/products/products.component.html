@@ -238,7 +238,13 @@
             </div>
 
             <div class="catalog-product-card__body">
-              <h2>{{ productTitle(product) }}</h2>
+              <h2>
+                <a
+                  class="catalog-product-card__link"
+                  [routerLink]="productPath(product.slug)"
+                  >{{ productTitle(product) }}</a
+                >
+              </h2>
               <p class="catalog-product-card__summary">
                 {{ productSummary(product) }}
               </p>

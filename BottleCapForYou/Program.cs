@@ -118,9 +118,44 @@ foreach (var prefix in new[] { "zh", "ar" })
     }
 }
 
+// One page per product, prerendered to wwwroot/<prefix>/products/<slug>/index.html.
+// The slug is matched against the prerendered directories rather than a list
+// duplicated here, so adding a product needs no change on the server side.
+app.MapGet("/products/{slug}", (string slug) =>
+    ServePrerenderedProduct(app.Environment, string.Empty, slug));
+
+foreach (var prefix in new[] { "zh", "ar" })
+{
+    var languagePrefix = prefix;
+    app.MapGet($"/{languagePrefix}/products/{{slug}}", (string slug) =>
+        ServePrerenderedProduct(app.Environment, languagePrefix, slug));
+}
+
 app.MapFallbackToFile("index.html");
 
 app.Run();
+
+/// <summary>
+/// Serves one product's prerendered page. Unknown slugs fall through to a 404
+/// rather than the catch-all, so a mistyped or withdrawn product URL is not
+/// answered with 200 and the home page.
+/// </summary>
+static IResult ServePrerenderedProduct(IWebHostEnvironment environment, string languagePrefix, string slug)
+{
+    // Slugs are generated from a fixed alphabet; anything else is not ours and
+    // must never reach the filesystem.
+    if (string.IsNullOrEmpty(slug) || slug.Length > 120 ||
+        !slug.All(c => (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '-'))
+    {
+        return Results.NotFound();
+    }
+
+    var route = languagePrefix.Length > 0
+        ? $"{languagePrefix}/products/{slug}"
+        : $"products/{slug}";
+
+    return ServePrerenderedPage(environment, route);
+}
 
 static IResult ServePrerenderedPage(IWebHostEnvironment environment, string route)
 {

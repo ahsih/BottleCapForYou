@@ -1,0 +1,146 @@
+<div class="product-page" [attr.dir]="textDirection()">
+  <header class="catalog-header">
+    <div class="catalog-header__inner">
+      <a
+        class="catalog-brand"
+        [routerLink]="localePath('home')"
+        [attr.aria-label]="content().ui.homepageLabel"
+      >
+        <img src="logo.png" [alt]="content().brand.company" />
+      </a>
+
+      <nav class="catalog-nav" [attr.aria-label]="content().nav.products">
+        <a [routerLink]="localePath('home')">{{ content().nav.home }}</a>
+        <a [routerLink]="localePath('news')">{{ content().nav.news }}</a>
+        <a class="active" [routerLink]="localePath('products')">{{
+          content().nav.products
+        }}</a>
+      </nav>
+
+      <div class="lang-switch" [attr.aria-label]="content().ui.switchLabel">
+        <button
+          type="button"
+          [class.active]="language() === 'ar'"
+          [attr.aria-label]="content().ui.languageArabic"
+          (click)="setLanguage('ar')"
+        >
+          AR
+        </button>
+        <button
+          type="button"
+          [class.active]="language() === 'zh-CN'"
+          [attr.aria-label]="content().ui.languageChinese"
+          (click)="setLanguage('zh-CN')"
+        >
+          中文
+        </button>
+        <button
+          type="button"
+          [class.active]="language() === 'en'"
+          [attr.aria-label]="content().ui.languageEnglish"
+          (click)="setLanguage('en')"
+        >
+          EN
+        </button>
+      </div>
+    </div>
+  </header>
+
+  @if (product(); as item) {
+    <main class="product-main">
+      <nav class="breadcrumb" [attr.aria-label]="text('breadcrumbProducts')">
+        <a [routerLink]="localePath('home')">{{ text('breadcrumbHome') }}</a>
+        <span aria-hidden="true">/</span>
+        <a [routerLink]="localePath('products')">{{ text('breadcrumbProducts') }}</a>
+        <span aria-hidden="true">/</span>
+        <span class="breadcrumb__current">{{ productText(item.title) }}</span>
+      </nav>
+
+      <div class="product-layout">
+        <div class="product-gallery">
+          @for (image of images(); track image; let i = $index) {
+            <img
+              [src]="image"
+              [alt]="text('imageOf') + ' ' + productText(item.title)"
+              [attr.loading]="i === 0 ? 'eager' : 'lazy'"
+              [attr.fetchpriority]="i === 0 ? 'high' : null"
+              decoding="async"
+              width="640"
+              height="640"
+            />
+          }
+        </div>
+
+        <div class="product-info">
+          <h1>{{ productText(item.title) }}</h1>
+          <p class="product-summary">{{ productText(item.summary) }}</p>
+
+          @if (item.specs.length) {
+            <section class="product-specs">
+              <h2>{{ text('specifications') }}</h2>
+              <dl>
+                @for (spec of item.specs; track spec.label + spec.value) {
+                  <div class="product-specs__row">
+                    <dt>{{ productText(spec.label) }}</dt>
+                    <dd>{{ productText(spec.value) }}</dd>
+                  </div>
+                }
+              </dl>
+            </section>
+          }
+
+          @if (item.tags.length) {
+            <section class="product-tags">
+              <h2>{{ text('features') }}</h2>
+              <ul>
+                @for (tag of item.tags; track tag) {
+                  <li>{{ productText(tag) }}</li>
+                }
+              </ul>
+            </section>
+          }
+
+          <div class="product-actions">
+            <a class="product-actions__primary" [href]="homeAnchor('contact')">
+              {{ text('enquire') }}
+            </a>
+            <a
+              class="product-actions__secondary"
+              [href]="whatsappLink()"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {{ text('whatsapp') }}
+            </a>
+          </div>
+
+          <a class="product-back" [routerLink]="localePath('products')">
+            {{ text('backToCatalogue') }}
+          </a>
+        </div>
+      </div>
+
+      @if (related().length) {
+        <section class="product-related">
+          <h2>{{ text('relatedProducts') }}</h2>
+          <div class="product-related__grid">
+            @for (other of related(); track other.slug) {
+              <a class="product-related__card" [routerLink]="productPath(other.slug)">
+                <span class="product-related__title">{{ productText(other.title) }}</span>
+                <span class="product-related__summary">{{ productText(other.summary) }}</span>
+              </a>
+            }
+          </div>
+        </section>
+      }
+    </main>
+  } @else {
+    <main class="product-main product-main--missing">
+      <h1>{{ text('notFound') }}</h1>
+      <p>{{ text('notFoundText') }}</p>
+      <a class="product-back" [routerLink]="localePath('products')">
+        {{ text('backToCatalogue') }}
+      </a>
+    </main>
+  }
+</div>
