@@ -3,6 +3,8 @@ import { Component, HostListener, OnInit, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
+import { whatsappUrl } from '../core/contact-details';
+import { ConversionTrackingService } from '../core/conversion-tracking.service';
 import { I18nService } from '../core/i18n.service';
 import { SeoLinksService } from '../core/seo-links.service';
 import { PageKey, localizedRoute } from '../core/locale';
@@ -91,21 +93,6 @@ type ContactOffice = {
   usesFactoryAddress?: boolean;
 };
 
-type GoogleTagFunction = {
-  (
-    command: 'event',
-    eventName: 'conversion',
-    config: {
-      event_callback?: () => void;
-      send_to: string;
-    },
-  ): void;
-};
-
-type GoogleTagWindow = Window & {
-  gtag?: GoogleTagFunction;
-};
-
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -117,8 +104,6 @@ export class HomeComponent implements OnInit {
   private readonly siteUrl = 'https://bottlecapforyou.com';
   private readonly defaultShareImage = `${this.siteUrl}/logo.png`;
   private readonly primaryPhone = '+86 15816427686';
-  private readonly googleAdsConversionId =
-    'AW-18226061372/F-xUCOO3sNUcELzA7vJD';
 
   readonly contact = {
     phones: [this.primaryPhone],
@@ -828,6 +813,7 @@ export class HomeComponent implements OnInit {
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
   private readonly location = inject(Location);
+  private readonly conversions = inject(ConversionTrackingService);
 
   /** Language-aware router path for in-site navigation. */
   protected localePath(page: PageKey): string {
@@ -923,7 +909,10 @@ export class HomeComponent implements OnInit {
   }
 
   whatsappHref(phone: string): string {
-    return `https://wa.me/${phone.replace(/[^\d]/g, '')}`;
+    // Opens with the enquiry already written. A bare wa.me link drops the
+    // buyer into an empty chat with an unknown +86 number, which is where
+    // most of them abandon the conversation.
+    return whatsappUrl(phone, this.language());
   }
 
   emailHref(email: string): string {
@@ -984,19 +973,9 @@ export class HomeComponent implements OnInit {
   }
 
   private trackLeadFormConversion(): void {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
-    const gtag = (window as GoogleTagWindow).gtag;
-
-    if (typeof gtag !== 'function') {
-      return;
-    }
-
-    gtag('event', 'conversion', {
-      send_to: this.googleAdsConversionId,
-    });
+    // Reported through the shared service so the form is counted the same way
+    // as WhatsApp, email and phone enquiries.
+    this.conversions.track('form');
   }
 
   contactFormStatusMessage(): string {

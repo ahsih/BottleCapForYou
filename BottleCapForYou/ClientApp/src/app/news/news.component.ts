@@ -7,6 +7,7 @@ import {
   Title,
 } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
+import { whatsappUrl } from '../core/contact-details';
 import { I18nService } from '../core/i18n.service';
 import { SeoLinksService } from '../core/seo-links.service';
 import { PageKey, localizedRoute } from '../core/locale';
@@ -396,8 +397,9 @@ export class NewsComponent {
   }
 
   whatsappHref(phone: string): string {
-    const normalized = phone.replace(/[^\d+]/g, '').replace('+', '');
-    return `https://wa.me/${normalized}`;
+    // Same prefilled opening line as the rest of the site, so the buyer never
+    // lands in an empty chat.
+    return whatsappUrl(phone, this.language());
   }
 
   private toEmbedUrl(post: NewsPost): SafeResourceUrl {

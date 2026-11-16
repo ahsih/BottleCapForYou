@@ -193,3 +193,21 @@ textarea {
     font-size: 9.5px;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Sticky contact bar clearance
+
+   The bar is fixed to the bottom of the viewport on every page, so the page
+   itself has to end above it; without this the last of the footer (including
+   the enquiry form) sits underneath the bar and cannot be read or tapped.
+   The variable is set by ContactBarComponent and falls back to 0 so the
+   prerendered HTML is unaffected.
+--------------------------------------------------------------------------- */
+body {
+  padding-bottom: var(--contact-bar-height, 0px);
+}
+
+/* Anchor jumps (#contact) would otherwise land with the target under the bar. */
+:target {
+  scroll-margin-bottom: var(--contact-bar-height, 0px);
+}

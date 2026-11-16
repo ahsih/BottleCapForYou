@@ -66,7 +66,10 @@ const BANNER_TEXT: Record<AppLanguage, BannerText> = {
       .language-banner {
         position: fixed;
         inset-inline: 0;
-        bottom: 0;
+        /* Sits above the sticky contact bar rather than on top of it, so the
+           two never cover each other. The fallback keeps the banner flush to
+           the bottom if the bar is not rendered. */
+        bottom: var(--contact-bar-height, 0px);
         z-index: 1000;
         display: flex;
         flex-wrap: wrap;
